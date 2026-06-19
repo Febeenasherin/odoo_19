@@ -1,64 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
-
-<!--    form view -->
-    <record model="ir.ui.view" id="reg_view_form">
+    <!--    form view -->
+    <record  id="school_students_view_form" model="ir.ui.view">
         <field name="name">ir.demo.form</field>
         <field name="model">school.students</field>
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="registration" type="object" string="Register"/>
                     <field name="status" widget="statusbar" options="{'clickable':1}"/>
                 </header>
                 <sheet>
                     <field name="image" widget="image" class="oe_avatar"/>
-                    <h1> <field name="sequence" readonly="1"/></h1>
+                    <h1> <field name="sequence" readonly="1"/>
+                    </h1>
                 <group>
                     <group>
-
-                        <field name="First_name"/>
-                        <field name="Last_name"/>
-                        <field name="Father_name"/>
-                        <field name="Mother_name"/>
-                        <field name="Email"/>
-                        <field name="school_dep"/>
+                        <field name="admission"/>
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="father_name"/>
+                        <field name="mother_name"/>
+                        <field name="email"/>
+                        <field name="school_id"/>
                         <field name="aadhaar_no"/>
 
                     </group>
 
-
                     <group>
-
-
-
-
                         <field name="phone_no"/>
-                        <field name="DOB"/>
-                        <field name="Gender"/>
-                        <field name="Registration_date"/>
-
-                        <field name="TC" widget="image" class="oe_avatar"/>
-
-
-
+                        <field name="dob"/>
+                        <field name="student_age"/>
+                        <field name="gender"/>
+                        <field name="registration_date"/>
+                        <field name="company_id"/>
+                        <field name="tc" widget="image" class="oe_avatar"/>
                     </group>
                     </group>
-
-
                     <group>
                     <notebook>
                         <page string="personal information" name="personal_information">
                             <group>
-                            <field name="Communication_address"/>
+                            <field name="communication_address"/>
                             <field name="same_as_communication" widget="boolean_toggle"/>
                             <span class="o_form_label 0_td_label o_address_type fw_bold" invisible="same_as_communication">permanent address</span>
                             <div class="o_address_format" invisible="same_as_communication">
                                     <field name="street" placeholder="Street..." class="o_address_street"/>
 
                                     <field name="city" placeholder="City" class="o_address_city"/>
-
                                     <field name="country_id" placeholder="Country"/>
 
                             </div>
@@ -66,52 +56,36 @@
                         </page>
                     </notebook>
                     </group>
-
-
-
                 </sheet>
+                <chatter/>
             </form>
         </field>
-
     </record>
 
 
     <!--    list view -->
-    <record model="ir.ui.view" id="list_view">
+    <record id="school_students_list" model="ir.ui.view">
         <field name="name">ir.demo.list</field>
         <field name="model">school.students</field>
         <field name="arch" type="xml">
             <list string="school management">
 
                         <field name="sequence"/>
-                        <field name="First_name"/>
-                        <field name="Last_name"/>
-
-                        <field name="Email"/>
-                        <field name="Communication_address"/>
-
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="email"/>
+                        <field name="communication_address"/>
                         <field name="phone_no"/>
-                        <field name="DOB"/>
-                        <field name="Gender"/>
-                        <field name="Registration_date"/>
+                        <field name="dob"/>
+                        <field name="gender"/>
+                        <field name="registration_date"/>
                         <field name="status"/>
-
-
-
-
-
-
-
-
             </list>
         </field>
 
     </record>
 
-
-
-
-        <record id="action_view_students" model="ir.actions.act_window">
+    <record id="school_students_action" model="ir.actions.act_window">
         <field name="name">Registration</field>
         <field name="res_model">school.students</field>
         <field name="view_mode">list,form</field>
@@ -122,10 +96,4 @@
 
         </field>
      </record>
-
-
-
-
-
-
 </odoo>

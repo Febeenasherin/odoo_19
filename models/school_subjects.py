@@ -1,0 +1,10 @@
+from odoo import fields,models
+
+class SchoolSubjects(models.Model):
+    _name = 'school.subject'
+
+    _unique_name = models.Constraint('UNIQUE(name_sub)', 'Subject must be unique!')
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name_sub = fields.Char(string='Subject')
+    school_dep= fields.Many2one('school.department',string='Head of Department')

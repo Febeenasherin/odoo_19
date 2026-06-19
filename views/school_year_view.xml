@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<!--    <record model="ir.ui.view" id="year_view_form">-->
+<!--        <field name="name">ir.demo.form</field>-->
+<!--        <field name="model">school.year</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+
+<!--                <sheet>-->
+<!--                    <group>-->
+
+<!--                        <field name="name"/>-->
+
+<!--                    </group>-->
+
+
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+
+<!--    </record>-->
+
+    <record id="school_year_view_list" model="ir.ui.view" >
+        <field name="name">ir.demo.list</field>
+        <field name="model">school.year</field>
+        <field name="arch" type="xml">
+            <list string="school management" editable="bottom" sample="1">
+
+                        <field name="name"/>
+
+            </list>
+        </field>
+    </record>
+
+    <record id="school_year_action" model="ir.actions.act_window">
+        <field name="name">AcademicYear</field>
+        <field name="res_model">school.year</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_j">
+                No record found .
+            </p>
+
+        </field>
+
+    </record>
+</odoo>

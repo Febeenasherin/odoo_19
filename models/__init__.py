@@ -1,9 +1,9 @@
 from . import school_students
 
-from . import Manage_Department
+from . import school_department
 
-from . import manage_class
+from . import school_class
 
-from . import manage_subject
+from . import school_subjects
 
-from . import manage_year
+from . import school_year

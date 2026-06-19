@@ -3,31 +3,24 @@
 
 
     <!--    form view -->
-    <record model="ir.ui.view" id="dep_view_form">
+    <record id="school_department_view_form" model="ir.ui.view">
         <field name="name">ir.demo.form</field>
         <field name="model">school.department</field>
         <field name="arch" type="xml">
             <form>
-
                 <sheet>
                     <group>
                         <field name="name"/>
                         <field name="dep_partner"/>
-
-
                     </group>
-
-
                 </sheet>
+                <chatter/>
             </form>
         </field>
 
     </record>
 
-
-
-
-    <record  model="ir.ui.view"  id="dep_view_list">
+    <record id="school_department_view_list" model="ir.ui.view">
         <field name="name">ir.demo.list</field>
         <field name="model">school.department</field>
         <field name="arch" type="xml">
@@ -39,10 +32,7 @@
         </field>
     </record>
 
-
-
-
-        <record id="action_dep" model="ir.actions.act_window">
+    <record id="school_department_action" model="ir.actions.act_window">
         <field name="name">Department</field>
         <field name="res_model">school.department</field>
         <field name="view_mode">list,form</field>

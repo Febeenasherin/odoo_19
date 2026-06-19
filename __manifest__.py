@@ -12,16 +12,15 @@
     'application': True,
     'installable': True,
     'auto_install': True,
+    'depends': ['mail',],
     'data':["security/ir.model.access.csv",
-        "views/action_view_students.xml",
-        "views/action_dep.xml",
-        "views/action_class.xml",
-        "views/action_sub.xml",
-        "data/sequence.xml",
-        "views/action_year.xml",
-        "views/student_menu.xml",
+        "views/school_students_view.xml",
+        "views/school_department_view.xml",
+        "views/school_class_view.xml",
+        "views/school_subject_view.xml",
+        "data/sequence_data.xml",
+        "views/school_year_view.xml",
+        "views/student_menu_view.xml",
 
 ]
-
-
-}
+}   
