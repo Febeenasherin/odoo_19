@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="school_subject_demo" model="school.subject">
+            <field name="name_sub">maths</field>
+        </record>
+    </data>
+</odoo>

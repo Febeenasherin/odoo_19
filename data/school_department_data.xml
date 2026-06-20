@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="department_lp_demo_data" model="school.department">
+            <field name="name">Lp</field>
+        </record>
+
+        <record id="department_up_demo_data" model="school.department">
+            <field name="name">Up</field>
+        </record>
+    </data>
+</odoo>

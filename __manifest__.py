@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': "School_Management",
-    'version': "19.0.1.0",
+    'version': "19.0.1.0.0",
     'license':"LGPL-3",
     'author': "Cybrosys Techno Solutions",
     'website': 'https://www.cybrosys.com',
@@ -12,15 +12,28 @@
     'application': True,
     'installable': True,
     'auto_install': True,
-    'depends': ['mail',],
+    'depends': ['base','mail',],
     'data':["security/ir.model.access.csv",
         "views/school_students_view.xml",
         "views/school_department_view.xml",
         "views/school_class_view.xml",
         "views/school_subject_view.xml",
         "data/sequence_data.xml",
+        "data/school_class_data.xml",
+        "data/school_department_data.xml",
+        "data/school_subject_data.xml"  ,
         "views/school_year_view.xml",
         "views/student_menu_view.xml",
 
-]
+        ],
+
+
+    # 'post_init_hook': 'create_default_department',
+    # 'post_init_hook':'create_default_class',
+    #
+
+
+
+
+
 }   

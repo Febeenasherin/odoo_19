@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="school_class_one" model="school.class">
+            <field name="name_class">1</field>
+        </record>
+
+        <record id="school_class_two" model="school.class">
+            <field name="name_class">2</field>
+        </record>
+    </data>
+</odoo>

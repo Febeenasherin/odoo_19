@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    #main menu
+<!-- main menu -->
     <menuitem id="school_management" name="School Management"/>
 
     <menuitem id="menu_school_stud" name="Students" parent="school_management"/>

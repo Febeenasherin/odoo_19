@@ -3,12 +3,12 @@
 
     <!--    form view -->
     <record  id="school_students_view_form" model="ir.ui.view">
-        <field name="name">ir.demo.form</field>
+        <field name="name">school.students.form</field>
         <field name="model">school.students</field>
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="registration" type="object" string="Register"/>
+                    <button name="registration" type="object" string="Register" class="oe_highlight"/>
                     <field name="status" widget="statusbar" options="{'clickable':1}"/>
                 </header>
                 <sheet>
@@ -17,7 +17,7 @@
                     </h1>
                 <group>
                     <group>
-                        <field name="admission"/>
+                        <field name="admission" invisible="status !='registration'"/>
                         <field name="first_name"/>
                         <field name="last_name"/>
                         <field name="father_name"/>
@@ -35,7 +35,7 @@
                         <field name="gender"/>
                         <field name="registration_date"/>
                         <field name="company_id"/>
-                        <field name="tc" widget="image" class="oe_avatar"/>
+                        <field name="document_id" widget="many2one_binary"/>
                     </group>
                     </group>
                     <group>
@@ -65,7 +65,7 @@
 
     <!--    list view -->
     <record id="school_students_list" model="ir.ui.view">
-        <field name="name">ir.demo.list</field>
+        <field name="name">school.students.list</field>
         <field name="model">school.students</field>
         <field name="arch" type="xml">
             <list string="school management">
@@ -74,11 +74,11 @@
                         <field name="first_name"/>
                         <field name="last_name"/>
                         <field name="email"/>
-                        <field name="communication_address"/>
+
                         <field name="phone_no"/>
-                        <field name="dob"/>
+
                         <field name="gender"/>
-                        <field name="registration_date"/>
+                        
                         <field name="status"/>
             </list>
         </field>

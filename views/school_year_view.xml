@@ -22,7 +22,7 @@
 <!--    </record>-->
 
     <record id="school_year_view_list" model="ir.ui.view" >
-        <field name="name">ir.demo.list</field>
+        <field name="name">schol.year.list</field>
         <field name="model">school.year</field>
         <field name="arch" type="xml">
             <list string="school management" editable="bottom" sample="1">
