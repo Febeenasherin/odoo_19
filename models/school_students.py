@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+from hmac import new
+
+from zope.interface.common import sequence
 
 from odoo import fields,models,api
+from datetime import date
 
 class SchoolStudents(models.Model):
     """school student registration"""
@@ -15,10 +19,10 @@ class SchoolStudents(models.Model):
     first_name = fields.Char(string="First Name",required=True ,help='enter first name')
     last_name = fields.Char(string="Last Name",required=True,  help='enter last name')
     father_name = fields.Char(string="Father Name",help='enter father name')
-    mother_name = fields.Char(string="Mother Name", required=True, help='enter mother name')
+    mother_name = fields.Char(string="Mother Name", help='enter mother name')
 
     # personal_information=fields.Text(string="Personal information",required=True,help='enter personal information')
-    communication_address = fields.Text(string="Communication Address", required=True, help='enter communication address')
+    # communication_address = fields.Text(string="Communication Address", required=True, help='enter communication address')
     street = fields.Char(string="Street")
     city = fields.Char(string="City")
     country_id = fields.Many2one('res.country',string="Country")
@@ -33,30 +37,40 @@ class SchoolStudents(models.Model):
     registration_date = fields.Date(string="Registration Date", required=True, default=fields.Date.today , help='enter registration date')
     image = fields.Image(string= "image", help='upload image')
     school_id = fields.Many2one('school.department', string='Head of Department', help='select department')
-    document_id = fields.Many2one('ir.attachment', string=' TC')
+    document = fields.Binary(string="Document")
     aadhaar_no = fields.Char(string="Aadhaar no",help='enter Aadhaar no')
-    company_id = fields.Many2one('res.company', string='Multi School', tracking=True)
-    admission = fields.Char(string='Admission no')
-    status = fields.Selection([("draft","Draft"),("registration","Registration")], default='draft', string="Status"   )
+    company_id = fields.Many2one('res.company', string='School', tracking=True)
+    admission = fields.Char(string='Admission no', readonly=True)
+    status = fields.Selection([("draft","Draft"),("registration","Registration")], default='draft', string="Status")
+    previous_department_id = fields.Many2one('school.department',string='Previous Department')
+    previous_class_id = fields.Many2one('school.class' , string='Previous Class')
 
     # sequence
-    # @api.model_create_multi
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """sequence"""
         print("self",self)
-        print("vals",vals)
-        if vals.get('name', 'New') == 'New':
-            vals['sequence'] = self.env['ir.sequence'].next_by_code('sequence') or 'New'
-        return super(SchoolStudents, self).create(vals)
+        for vals in vals_list:
+            if vals.get('sequence' , 'New') == 'New':
+                vals["sequence"] = self.env['ir.sequence'].next_by_code('sequencecode')  or 'New'
 
-    # button action_registration
+            # vals["admission"] = self.env['ir.sequence'].next_by_code('admissioncode')
+        return super(SchoolStudents, self).create(vals_list)
+
+    # button registration
     def registration(self):
-        """status"""
+        """change status"""
+        print("self",self)
         self.status = 'registration'
+
+        self.admission = self.env['ir.sequence'].next_by_code('admissioncode')
+
 
     #  age calculation
     @api.depends('dob')
     def _compute_student_age(self):
+        """age calculation"""
+        print("self",self)
         for record in self:
             if record.dob:
                 today = date.today()
@@ -65,6 +79,11 @@ class SchoolStudents(models.Model):
             else:
                 record.student_age = 0
 
-
-
-
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     """sequence"""
+    #
+    #     for vals in vals_list:
+    #         if vals.get('admission'):
+    #             vals["admission"] = self.env['ir.sequence'].next_by_code('admissioncode')
+    #     return super(SchoolStudents, self).create(vals_list)

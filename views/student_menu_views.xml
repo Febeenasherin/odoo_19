@@ -11,5 +11,7 @@
     <menuitem id="manage_class" name="Class" parent="menu_schol_config" action="school_class_action" sequence="2"/>
     <menuitem id="manage_sub" name="Subject" parent="menu_schol_config" action="school_subject_action" sequence="3"/>
     <menuitem id="academic_year" name="Year" parent="menu_schol_config" action="school_year_action" sequence="4"/>
+    <menuitem id="school_clubs" name="Clubs" parent="school_management" action="school_clubs_action"/>
+    <menuitem id="school_events" name="Events" parent="school_management" action="school_events_action"/>
 
 </odoo>

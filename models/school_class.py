@@ -9,6 +9,7 @@ class SchoolClass(models.Model):
     _name ='school.class'
     _description ='School class details'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name_class'
 
     _unique_name = models.Constraint('UNIQUE(name_class)', 'class must be unique!')
 

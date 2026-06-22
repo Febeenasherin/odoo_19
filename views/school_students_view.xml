@@ -35,23 +35,42 @@
                         <field name="gender"/>
                         <field name="registration_date"/>
                         <field name="company_id"/>
-                        <field name="document_id" widget="many2one_binary"/>
+
                     </group>
                     </group>
                     <group>
                     <notebook>
-                        <page string="personal information" name="personal_information">
+                            <page string="Personal information" name="personal_information">
+                                <group>
+
+                                    <span class="o_form_label 0_td_label o_address_type fw_bold" >Communication address</span>
+                                    <div class="o_address_format">
+                                        <field name="street" placeholder="Street..."/>
+                                        <field name="city" placeholder="City"/>
+                                        <field name="country_id" placeholder="Country"/>
+                                    </div>
+
+
+
+
+
+                                <field name="same_as_communication" widget="boolean_toggle"/>
+
+                                <span class="o_form_label 0_td_label o_address_type fw_bold" invisible="same_as_communication">permanent address</span>
+                                <div class="o_address_format" invisible="same_as_communication">
+                                        <field name="street" placeholder="Street..." />
+                                        <field name="city" placeholder="City"/>
+                                        <field name="country_id" placeholder="Country"/>
+
+                                </div>
+                                </group>
+
+                            </page>
+                        <page string="Previous school data" name="previous_data">
                             <group>
-                            <field name="communication_address"/>
-                            <field name="same_as_communication" widget="boolean_toggle"/>
-                            <span class="o_form_label 0_td_label o_address_type fw_bold" invisible="same_as_communication">permanent address</span>
-                            <div class="o_address_format" invisible="same_as_communication">
-                                    <field name="street" placeholder="Street..." class="o_address_street"/>
-
-                                    <field name="city" placeholder="City" class="o_address_city"/>
-                                    <field name="country_id" placeholder="Country"/>
-
-                            </div>
+                                <field name="previous_department_id"/>
+                                <field name="previous_class_id" domain="[('school_dep' ,'=', previous_department_id)]"/>
+                                <field name="document" filename="certificate_filename"/>
                             </group>
                         </page>
                     </notebook>
@@ -74,11 +93,8 @@
                         <field name="first_name"/>
                         <field name="last_name"/>
                         <field name="email"/>
-
                         <field name="phone_no"/>
-
                         <field name="gender"/>
-                        
                         <field name="status"/>
             </list>
         </field>
