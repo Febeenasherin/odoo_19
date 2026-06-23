@@ -6,3 +6,4 @@ from . import school_subjects
 from . import school_year
 from . import school_clubs
 from . import school_events
+from . import sale_status

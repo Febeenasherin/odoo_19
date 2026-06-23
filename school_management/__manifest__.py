@@ -24,6 +24,7 @@
         "data/school_subject_data.xml",
         "views/school_year_views.xml",
         "views/school_clubs_views.xml",
+        "views/sale_status_views.xml",
         "views/school_events_views.xml",
         "views/student_menu_views.xml",
 
