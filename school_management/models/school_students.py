@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-from hmac import new
-
-from zope.interface.common import sequence
-
 from odoo import fields,models,api
 from datetime import date
+
 
 class SchoolStudents(models.Model):
     """school student registration"""
@@ -44,6 +41,8 @@ class SchoolStudents(models.Model):
     status = fields.Selection([("draft","Draft"),("registration","Registration")], default='draft', string="Status")
     previous_department_id = fields.Many2one('school.department',string='Previous Department')
     previous_class_id = fields.Many2one('school.class' , string='Previous Class')
+    club_ids = fields.Many2many('school.clubs', string='Club')
+
 
     # sequence
     @api.model_create_multi

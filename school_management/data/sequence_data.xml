@@ -11,4 +11,16 @@
 
 
     </record>
+
+     <record id="admission_no" model="ir.sequence">
+        <field name="name">admission</field>
+        <field name="code">admissioncode</field>
+        <field name="prefix">AD</field>
+        <field name="padding">3</field>
+        <field name="number_increment">1</field>
+
+
+    </record>
+
+
 </odoo>
