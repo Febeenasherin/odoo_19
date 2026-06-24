@@ -1,7 +1,5 @@
-
 # -*- coding: utf-8 -*-
-
-from odoo import fields,models
+from odoo import fields, models
 
 
 class SchoolClass(models.Model):
@@ -14,6 +12,6 @@ class SchoolClass(models.Model):
     _unique_name = models.Constraint('UNIQUE(name_class)', 'class must be unique!')
 
     name_class = fields.Char(string='Name')
-    school_dep = fields.Many2one('school.department', string='Department')
-    head_dep = fields.Many2one(related='school_dep.dep_partner',string='Head department')
+    school_id = fields.Many2one('school.department', string='Department')
+    head_id = fields.Many2one(related='school_id.dep_id',string='Head department')
     company_id = fields.Many2one('res.company', string='multi_school', tracking=True)

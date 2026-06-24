@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields,models
+from odoo import fields, models
 
 
 class SchoolDepartment(models.Model):
@@ -11,4 +11,4 @@ class SchoolDepartment(models.Model):
     _unique_name = models.Constraint('UNIQUE(name)', 'class must be unique!')
 
     name = fields.Char(string='Department')
-    dep_partner = fields.Many2one('res.partner',string='Head of Department', index=True)
+    dep_id = fields.Many2one('res.partner',string='Head of Department', index=True)

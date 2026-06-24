@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <!--    form view -->
     <record  id="school_students_view_form" model="ir.ui.view">
         <field name="name">school.students.form</field>
@@ -25,9 +24,7 @@
                         <field name="email"/>
                         <field name="school_id"/>
                         <field name="aadhaar_no"/>
-
                     </group>
-
                     <group>
                         <field name="phone_no"/>
                         <field name="dob"/>
@@ -43,34 +40,25 @@
                     <notebook>
                             <page string="Personal information" name="personal_information">
                                 <group>
-
                                     <span class="o_form_label 0_td_label o_address_type fw_bold" >Communication address</span>
                                     <div class="o_address_format">
                                         <field name="street" placeholder="Street..."/>
                                         <field name="city" placeholder="City"/>
                                         <field name="country_id" placeholder="Country"/>
                                     </div>
-
-
-
-
-
-                                <field name="same_as_communication" widget="boolean_toggle"/>
-
-                                <span class="o_form_label 0_td_label o_address_type fw_bold" invisible="same_as_communication">permanent address</span>
+                                    <field name="same_as_communication" widget="boolean_toggle"/>
+                                    <span class="o_form_label 0_td_label o_address_type fw_bold" invisible="same_as_communication">permanent address</span>
                                 <div class="o_address_format" invisible="same_as_communication">
                                         <field name="street" placeholder="Street..." />
                                         <field name="city" placeholder="City"/>
                                         <field name="country_id" placeholder="Country"/>
-
                                 </div>
                                 </group>
-
                             </page>
                         <page string="Previous school data" name="previous_data">
                             <group>
                                 <field name="previous_department_id"/>
-                                <field name="previous_class_id" domain="[('school_dep' ,'=', previous_department_id)]"/>
+                                <field name="previous_class_id" domain="[('school_id' ,'=', previous_department_id)]"/>
                                 <field name="document" filename="certificate_filename"/>
                             </group>
                         </page>

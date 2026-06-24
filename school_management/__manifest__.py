@@ -5,7 +5,7 @@
     'license':"LGPL-3",
     'author': "Cybrosys Techno Solutions",
     'website': 'https://www.cybrosys.com',
-    'category': '   Education',
+    'category': 'Education',
     'summary': 'School Management',
     'description': """manage student,subject,department""",
     'sequence': 10,
@@ -24,19 +24,12 @@
         "data/school_subject_data.xml",
         "views/school_year_views.xml",
         "views/school_clubs_views.xml",
-        "views/sale_status_views.xml",
+        "views/sale_order_views.xml",
+        "views/res_partner_teachers_views.xml",
+        "views/res_partner_officestaff_views.xml",
         "views/school_events_views.xml",
         "views/student_menu_views.xml",
 
         ],
+}
 
-
-    # 'post_init_hook': 'create_default_department',
-    # 'post_init_hook':'create_default_class',
-    #
-
-
-
-
-
-}   

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+from odoo import fields, models
 
-from odoo import fields,models,api
 
 class SchoolClubs(models.Model):
     """school clubs"""
@@ -8,7 +8,7 @@ class SchoolClubs(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Club Name')
-    student_ids = fields.One2many('school.students','club_ids', string='Student')
+    student_ids = fields.Many2many('school.students', 'club_ids', string='Student', compute='_compute_student_ids')
     event_ids = fields.One2many('school.events','club_id', string='Event')
     event_count = fields.Integer(string='Event Count', compute='_compute_event_count')
 
@@ -25,5 +25,6 @@ class SchoolClubs(models.Model):
             'view_mode': 'list,form',
             }
 
-
-
+    def _compute_student_ids(self):
+        for club in self:
+            club.student_ids=self.env['school.students'].search([('club_ids' , 'in' , club.id)])

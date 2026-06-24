@@ -6,3 +6,4 @@ school_management.access_school_subject,access_school_subject,school_management.
 school_management.access_school_year,access_school_year,school_management.model_school_year,base.group_user,1,1,1,1
 school_management.access_school_clubs,access_school_clubs,school_management.model_school_clubs,base.group_user,1,1,1,1
 school_management.access_school_events,access_school_events,school_management.model_school_events,base.group_user,1,1,1,1
+

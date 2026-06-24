@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-<!--    form-->
+    <!--    form-->
     <record id="school_subject_view_form" model="ir.ui.view">
         <field name="name">school.subject.form</field>
         <field name="model">school.subject</field>
         <field name="arch" type="xml">
             <form>
-
                 <sheet>
                     <group>
-
                         <field name="name_sub"/>
-                        <field name="school_dep"/>
+                        <field name="school_id"/>
                     </group>
                 </sheet>
                 <chatter/>
             </form>
         </field>
-
     </record>
     <!--    list-->
     <record  id="school_subject_view_list" model="ir.ui.view">
@@ -27,7 +23,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name_sub"/>
-                <field name="school_dep"/>
+                <field name="school_id"/>
             </list>
         </field>
     </record>
@@ -42,5 +38,4 @@
             </p>
         </field>
         </record>
-
 </odoo>
