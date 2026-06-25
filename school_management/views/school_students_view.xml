@@ -33,6 +33,7 @@
                         <field name="registration_date"/>
                         <field name="company_id"/>
                         <field name="club_ids" widget="many2many_tags"/>
+                        <field name="class_id"/>
 
                     </group>
                     </group>
@@ -60,6 +61,12 @@
                                 <field name="previous_department_id"/>
                                 <field name="previous_class_id" domain="[('school_id' ,'=', previous_department_id)]"/>
                                 <field name="document" filename="certificate_filename"/>
+                            </group>
+                        </page>
+                        <page string="Exams">
+                            <group>
+                                <field name="exam_ids"/>
+
                             </group>
                         </page>
                     </notebook>

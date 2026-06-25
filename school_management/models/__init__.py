@@ -7,5 +7,7 @@ from . import school_year
 from . import school_clubs
 from . import school_events
 from . import sale_order
-from . import res_partner_teachers
-from . import res_partner_officestaff
+from . import res_partner
+from . import school_leaves
+from . import school_exam
+from . import school_exam_paper

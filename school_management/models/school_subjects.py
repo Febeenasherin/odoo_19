@@ -5,6 +5,7 @@ class SchoolSubjects(models.Model):
     """ school subject """
     _name = 'school.subject'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name_sub'
 
     _unique_name = models.Constraint('UNIQUE(name_sub)', 'Subject must be unique!')
 

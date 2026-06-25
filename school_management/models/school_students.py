@@ -39,11 +39,14 @@ class SchoolStudents(models.Model):
     previous_department_id = fields.Many2one('school.department',string='Previous Department')
     previous_class_id = fields.Many2one('school.class' , string='Previous Class')
     club_ids = fields.Many2many('school.clubs', string='Club')
+    class_id = fields.Many2one('school.class', string='Class')
+    exam_ids = fields.Many2many('school.exam', 'paper_ids', string='Exams')
+
 
     # sequence
     @api.model_create_multi
     def create(self, vals_list):
-        """sequence"""
+        """add sequence number"""
         print("self",self)
         for vals in vals_list:
             if vals.get('sequence' , 'New') == 'New':
@@ -54,16 +57,18 @@ class SchoolStudents(models.Model):
 
     # button registration
     def registration(self):
-        """change status"""
+        """change status inro registration"""
         print("self",self)
         self.status = 'registration'
 
         self.admission = self.env['ir.sequence'].next_by_code('admissioncode')
 
+        # self.exam_ids = self.env['school.exam'].search([('class_id', 'in', self.id)])
+
     #  age calculation
     @api.depends('dob')
     def _compute_student_age(self):
-        """age calculation"""
+        """ calculate age of student based on date of birth"""
         print("self",self)
         for record in self:
             if record.dob:
@@ -73,3 +78,7 @@ class SchoolStudents(models.Model):
             else:
                 record.student_age = 0
 
+    def _compute_student_ids(self):
+        """this function used for list student under that club in club form view"""
+        for club in self:
+            self.exam_ids = self.env['school.exam'].search([('class_id', 'in', self.id)])

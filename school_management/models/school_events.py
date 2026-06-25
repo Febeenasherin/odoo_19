@@ -18,12 +18,12 @@ class SchoolEvents(models.Model):
                               default='new', string="Status")
 
     def ongoing(self):
-        """change status"""
+        """change status into ongoing"""
         print("self",self)
         self.status = 'ongoing'
 
 
     def completed(self):
-        """change status"""
+        """change status into completed"""
         print("self",self)
         self.status = 'completed'
