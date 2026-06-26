@@ -3,6 +3,7 @@ from odoo import fields, models
 
 
 class SchoolExamPaper(models.Model):
+    """child model of school exam.for showing exams in list view inside exam form view"""
     _name = 'school.exam.paper'
     _description = 'School Exam Paper'
 

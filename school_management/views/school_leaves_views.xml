@@ -7,13 +7,18 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="student_id"/>
-                        <field name="class_id"/>
+                    <group>
+                        <field name="student_id" options="{'no_create': True, 'no_create_edit': True}"/>
                         <field name="start_date"/>
-                        <field name="end_date"/>
                         <field name="total_date"/>
                         <field name="half_day"/>
+                        <field name="afternoon" invisible="not half_day"/>
+                    </group>
+                    <group>
+                        <field name="class_id"/>
+                        <field name="end_date"/>
                         <field name="reason"/>
+                    </group>
                     </group>
                 </sheet>
                 <chatter/>
@@ -28,6 +33,7 @@
             <list>
                 <field name="student_id"/>
                 <field name="class_id"/>
+                <field name="reason"/>
             </list>
         </field>
     </record>

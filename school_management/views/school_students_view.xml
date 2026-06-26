@@ -94,7 +94,6 @@
                         <field name="status"/>
             </list>
         </field>
-
     </record>
 
     <record id="school_students_action" model="ir.actions.act_window">
@@ -105,7 +104,6 @@
             <p class="o_view_nocontent_smiling_face">
                 No record found ! Let's create one
             </p>
-
         </field>
      </record>
 </odoo>

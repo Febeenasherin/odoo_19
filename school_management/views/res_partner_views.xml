@@ -19,8 +19,10 @@
             <p class="o_view_nocontent">
                 No record found !
             </p>
-        <field name="domain">[('partner', '=' , 'teacher')]</field>
         </field>
+        <field name="domain">[('partner', '=' , 'teacher')]</field>
+        <field name="context">{'default_partner':'teacher'}</field>
+
     </record>
 
 <!--    office staff action-->
@@ -36,7 +38,6 @@
 
         </field>
         <field name="domain">[('partner', '=' , 'office staff')]</field>
+        <field name="context">{'default_partner':'office staff'}</field>
     </record>
-
-
 </odoo>

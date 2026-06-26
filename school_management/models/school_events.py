@@ -27,3 +27,4 @@ class SchoolEvents(models.Model):
         """change status into completed"""
         print("self",self)
         self.status = 'completed'
+

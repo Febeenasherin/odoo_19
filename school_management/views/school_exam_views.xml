@@ -7,12 +7,14 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="add_action" string="Add"/>
+                    <button name="action_exam" type="object" string="Add" class="oe_highlight"/>
                 </header>
                 <sheet>
                     <group>
                         <field name="name"/>
                         <field name="class_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
                     </group>
                     <group>
                         <notebook>
@@ -43,7 +45,9 @@
             <list>
                 <field name="name"/>
                 <field name="class_id"/>
-                <field name="subject_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+
             </list>
         </field>
     </record>
