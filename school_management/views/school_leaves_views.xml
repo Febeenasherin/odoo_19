@@ -34,6 +34,7 @@
                 <field name="student_id"/>
                 <field name="class_id"/>
                 <field name="reason"/>
+                <field name="half_day"/>
             </list>
         </field>
     </record>

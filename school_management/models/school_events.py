@@ -16,6 +16,7 @@ class SchoolEvents(models.Model):
     image = fields.Image(string="image")
     status = fields.Selection([("new", "New"), ("ongoing", "Ongoing"), ("completed", "Completed")],
                               default='new', string="Status")
+    active = fields.Boolean(string='active', default=True)
 
     def ongoing(self):
         """change status into ongoing"""
@@ -27,4 +28,13 @@ class SchoolEvents(models.Model):
         """change status into completed"""
         print("self",self)
         self.status = 'completed'
+
+        for record in self:
+            record.write({'active': False})
+
+
+
+
+
+
 

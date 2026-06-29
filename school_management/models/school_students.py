@@ -40,7 +40,7 @@ class SchoolStudents(models.Model):
     previous_class_id = fields.Many2one('school.class' , string='Previous Class')
     club_ids = fields.Many2many('school.clubs', string='Club')
     class_id = fields.Many2one('school.class', string='Class')
-    exam_ids = fields.Many2many('school.exam', string='Exams')
+    exam_ids = fields.Many2many('school.exam')
 
 
     # sequence
@@ -75,5 +75,4 @@ class SchoolStudents(models.Model):
                 record.student_age = today.year - birth.year
             else:
                 record.student_age = 0
-
 
