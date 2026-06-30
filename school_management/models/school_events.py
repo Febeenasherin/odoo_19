@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+import email
+
+from odoo import fields, models, api
+from datetime import date, timedelta
+
 
 
 class SchoolEvents(models.Model):
@@ -34,7 +38,18 @@ class SchoolEvents(models.Model):
 
 
 
+    def auto_send_email(self):
+        print("working")
+        reminder_date = date.today() + timedelta(days=2)
 
+        events = self.search([('start_date', '=', reminder_date)])
+        employee = self.env['res.partner'].search([('email','!=' ,False)])
+
+        template = self.env.ref('school_management.email_template_event')
+
+        for rec in events:
+            for emp in employee:
+                template.send_mail(rec.id, force_send=True,email_values={'email_to':emp.email})
 
 
 

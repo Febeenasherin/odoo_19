@@ -22,15 +22,18 @@
         "data/school_class_data.xml",
         "data/school_department_data.xml",
         "data/school_subject_data.xml",
+        "data/ ir_cron_data.xml",
+        "data/mail_template.xml",
         "views/school_year_views.xml",
         "views/school_clubs_views.xml",
         "views/sale_order_views.xml",
         "views/res_partner_views.xml",
         "views/school_leaves_views.xml",
         "views/school_exam_views.xml",
+        "views/school_registerd_student_view.xml",
         "views/school_events_views.xml",
         "views/student_menu_views.xml",
 
-        ],
+],
 }
 

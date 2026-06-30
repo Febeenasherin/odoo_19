@@ -33,7 +33,7 @@ class SchoolStudents(models.Model):
     school_id = fields.Many2one('school.department', string='Head of Department', help='select department')
     document = fields.Binary(string="Document")
     aadhaar_no = fields.Char(string="Aadhaar no", help='enter Aadhaar no')
-    company_id = fields.Many2one('res.company', string='School', tracking=True)
+    company_id = fields.Many2one('res.company', string='School', tracking=True, default= lambda self: self.env.company)
     admission = fields.Char(string='Admission no', readonly=True)
     status = fields.Selection([("draft","Draft"),("registration","Registration")], default='draft', string="Status")
     previous_department_id = fields.Many2one('school.department',string='Previous Department')
@@ -62,6 +62,7 @@ class SchoolStudents(models.Model):
         self.status = 'registration'
 
         self.admission = self.env['ir.sequence'].next_by_code('admissioncode')
+        self.env['school.students'].create({'register_id' : self.id})
 
      #  age calculation
     @api.depends('dob')

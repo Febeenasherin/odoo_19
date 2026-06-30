@@ -13,5 +13,5 @@ class SchoolClass(models.Model):
 
     name_class = fields.Char(string='Name')
     school_id = fields.Many2one('school.department', string='Department')
-    head_id = fields.Many2one(related='school_id.dep_id',string='Head department')
+    head_id = fields.Many2one(related='school_id.dep_id', string='Head department')
     company_id = fields.Many2one('res.company', string='multi_school', tracking=True)

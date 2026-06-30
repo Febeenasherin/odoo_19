@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<record  id="school_registerd_view_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.students</field>
+        <field name="arch" type="xml">
+            <form>
+
+
+                <sheet>
+                    <h1>
+                        <h1> <field name="admission" readonly="1"/>
+                    </h1>
+                    </h1>
+
+                <group>
+                    <group>
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="father_name"/>
+                        <field name="mother_name"/>
+                        <field name="email"/>
+                        <field name="school_id"/>
+                        <field name="phone_no"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+</record>
+    <record id="school_register_list" model="ir.ui.view">
+        <field name="name">school.student.list</field>
+        <field name="model">school.students</field>
+        <field name="arch" type="xml">
+            <list string="school management">
+
+                        <field name="admission"/>
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+
+            </list>
+        </field>
+    </record>
+
+
+
+     <record id="school_registerd_student_action" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">school.students</field>
+        <field name="view_mode">list,form</field>
+         <field name="view_id" ref="school_registerd_view_form"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_j">
+                No record found .
+            </p>
+        </field>
+
+
+
+    </record>
+</odoo>

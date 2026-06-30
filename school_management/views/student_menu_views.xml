@@ -4,7 +4,8 @@
     <menuitem id="school_management" name="School Management"/>
     <menuitem id="menu_school_stud" name="Students" parent="school_management" sequence="1"/>
     <menuitem id="menu_schol_config" name="Configuration" parent="school_management" sequence="7"/>
-    <menuitem id="registration_student" name="Registrations" parent="menu_school_stud" action="school_students_action"/>
+    <menuitem id="registration_student" name="Registrations" parent="menu_school_stud" action="school_students_action" sequence="1"/>
+    <menuitem id="school_students" name="Students" parent="menu_school_stud" action="school_registerd_student_action" sequence="2"/>
     <menuitem id="manage_dep" name="Department" parent="menu_schol_config" action="school_department_action" sequence="1"/>
     <menuitem id="manage_class" name="Class" parent="menu_schol_config" action="school_class_action" sequence="2"/>
     <menuitem id="manage_sub" name="Subject" parent="menu_schol_config" action="school_subject_action" sequence="3"/>

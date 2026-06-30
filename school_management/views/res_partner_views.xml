@@ -41,33 +41,9 @@
         <field name="context">{'default_partner':'office staff'}</field>
     </record>
 
-<!--    email template-->
-   <record id="email_template_event" model="mail.template">
-       <field name="name">Event Reminder</field>
-       <field name="model_id" ref="base.model_res_partner"/>
-       <field name="subject">Event Reminder</field>
-       <field name="email_from">noreply@example.com</field>
-       <field name="email_to">{{object.email}}</field>
-       <field name="body_html" type="html">
-               <p>Hi <t t-out="object.name"/>,</p>
-               <p>This is a reminder to attend the event.</p>
-               <p><strong>Please make sure you come on time.</strong></p>
-               <br/>
-               <p>Best regards,<br/>School Team</p>
-       </field>
-   </record>
 
-<!--   schedule action-->
- <record id="cron_student_homework_reminder" model="ir.cron">
-       <field name="name">Event Reminder</field>
-       <field name="model_id" ref="base.model_res_partner"/>
-       <field name="state">code</field>
-       <field name="code">model.send_student_event_reminder()</field>
-       <field name="interval_number">2</field>
-       <field name="interval_type">days</field>
-       <field name="active" eval="True"/>
 
-   </record>
+
 </odoo>
 
 
