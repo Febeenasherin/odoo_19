@@ -24,6 +24,8 @@
         "data/school_subject_data.xml",
         "data/ ir_cron_data.xml",
         "data/mail_template.xml",
+        "data/ir_cron_attendance_data.xml",
+        "data/action_user_creation_data.xml",
         "views/school_year_views.xml",
         "views/school_clubs_views.xml",
         "views/sale_order_views.xml",

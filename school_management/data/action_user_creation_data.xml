@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Server Action: Create user from student-->
+    <record id="action_user_creation" model="ir.actions.server">
+        <field name="name">Create user</field>
+        <field name="model_id" ref="model_school_students"/>
+        <field name="state">code</field>
+        <field name="code">record._create_user()</field>
+
+    </record>
+<!--    automated action-->
+    <record id="automated_action_create_user" model="base.automation">
+        <field name="name">Create user on create student</field>
+        <field name="model_id" ref="model_school_students"/>
+            <field name="trigger">on_create_or_write</field>
+<!--        <field name="filter_domain">[('status', '=', 'registration')]</field>-->
+        <field name="action_server_ids" eval="[(4, ref('action_user_creation'))]"/>
+    </record>
+</odoo>

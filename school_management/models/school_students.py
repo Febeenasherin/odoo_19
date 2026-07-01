@@ -22,7 +22,7 @@ class SchoolStudents(models.Model):
     city = fields.Char(string="City")
     country_id = fields.Many2one('res.country', string="Country")
     same_as_communication = fields.Boolean(string="Same As Communication")
-    email = fields.Char(string="Email", help='enter email')
+    email = fields.Char(string="Email", help='enter email', required=True)
     phone_no = fields.Char(string="Phone Number", required=True, help='enter phone number')
     dob = fields.Date(string="DOB", help='select DOB')
     student_age = fields.Integer(string="Age" , compute='_compute_student_age', store=True)
@@ -41,7 +41,8 @@ class SchoolStudents(models.Model):
     club_ids = fields.Many2many('school.clubs', string='Club')
     class_id = fields.Many2one('school.class', string='Class')
     exam_ids = fields.Many2many('school.exam')
-
+    attendance = fields.Selection([('present', 'Present'), ('absent', 'Absent')], default='present', string="Attendance")
+    user_id = fields.Many2one('res.users', string='User')
 
     # sequence
     @api.model_create_multi
@@ -62,13 +63,13 @@ class SchoolStudents(models.Model):
         self.status = 'registration'
 
         self.admission = self.env['ir.sequence'].next_by_code('admissioncode')
-        self.env['school.students'].create({'register_id' : self.id})
+
 
      #  age calculation
     @api.depends('dob')
     def _compute_student_age(self):
         """ calculate age of student based on date of birth"""
-        print("self",self)
+        print("nn",self)
         for record in self:
             if record.dob:
                 today = date.today()
@@ -76,4 +77,22 @@ class SchoolStudents(models.Model):
                 record.student_age = today.year - birth.year
             else:
                 record.student_age = 0
+
+
+    def _create_user(self):
+        print("working...")
+        for student in self:
+            if not student.user_id:
+                if student.status == 'registration':
+                    user= self.env['res.users'].create({
+                        "name":student.first_name,
+                        "email":student.email,
+                        "login":student.email,
+                        "password":"demo123",
+                        "company_id":student.company_id.id,
+
+                    })
+                    student.user_id = user.id
+                    print("created", user)
+
 

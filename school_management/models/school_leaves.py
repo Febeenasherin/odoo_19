@@ -2,7 +2,7 @@
 from openpyxl.worksheet import related
 
 from odoo import fields, models, api
-from datetime import timedelta
+from datetime import timedelta, date
 
 
 class SchoolLeaves(models.Model):
@@ -46,7 +46,19 @@ class SchoolLeaves(models.Model):
 
 
 
+    def update_attendance(self):
+        today = date.today()
+        students = self.env['school.students'].search([])
 
+        for student in students:
+            leave = self.search([('student_id', '=', student.id), ('start_date', '<=', today), ('end_date', '>=', today)])
+            if leave :
+                student.attendance = 'absent'
+
+            else:
+                student.attendance = 'present'
+
+        print(leave)
 
 
 

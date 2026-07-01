@@ -101,6 +101,9 @@
         <field name="name">Registration</field>
         <field name="res_model">school.students</field>
         <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                    (0, 0, {'view_mode': 'list', 'view_id': ref('school_students_list')}),
+                    (0, 0, {'view_mode': 'form', 'view_id': ref('school_students_view_form')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No record found ! Let's create one

@@ -5,27 +5,15 @@
             <field name="name">Event Reminder</field>
             <field name="model_id" ref="model_school_events"/>
             <field name="state">code</field>
-            <field name="code">model.auto_send_email()</field>
-<!--            <field name="user_id" ref="base.user_root"/>-->
-            <field name="interval_number">2</field>
+            <field name="code">action=model._auto_send_email()</field>
+
+            <field name="interval_number">1</field>
             <field name="interval_type">days</field>
-<!--            <field name="nextcall" eval="(DateTime.now() + timedelta(days=2)).strftime('%Y-%m-%d 09:00:00')" />-->
+
             <field name="priority">5</field>
             <field name="active">True</field>
+
         </record>
 
 </odoo>
 
-
-<!--    &lt;!&ndash;   schedule action&ndash;&gt;-->
-<!-- <record id="cron_student_homework_reminder" model="ir.cron">-->
-<!--       <field name="name">Event Reminder</field>-->
-<!--       <field name="model_id" ref="base.model_res_partner"/>-->
-<!--       <field name="state">code</field>-->
-<!--       <field name="code">model.action_send_email()</field>-->
-<!--       <field name="interval_number">2</field>-->
-<!--       <field name="interval_type">days</field>-->
-<!--       <field name="active" eval="True"/>-->
-
-<!--   </record>-->
-<!--</odoo>-->

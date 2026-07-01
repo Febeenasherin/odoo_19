@@ -3,13 +3,15 @@
     <!--    email template-->
    <record id="email_template_event" model="mail.template">
        <field name="name">Event Reminder to employees</field>
-       <field name="model_id" ref="base.view_partner_form"/>
+       <field name="model_id" ref="model_school_events"/>
        <field name="subject">Event Reminder</field>
-       <field name="email_from">{{user.email}}</field>
-       <field name="email_to">{{object.partner_id.email}}</field>
+       <field name="email_from">{{user.email or ''}}</field>
+
+       <field name="use_default_to">False</field>
+
        <field name="body_html" type="html">
-               <p>Hi <t t-out="object.partner_id.name"/>,</p>
-               <p>This is a reminder to attend the event.</p>
+               <p>Hi</p>
+               <p>This is a reminder that following event will start after 2days .</p>
                <p><strong>Please make sure you come on time.</strong></p>
                <br/>
                <p>Best regards,<br/>School Team</p>
