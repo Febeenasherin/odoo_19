@@ -5,17 +5,14 @@
        <field name="name">Event Reminder to employees</field>
        <field name="model_id" ref="model_school_events"/>
        <field name="subject">Event Reminder</field>
-       <field name="email_from">{{user.email or ''}}</field>
-
+       <field name="email_from">{{user.email}}</field>
        <field name="use_default_to">False</field>
-
        <field name="body_html" type="html">
                <p>Hi</p>
                <p>This is a reminder that following event will start after 2days .</p>
                <p><strong>Please make sure you come on time.</strong></p>
                <br/>
-               <p>Best regards,<br/>School Team</p>
+                <p>Best regards,<br/>School Team</p>
        </field>
    </record>
-
 </odoo>

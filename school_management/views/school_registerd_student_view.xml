@@ -32,6 +32,12 @@
                                     <field name="attendance"/>
                                 </group>
                             </page>
+                             <page string="Exams">
+                            <group>
+                                <field name="exam_ids" readonly="1" create="0" delete="0"/>
+
+                            </group>
+                        </page>
                         </notebook>
                     </group>
                 </group>

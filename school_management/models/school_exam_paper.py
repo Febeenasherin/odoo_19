@@ -7,7 +7,7 @@ class SchoolExamPaper(models.Model):
     _name = 'school.exam.paper'
     _description = 'School Exam Paper'
 
-    exam_id = fields.Many2one('school.exam', string='Exam')
+    exam_id = fields.Many2one('school.exam')
     subject_id = fields.Many2one('school.subject', string='Subject', required=True)
     class_id = fields.Many2one('school.class', string='Class')
     pass_mark = fields.Integer(string='Pass Mark')

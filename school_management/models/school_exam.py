@@ -12,7 +12,7 @@ class SchoolExam(models.Model):
     name = fields.Char(string='Name', required=True)
     class_id = fields.Many2one('school.class', string='Class', required=True)
     # subject_id = fields.Many2one('school.subject', string='Subject')
-    paper_ids = fields.One2many('school.exam.paper', 'exam_id', string='Exams')
+    paper_ids = fields.One2many('school.exam.paper', 'exam_id')
     start_date = fields.Datetime(string='Start Date')
     end_date = fields.Datetime(string='End Date')
 

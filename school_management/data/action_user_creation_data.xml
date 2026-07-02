@@ -15,6 +15,6 @@
         <field name="model_id" ref="model_school_students"/>
             <field name="trigger">on_create_or_write</field>
 <!--        <field name="filter_domain">[('status', '=', 'registration')]</field>-->
-        <field name="action_server_ids" eval="[(4, ref('action_user_creation'))]"/>
+        <field name="action_server_ids" eval="[Command.link(ref('action_user_creation'))]"/>
     </record>
 </odoo>

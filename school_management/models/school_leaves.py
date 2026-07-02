@@ -14,7 +14,7 @@ class SchoolLeaves(models.Model):
 
 
     student_id = fields.Many2one('school.students', string="Students", required=True)
-    class_id = fields.Many2one(related='student_id.class_id', string="Class", required=True)
+    class_id = fields.Many2one(related='student_id.class_id', string="Class")
     start_date = fields.Date(string="Start Date", default=fields.Date.today)
     end_date = fields.Date(string="End Date", default=fields.Date.today)
     total_date = fields.Float(string="Total Date", readonly=True, compute='_compute_total_day')
@@ -47,18 +47,13 @@ class SchoolLeaves(models.Model):
 
 
     def update_attendance(self):
+        """ mark attendance absent or present .if the student taken leave today,mark absent """
         today = date.today()
-        students = self.env['school.students'].search([])
+        students = self.search([('start_date', '<=', today), ('end_date', '>=' , today)]).mapped('student_id')
+        self.env['school.students'].search([]).write({'attendance': 'present'})
+        students.attendance = 'absent'
+        print("stu",students)
 
-        for student in students:
-            leave = self.search([('student_id', '=', student.id), ('start_date', '<=', today), ('end_date', '>=', today)])
-            if leave :
-                student.attendance = 'absent'
-
-            else:
-                student.attendance = 'present'
-
-        print(leave)
 
 
 

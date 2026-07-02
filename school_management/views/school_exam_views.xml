@@ -2,7 +2,7 @@
 <odoo>
     <!--form-->
     <record id="school_exam_view_form" model="ir.ui.view">
-        <field name="name">school.exam.form</field>
+        <field name="name">schoo.form</field>
         <field name="model">school.exam</field>
         <field name="arch" type="xml">
             <form>

@@ -8,3 +8,7 @@ class SchoolYear(models.Model):
     _description = 'School Year'
 
     name=fields.Char(string='Name')
+
+
+
+
