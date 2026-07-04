@@ -13,21 +13,22 @@
 <!--       student group -->
        <record id="group_school_student" model="res.groups">
            <field name="name">Student</field>
-           <field name="privilege_id" ref="res_groups_privilege_school_management" />
+           <field name="privilege_id" ref="res_groups_privilege_school_management"/>
            <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
        </record>
-       <!-- office staff -->
-       <record id="group_school_office_staff" model="res.groups">
-           <field name="name">Office staff</field>
-           <field name="privilege_id" ref="res_groups_privilege_school_management" />
-           <field name="implied_ids" eval="[(4, ref('group_school_teacher'))]" />
-       </record>
-<!--       teacher -->
+       <!--       teacher -->
        <record id="group_school_teacher" model="res.groups">
            <field name="name">Teacher</field>
-           <field name="privilege_id" ref="res_groups_privilege_school_management" />
-           <field name="implied_ids" eval="[(4, ref('group_school_student'))]" />
+           <field name="privilege_id" ref="res_groups_privilege_school_management"/>
+<!--           <field name="implied_ids" eval="[(4, ref('school_management.group_school_student'))]"/>-->
        </record>
+       <!-- office staff -->
+      <record id="group_school_office_staff" model="res.groups">
+           <field name="name">Office staff</field>
+           <field name="privilege_id" ref="res_groups_privilege_school_management"/>
+           <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+      </record>
+
 
    </data>
 </odoo>

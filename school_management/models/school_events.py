@@ -21,13 +21,13 @@ class SchoolEvents(models.Model):
                               default='new', string="Status")
     active = fields.Boolean(string='active', default=True)
 
-    def ongoing(self):
+    def action_ongoing(self):
         """change status into ongoing"""
         print("self",self)
         self.status = 'ongoing'
 
 
-    def completed(self):
+    def action_completed(self):
         """change status into completed"""
         print("self",self)
         self.status = 'completed'
@@ -44,21 +44,15 @@ class SchoolEvents(models.Model):
 
 
         events = self.search([('start_date', '=', reminder_date)])
-        employee = self.env['res.partner'].search([('email','!=' ,False), ('partner','=' ,('teacher','office staff','student'))])
+        emails = self.env['res.partner'].search([('email','!=' ,False), ('partner','=' ,('teacher','office staff','student'))]).mapped('email')
 
         template = self.env.ref('school_management.email_template_event')
-        emails =  employee.mapped('email')
+
+
 
         for event in events:
 
-            template.send_mail(event.id,force_send=True,email_values={'email_to':emails [0],
-                                                                      'email_cc':emails [1:]})
-
-        print("emp",employee.mapped('name'))
-        print("temp",template)
-        print("events",events)
-
-
-
+            template.send_mail(event.id,force_send=True,email_values={'email_to':emails[0],
+                                                                      'email_cc':emails[1:]})
 
 

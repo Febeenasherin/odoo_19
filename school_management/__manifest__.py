@@ -13,8 +13,9 @@
     'installable': True,
     'auto_install': True,
     'depends': ['base','mail', 'sale', 'contacts'],
-    'data':["security/ir.model.access.csv",
+    'data':[
         "security/school_management_groups.xml",
+        "security/ir.model.access.csv",
         "security/school_student_record_rule.xml",
         "views/school_students_view.xml",
         "views/school_department_views.xml",

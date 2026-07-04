@@ -7,7 +7,6 @@ class SchoolExam(models.Model):
     _name = 'school.exam'
     _description = 'School Exam'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _rec_name = 'name'
 
     name = fields.Char(string='Name', required=True)
     class_id = fields.Many2one('school.class', string='Class', required=True)
@@ -15,6 +14,7 @@ class SchoolExam(models.Model):
     paper_ids = fields.One2many('school.exam.paper', 'exam_id')
     start_date = fields.Datetime(string='Start Date')
     end_date = fields.Datetime(string='End Date')
+    user_id = fields.Many2one('res.users', string='User')
 
 
     def action_exam(self):
@@ -23,6 +23,8 @@ class SchoolExam(models.Model):
 
         for rec in students:
             rec.exam_ids = [(self.id)]
+
+
 
 
 

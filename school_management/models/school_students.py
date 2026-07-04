@@ -57,7 +57,7 @@ class SchoolStudents(models.Model):
         return super(SchoolStudents, self).create(vals_list)
 
     # button registration
-    def registration(self):
+    def action_registration(self):
         """change status inro registration"""
         print("self",self)
         self.status = 'registration'

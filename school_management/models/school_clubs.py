@@ -8,7 +8,7 @@ class SchoolClubs(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Club Name')
-    student_ids = fields.Many2many('school.students', 'club_ids', string='Student', compute='_compute_student_ids')
+    student_ids = fields.Many2many('school.students', string='Student')
     event_ids = fields.One2many('school.events','club_id', string='Event')
     event_count = fields.Integer(string='Event Count', compute='_compute_event_count')
 
@@ -27,7 +27,4 @@ class SchoolClubs(models.Model):
             'view_mode': 'list,form',
             }
 
-    def _compute_student_ids(self):
-        """this function used for list student under that club in club form view"""
-        for club in self:
-            club.student_ids=self.env['school.students'].search([('club_ids' , 'in' , club.id)])
+

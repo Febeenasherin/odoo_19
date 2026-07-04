@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_exam" type="object" string="Add" class="oe_highlight"/>
+                    <button name="action_exam" type="object" string="Add" class="oe_highlight" groups="school_managemnt.group_school_office_staff,school_management.group_school_teacher"/>
                 </header>
                 <sheet>
                     <group>
@@ -24,12 +24,10 @@
                                         <field name="subject_id"/>
                                         <field name="pass_mark"/>
                                         <field name="max_mark"/>
-
                                     </list>
                                 </field>
                             </page>
                         </notebook>
-
                     </group>
                 </sheet>
                 <chatter/>

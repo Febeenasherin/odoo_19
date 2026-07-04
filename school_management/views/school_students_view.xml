@@ -7,7 +7,8 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="registration" type="object" string="Register" class="oe_highlight"/>
+                    <button name="action_registration" type="object" string="Register" class="oe_highlight"
+                            groups="school_managemnt.group_school_office_staff,school_management.group_school_teacher"/>
                     <field name="status" widget="statusbar" options="{'clickable':0}"/>
                     
                 </header>
@@ -32,7 +33,7 @@
                         <field name="student_age"/>
                         <field name="gender"/>
                         <field name="registration_date"/>
-                        <field name="company_id"/>
+                        <field name="company_id" />
                         <field name="club_ids" widget="many2many_tags"/>
                         <field name="class_id"/>
 
@@ -49,7 +50,8 @@
                                         <field name="country_id" placeholder="Country"/>
                                     </div>
                                     <field name="same_as_communication" widget="boolean_toggle"/>
-                                    <span class="o_form_label 0_td_label o_address_type fw_bold" invisible="same_as_communication">permanent address</span>
+                                    <span class="o_form_label 0_td_label o_address_type fw_bold"
+                                          invisible="same_as_communication">permanent address</span>
                                 <div class="o_address_format" invisible="same_as_communication">
                                         <field name="street" placeholder="Street..." />
                                         <field name="city" placeholder="City"/>

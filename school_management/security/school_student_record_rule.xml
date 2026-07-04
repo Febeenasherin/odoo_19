@@ -4,9 +4,20 @@
        <field name="name">User can only see their own records</field>
        <field ref="model_school_students" name="model_id"/>
        <field name="domain_force">[('user_id', '=', user.id)]</field>
-       <field name="groups" eval="[(4, ref('group_school_student'))]"/>
+       <field name="groups" eval="[(4, ref('school_management.group_school_student'))]"/>
        <field name="perm_read" eval="True"/>
        <field name="perm_write" eval="False"/>
+       <field name="perm_create" eval="False"/>
+       <field name="perm_unlink" eval="False"/>
+</record>
+
+       <record id="school_student_exam_rule" model="ir.rule">
+       <field name="name">User can only see their own records</field>
+       <field ref="model_school_exam" name="model_id"/>
+       <field name="domain_force">[('user_id', '=', user.id)]</field>
+       <field name="groups" eval="[(4, ref('school_management.group_school_student'))]"/>
+       <field name="perm_read" eval="True"/>
+       <field name="perm_write" eval="True"/>
        <field name="perm_create" eval="False"/>
        <field name="perm_unlink" eval="False"/>
 </record>
@@ -15,8 +26,8 @@
     <record id="school_office_staff_record_rule" model="ir.rule">
        <field name="name">all access</field>
        <field ref="model_school_students" name="model_id"/>
-       <field name="domain_force">[(1, '=', 1),(('company_id', 'in', 'company_ids'))]</field>
-       <field name="groups" eval="[(4, ref('group_school_office_staff'))]"/>
+       <field name="domain_force">[(1, '=', 1)]</field>
+       <field name="groups" eval="[(4, ref('school_management.group_school_office_staff'))]"/>
        <field name="perm_read" eval="True"/>
        <field name="perm_write" eval="True"/>
        <field name="perm_create" eval="True"/>
@@ -26,23 +37,30 @@
     <record id="school_teacher_record_rule" model="ir.rule">
        <field ref="model_school_students" name="model_id"/>
        <field name="domain_force">[(1, '=', 1)]</field>
-       <field name="groups" eval="[(4, ref('group_school_teacher'))]"/>
+       <field name="groups" eval="[(4, ref('school_management.group_school_teacher'))]"/>
        <field name="perm_read" eval="True"/>
        <field name="perm_write" eval="True"/>
        <field name="perm_create" eval="False"/>
        <field name="perm_unlink" eval="False"/>
 </record>
 
-    <record id="school_company_rule" model="ir.rule">
-       <field ref="model_school_students" name="model_id"/>
-       <field name="domain_force">[('company_id', 'in', 'company_ids')]</field>
-<!--       <field name="groups" eval="[(4, ref('group_school_student'))]"/>-->
+      <record id="school_teacher_exam_rule" model="ir.rule">
+       <field ref="model_school_exam_paper" name="model_id"/>
+       <field name="domain_force">[(1, '=', 1)]</field>
+       <field name="groups" eval="[(4, ref('school_management.group_school_teacher'))]"/>
        <field name="perm_read" eval="True"/>
        <field name="perm_write" eval="True"/>
        <field name="perm_create" eval="True"/>
-       <field name="perm_unlink" eval="True"/>
+       <field name="perm_unlink" eval="False"/>
+</record>
+
+
+
+    <record id="school_company_rule" model="ir.rule">
+        <field name="name">restrict company</field>
+       <field name="model_id" ref="model_school_students"/>
+       <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+
     </record>
-
-
 
 </odoo>

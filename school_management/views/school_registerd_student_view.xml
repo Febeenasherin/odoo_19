@@ -4,7 +4,7 @@
         <field name="name">school.student.form</field>
         <field name="model">school.students</field>
         <field name="arch" type="xml">
-            <form>
+            <form edit="0" create="0">
 
 
                 <sheet>
@@ -18,23 +18,20 @@
                         <field name="first_name"/>
                         <field name="last_name"/>
                         <field name="email"/>
+                        <field name="attendance"/>
                     </group>
                     <group>
-                        <field name="school_id"/>
+                        <field name="class_id"/>
                         <field name="phone_no"/>
                         <field name="sequence"/>
 
                     </group>
                     <group>
                         <notebook>
-                            <page name="Attendance">
-                                <group>
-                                    <field name="attendance"/>
-                                </group>
-                            </page>
+
                              <page string="Exams">
                             <group>
-                                <field name="exam_ids" readonly="1" create="0" delete="0"/>
+                                <field name="exam_ids" readonly="1" create="0" delete="0" nolable="1"/>
 
                             </group>
                         </page>
@@ -71,6 +68,9 @@
                     (0, 0, {'view_mode': 'list', 'view_id': ref('school_register_list')}),
                     (0, 0, {'view_mode': 'form', 'view_id': ref('school_registerd_view_form')})]"/>
          <field name="domain">[('status' , '=' , 'registration')]</field>
+
+
+
      </record>
 </odoo>
 
