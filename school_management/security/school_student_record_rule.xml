@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+<!--    restrict student only access their own information-->
    <record id="school_student_record_rule" model="ir.rule">
        <field name="name">User can only see their own records</field>
        <field ref="model_school_students" name="model_id"/>
@@ -10,7 +11,7 @@
        <field name="perm_create" eval="False"/>
        <field name="perm_unlink" eval="False"/>
 </record>
-
+<!--students only can create their leave-->
        <record id="school_student_exam_rule" model="ir.rule">
        <field name="name">User can only see their own records</field>
        <field ref="model_school_exam" name="model_id"/>
@@ -22,7 +23,7 @@
        <field name="perm_unlink" eval="False"/>
 </record>
 
-
+<!--all access for office staff-->
     <record id="school_office_staff_record_rule" model="ir.rule">
        <field name="name">all access</field>
        <field ref="model_school_students" name="model_id"/>
@@ -33,7 +34,7 @@
        <field name="perm_create" eval="True"/>
        <field name="perm_unlink" eval="True"/>
 </record>
-
+<!--access for teacher-->
     <record id="school_teacher_record_rule" model="ir.rule">
        <field ref="model_school_students" name="model_id"/>
        <field name="domain_force">[(1, '=', 1)]</field>
@@ -43,7 +44,7 @@
        <field name="perm_create" eval="False"/>
        <field name="perm_unlink" eval="False"/>
 </record>
-
+<!--access for create exam-->
       <record id="school_teacher_exam_rule" model="ir.rule">
        <field ref="model_school_exam_paper" name="model_id"/>
        <field name="domain_force">[(1, '=', 1)]</field>
@@ -53,9 +54,7 @@
        <field name="perm_create" eval="True"/>
        <field name="perm_unlink" eval="False"/>
 </record>
-
-
-
+<!--set company access/one company can access their information-->
     <record id="school_company_rule" model="ir.rule">
         <field name="name">restrict company</field>
        <field name="model_id" ref="model_school_students"/>

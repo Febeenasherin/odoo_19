@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- main menu -->
+    <menuitem id="approval_block" name="Approval Block"/>
+    <menuitem id="approval_view" name="approval" parent="approval_block" action="approval_action" sequence="1" />
+</odoo>

@@ -53,7 +53,6 @@ class SchoolStudents(models.Model):
             if vals.get('sequence' , 'New') == 'New':
                 vals["sequence"] = self.env['ir.sequence'].next_by_code('sequencecode')  or 'New'
 
-
         return super(SchoolStudents, self).create(vals_list)
 
     # button registration

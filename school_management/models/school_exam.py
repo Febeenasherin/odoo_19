@@ -19,10 +19,16 @@ class SchoolExam(models.Model):
 
     def action_exam(self):
         """ adding exam for students while clicking add button"""
-        students = self.env['school.students'].search([('class_id', '=', self.class_id.id)])
 
-        for rec in students:
-            rec.exam_ids = [(self.id)]
+        for student in self.class_id.student_ids:
+            student.exam_ids = [(self.id)]
+        print(self.class_id.student_ids)
+
+        # students = self.env['school.students'].search([('class_id', '=', self.class_id.id)])
+        #
+        # for rec in students:
+        #     rec.exam_ids = [(self.id)]
+
 
 
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+      <!--    form-->
+    <record id="approval_block_view_form" model="ir.ui.view">
+        <field name="name">approval.block.form</field>
+        <field name="model">approval.block</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+
+                        <field name="approved_by"/>
+                        <field name="amount_limit"/>
+                        <field name="approved_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!--    list-->
+    <record  id="approval_block_view_list" model="ir.ui.view">
+        <field name="name">approval.block.list</field>
+        <field name="model">approval.block</field>
+        <field name="arch" type="xml">
+            <list>
+
+                    <field name="approved_by"/>
+                    <field name="amount_limit"/>
+                    <field name="approved_date"/>
+            </list>
+        </field>
+    </record>
+
+        <record id="approval_action" model="ir.actions.act_window">
+        <field name="name">ApprovalBlock</field>
+        <field name="res_model">approval.block</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_j">
+                No record found .
+            </p>
+        </field>
+    </record>
+
+</odoo>

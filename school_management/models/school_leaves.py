@@ -42,10 +42,6 @@ class SchoolLeaves(models.Model):
                     day -=0.5
                 rec.total_date = day
 
-
-
-
-
     def update_attendance(self):
         """ mark attendance absent or present .if the student taken leave today,mark absent """
         today = date.today()

@@ -26,7 +26,6 @@ class SchoolEvents(models.Model):
         print("self",self)
         self.status = 'ongoing'
 
-
     def action_completed(self):
         """change status into completed"""
         print("self",self)
@@ -41,14 +40,9 @@ class SchoolEvents(models.Model):
         """ automatically send email to employees ,email send 2 day before starting event"""
         print("working")
         reminder_date = date.today() + timedelta(days=2)
-
-
         events = self.search([('start_date', '=', reminder_date)])
         emails = self.env['res.partner'].search([('email','!=' ,False), ('partner','=' ,('teacher','office staff','student'))]).mapped('email')
-
         template = self.env.ref('school_management.email_template_event')
-
-
 
         for event in events:
 

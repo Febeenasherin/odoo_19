@@ -12,7 +12,7 @@
     'application': True,
     'installable': True,
     'auto_install': True,
-    'depends': ['base','mail', 'sale', 'contacts'],
+    'depends': ['base','mail', 'sale', 'contacts',],
     'data':[
         "security/school_management_groups.xml",
         "security/ir.model.access.csv",

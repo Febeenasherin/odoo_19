@@ -8,7 +8,7 @@
             <form>
                 <header>
                     <button name="action_registration" type="object" string="Register" class="oe_highlight"
-                            groups="school_managemnt.group_school_office_staff,school_management.group_school_teacher"/>
+                            groups="school_management.group_school_office_staff,school_management.group_school_teacher"/>
                     <field name="status" widget="statusbar" options="{'clickable':0}"/>
                     
                 </header>
