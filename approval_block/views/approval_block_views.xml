@@ -9,10 +9,8 @@
             <form>
                 <sheet>
                     <group>
-
-                        <field name="approved_by"/>
+                        <field name="name"/>
                         <field name="amount_limit"/>
-                        <field name="approved_date"/>
                     </group>
                 </sheet>
             </form>
@@ -25,14 +23,11 @@
         <field name="model">approval.block</field>
         <field name="arch" type="xml">
             <list>
-
-                    <field name="approved_by"/>
-                    <field name="amount_limit"/>
-                    <field name="approved_date"/>
+                <field name="name"/>
+                <field name="amount_limit"/>
             </list>
         </field>
     </record>
-
         <record id="approval_action" model="ir.actions.act_window">
         <field name="name">ApprovalBlock</field>
         <field name="res_model">approval.block</field>
@@ -43,5 +38,4 @@
             </p>
         </field>
     </record>
-
 </odoo>
