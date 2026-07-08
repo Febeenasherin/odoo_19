@@ -12,14 +12,17 @@
     'application': False,
     'installable': True,
     'auto_install': False,
-    'depends': ['base', 'purchase'],
+    'depends': ['base', 'purchase', 'sale'],
     'data':[
         "data/approval_block_data.xml",
+
         "security/ir.model.access.csv",
         "views/approval_block_views.xml",
         "views/approval_block_menu_views.xml",
         "views/purchase_order_views.xml",
         "views/product_product_views.xml",
+        "views/product_template_views.xml",
+        "views/sale_order_wizard_views.xml",
 
     ],
 }

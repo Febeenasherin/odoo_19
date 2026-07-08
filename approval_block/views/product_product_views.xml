@@ -9,8 +9,8 @@
                <group>
                    <field name="average_cost"/>
                </group>
-
            </xpath>
+
        </field>
    </record>
 </odoo>

@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 approval_block.access_approval_block,access_approval_block,approval_block.model_approval_block,base.group_user,1,1,1,1
+approval_block.access_sale_order_wizard,access_sale_order_wizard,approval_block.model_sale_order_wizard,base.group_user,1,1,1,1
