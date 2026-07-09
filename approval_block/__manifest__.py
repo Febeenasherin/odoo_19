@@ -8,7 +8,7 @@
     'category': 'Approval',
     'summary': 'Approval Block',
     'description': """approval block """,
-    'sequence': 10,
+    'sequence': 2,
     'application': False,
     'installable': True,
     'auto_install': False,
@@ -22,7 +22,7 @@
         "views/purchase_order_views.xml",
         "views/product_product_views.xml",
         "views/product_template_views.xml",
-        "views/sale_order_wizard_views.xml",
+        "wizard/sale_order_wizard_views.xml",
 
     ],
 }

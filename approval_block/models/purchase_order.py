@@ -21,3 +21,5 @@ class PurchaseOrder(models.Model):
     # if self.approval_block_id >= rec.amount_total:
     #     self.approval_block_id = rec.amount_total
 
+
+

@@ -8,13 +8,14 @@
    <field name="arch" type="xml">
        <form string="Confirm Sale Orders">
            <group>
+               <field name="product_id" invisible="1"/>
                <field name="partner_id"/>
                <field name="price"/>
                <field name="quantity"/>
            </group>
            <footer>
                <button string="Confirm Orders"
-                       name="action_confirm_order"
+                       name="action_confirm"
                        type="object"
                        class="btn-primary"/>
                <button string="Cancel"
