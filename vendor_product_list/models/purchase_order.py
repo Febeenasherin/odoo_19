@@ -7,5 +7,8 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     vendor_products = fields.Boolean(string="Vendor Products")
+    # product_id = fields.Many2one(related="order_id.product_id", string="Product")
+
+
 
 

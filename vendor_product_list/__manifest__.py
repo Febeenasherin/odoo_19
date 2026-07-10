@@ -15,7 +15,7 @@
     'data':[
         "views/vendor_product_list_menu.xml",
         "views/vendor_product_list_views.xml",
-        "/home/cybrosys/odoo-19/custom/vendor_product_list/views/purchase_order_line.xml",
+        "views/purchase_order_line.xml",
     ],
 }
 
