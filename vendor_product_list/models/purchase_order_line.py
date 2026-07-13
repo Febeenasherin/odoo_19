@@ -17,14 +17,21 @@ class PurchaseOrderLine(models.Model):
     @api.depends('product_id','is_vendor_product','partner_id')
 
     def _compute_purchase_order_line(self):
+        """ when enable is vendor product , only show product corresponding vendor"""
         print("kk",self)
 
+        product = self.env['product.product'].search([])
         for order in self:
-            if order.is_vendor_product :
-                order.product_ids = self.env['product.product'].search([('seller_ids.partner_id', '=', self.partner_id.id)])
+                if order.is_vendor_product:
+                    order.product_ids = self.env['product.product'].search(
+                        [('seller_ids.partner_id', '=', order.partner_id.id)])
 
-            else :
-                order.product_ids = self.env['product.product'].search([])
+                else:
+                    order.product_ids = product
+
+
+
+
 
 
 

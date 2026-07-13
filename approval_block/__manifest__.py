@@ -20,9 +20,7 @@
         "views/approval_block_views.xml",
         "views/approval_block_menu_views.xml",
         "views/purchase_order_views.xml",
-        "views/product_product_views.xml",
-        "views/product_template_views.xml",
-        "wizard/sale_order_wizard_views.xml",
+
 
     ],
 }

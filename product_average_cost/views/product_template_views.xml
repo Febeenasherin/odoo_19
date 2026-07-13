@@ -9,13 +9,13 @@
            <xpath expr="//sheet" position="before">
 <!--                <div class="oe_button_box" name="button_box">-->
 
-                   <button name="action_sale_order" string="Create Sale Order"
-                           type="object"
-                           class="oe_highlight"/>
+<!--                   <button name="action_sale_order" string="Create Sale Order"-->
+<!--                           type="object"-->
+<!--                           class="oe_highlight"/>-->
 
 <!--               </div>-->
 
-            </xpath>
+           </xpath>
        </field>
    </record>
 </odoo>

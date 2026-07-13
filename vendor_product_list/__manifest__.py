@@ -13,9 +13,9 @@
     'auto_install': True,
     'depends': ['base','purchase',],
     'data':[
-        "views/vendor_product_list_menu.xml",
-        "views/vendor_product_list_views.xml",
-        "views/purchase_order_line.xml",
+
+        "views/purchase_order_views.xml",
+
     ],
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- main menu -->
-    <menuitem id="vendor_product_list" name="Vendor product list"/>
+    <menuitem id="product_average_cost" name="vendor product average cost"/>
 
 </odoo>
