@@ -14,7 +14,8 @@
     'auto_install': False,
     'depends': ['base', 'purchase', 'sale',],
     'data':[
-            "/home/cybrosys/odoo-19/custom/auto_archive_product/views/product_template_views.xml"
+        "data/ir_cron_data.xml",
+
      ],
 }
 

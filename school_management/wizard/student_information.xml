@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="student_leave_wizard_form" model="ir.ui.view">
+   <field name="name">student.information.wizard</field>
+   <field name="model">student.information</field>
+   <field name="arch" type="xml">
+       <form string="Student information">
+
+       </form>
+   </field>
+</record>
+
+<record id="action_student_information_wizard" model="ir.actions.act_window">
+    <field name="name">Student information</field>
+    <field name="res_model">student.information</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
+</odoo>

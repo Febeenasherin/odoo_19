@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="school_club_wizard_form" model="ir.ui.view">
+   <field name="name">school.club.wizard</field>
+   <field name="model">school.club.data</field>
+   <field name="arch" type="xml">
+       <form string="Club Data">
+
+       </form>
+   </field>
+</record>
+
+<record id="action_club_data_wizard" model="ir.actions.act_window">
+    <field name="name">Club Data</field>
+    <field name="res_model">school.club.data</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
+</odoo>

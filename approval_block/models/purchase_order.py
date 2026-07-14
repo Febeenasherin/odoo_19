@@ -18,8 +18,6 @@ class PurchaseOrder(models.Model):
             print("mm",approval)
             print("am",rec.amount_total)
 
-    # if self.approval_block_id >= rec.amount_total:
-    #     self.approval_block_id = rec.amount_total
 
 
 

@@ -3,7 +3,7 @@
     <!-- main menu -->
     <menuitem id="school_management" name="School Management"/>
     <menuitem id="menu_school_stud" name="Students" parent="school_management" sequence="1" />
-    <menuitem id="menu_schol_config" name="Configuration" parent="school_management" sequence="7"/>
+    <menuitem id="menu_schol_config" name="Configuration" parent="school_management" sequence="8"/>
     <menuitem id="registration_student" name="Registrations" parent="menu_school_stud" action="school_students_action" sequence="1" />
     <menuitem id="school_students" name="Students" parent="menu_school_stud" action="school_registerd_student_action" sequence="2"/>
     <menuitem id="manage_dep" name="Department" parent="menu_schol_config" action="school_department_action" sequence="1"/>
@@ -17,4 +17,9 @@
     <menuitem id="school_office_staff" name="Office Staff" parent="school_employees" action="res_partner_officestaff_action" sequence="2"/>
     <menuitem id="school_leaves" name="Leaves" parent="school_management" action="school_leaves_action" sequence="5"/>
     <menuitem id="school_exam" name="Exams" parent="school_management" action="school_exam_action" sequence="6" groups="group_school_office_staff,group_school_teacher"/>
+
+    <menuitem id="report_students" name="Report" parent="school_management" sequence="7"/>
+    <menuitem id="leave_information" name="Leave information" parent="report_students" action="action_leave_information_wizard"/>
+    <menuitem id="club_data" name="Club data" parent="report_students" action="action_club_data_wizard"/>
+    <menuitem id="student_information" name="Student information" parent="report_students" action="action_student_information_wizard"/>
 </odoo>
