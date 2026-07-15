@@ -37,10 +37,14 @@
         "views/school_registerd_student_view.xml",
         "views/school_events_views.xml",
         "views/student_menu_views.xml",
+
+
         "wizard/student_leave_wizard_views.xml",
         "wizard/school_club_data_views.xml",
         "wizard/student_information.xml",
-
+        "/home/cybrosys/odoo-19/custom/school_management/wizard/student_leave_form_views.xml",
+        "report/student_leave_action.xml",
+        "report/student_leave_report_views.xml",
 
 ],
 }

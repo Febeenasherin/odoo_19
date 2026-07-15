@@ -1,11 +1,86 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models, api
+from datetime import date, timedelta
 
 
 class StudentLeaveWizard(models.TransientModel):
+    """student information report"""
     _name = "student.leave.wizard"
     _description = "Student Leave Wizard"
-    _inherit = "school.leaves"
 
-    def action_leave(self):
-        return {'type': 'ir.actions.act_window'}
+
+    filter_type = fields.Selection([('day', 'Day'),
+    ('week', 'Week'), ('month', 'Month'), ('custom', 'Custom')], string='Filter Type')
+
+    start_date = fields.Date()
+    end_date = fields.Date()
+    student_id = fields.Many2one('school.students', string='Student')
+    class_id = fields.Many2one('school.class', string='Class')
+
+    @api.model
+    def action_print(self):
+        domain = []
+
+        if self.student_id:
+            domain.append(('student_id', '=', self.student_id.id))
+
+        print("domain", domain)
+
+        if self.class_id:
+            domain.append(('class_id', '=', self.class_id.id))
+
+        today = date.today()
+        if self.filter_type == 'day':
+            domain += [('start_date', '=', today)]
+
+            print(domain)
+
+        elif self.filter_type == 'week':
+            week_start = today - timedelta(days=today.weekday())
+            week_end = week_start + timedelta(days=6)
+
+            domain += [('start_date', '>=', week_start), ('start_date', '<=', week_end)]
+
+            print(domain)
+
+        elif self.filter_type == 'month':
+            month_start = today - timedelta(days=today.month)
+
+            domain += [('start_date', '>=', month_start), ('start_date', '<=', month_start)]
+
+        elif self.filter_type == 'custom':
+            domain +=[('start_date', '=', self.start_date), ('end_date', '=', self.end_date)]
+
+        leave_info = self.env['school.leaves'].search(domain)
+
+        print("info",leave_info)
+
+        return self.env.ref('school_management.action_report_schoole_leave').report_action('ids' == leave_info.ids)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ # elif self.filter_type == 'week':
+        #     week_start = today - timedelta(days=today.weekday())
+        #     week_end = week_start + timedelta(days=6)
+        #
+        #     domain += [('start_date', '<=', week_start), ('end_date', '>=', week_end)]
+        #
+        # elif self.filter_type == 'month':
+        #     month_start = today - timedelta(days=today.month)
+        #
+        #     domain += [('start_date', '<=', month_start), ('end_date', '>=', month_start)]
+        #
+        # elif self.filter_type == 'custom':
+        #     domain +=[('start_date', '=', self.start_date), ('end_date', '=', self.end_date)]
+

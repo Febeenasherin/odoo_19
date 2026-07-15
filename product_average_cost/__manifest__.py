@@ -15,7 +15,7 @@
     'data':[
         "views/product_product_views.xml",
         "views/product_template_views.xml",
-        "/home/cybrosys/odoo-19/custom/product_average_cost/views/product_average_cost_menu.xml",
+        "views/product_average_cost_menu.xml",
         "wizard/sale_order_wizard_views.xml",
 
 
