@@ -6,15 +6,24 @@
    <field name="model">school.club.data</field>
    <field name="arch" type="xml">
        <form string="Club Data">
-
+            <sheet>
+                    <group>
+                        <field name="club_id"/>
+                        <field name="student_id"/>
+                    </group>
+                    <footer>
+                        <button string="Print"
+                                name="action_club_print"
+                                type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel"
+                                class="btn-secondary"
+                                special="cancel"/>
+                    </footer>
+           </sheet>
        </form>
    </field>
 </record>
 
-<record id="action_club_data_wizard" model="ir.actions.act_window">
-    <field name="name">Club Data</field>
-    <field name="res_model">school.club.data</field>
-    <field name="view_mode">form</field>
-    <field name="target">new</field>
-</record>
+
 </odoo>

@@ -42,9 +42,16 @@
         "wizard/student_leave_wizard_views.xml",
         "wizard/school_club_data_views.xml",
         "wizard/student_information.xml",
-        "/home/cybrosys/odoo-19/custom/school_management/wizard/student_leave_form_views.xml",
+        "wizard/student_leave_form_views.xml",
+        "wizard/school_club_action_views.xml",
+        "wizard/school_information_action.xml",
         "report/student_leave_action.xml",
         "report/student_leave_report_views.xml",
+        "report/school_club_template.xml",
+        "report/school_clubs_action.xml",
+        "report/student_information_action.xml",
+        "report/student_information_template.xml",
+
 
 ],
 }

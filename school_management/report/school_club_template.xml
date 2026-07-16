@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="clubs_data_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+
+                    <h2 class="text-center">Task Report</h2>
+                    <hr/>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Club name</th>
+                                <th>Student</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="club">
+                                <tr>
+
+                                    <td><span t-esc="club.name"/></td>
+
+
+                                    <t t-foreach="club.student_ids" t-as="user">
+                                        <td><span t-esc="user.first_name"/></td>
+
+                                        </t>
+
+
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+<!--                    <div class="mt-3">-->
+<!--                        <strong>Total Tasks: </strong>-->
+<!--                        <span t-esc="len(docs)"/>-->
+<!--                    </div>-->
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_club_data_wizard" model="ir.actions.act_window">
+    <field name="name">Club Data</field>
+    <field name="res_model">school.club.data</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+        <field name="binding_type">report</field>
+</record>
+</odoo>
+

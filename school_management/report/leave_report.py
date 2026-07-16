@@ -1,21 +1,30 @@
 # -*- coding: utf-8 -*-
 from odoo import  models, fields
-from datetime import timedelta, date
+from odoo.exceptions import UserError
 
 
-class SchoolLeaves(models.Model):
+class SchoolLeaves(models.AbstractModel):
     """ students leaves"""
-    _inherit = "school.leaves"
+
+    _name = 'report.school_management.leave_information_template'
+    #
+    # def _get_report_values(self, docids, data=None):
+    #
+    #     leave_ids = data.get('ids',[])
+    #
+    #     docs = self.env['school.leaves'].browse(leave_ids)
+    #
+    #     if not docs:
+    #         raise UserError("No leaves found")
+    #
+    #     return {
+    #         'docs': docs,
+    #     }
 
 
-    leave_id = fields.Many2one('student.leave.wizard', string="Leave")
-    filter_type = fields.Selection(related="leave_id.filter_type", string="Filter")
+     def action_print(self):
 
-
-
-
-
-
+          self.env.cr.execute(""""""
 
 
 

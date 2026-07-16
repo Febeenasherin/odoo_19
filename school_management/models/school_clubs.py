@@ -11,6 +11,7 @@ class SchoolClubs(models.Model):
     student_ids = fields.Many2many('school.students', string='Student')
     event_ids = fields.One2many('school.events','club_id', string='Event')
     event_count = fields.Integer(string='Event Count', compute='_compute_event_count')
+    student_id = fields.Many2one('school.students', string='Student')
 
     def _compute_event_count(self):
         """it usd for total count of event ,itss used for smart button"""

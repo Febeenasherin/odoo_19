@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<odoo>
+    <data>
+        <template id="student_information_template">
+            <t t-call="web.html_container">
+
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+
+                        <h3>Student Information</h3>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Department</th>
+                                    <th>Email</th>
+                                    <th>Phn no</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="student">
+                                    <tr>
+                                        <td>
+                                            <span t-field="student.first_name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="student.class_id.name_class"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="student.department_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="student.email"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="student.phone_no"/>
+                                        </td>
+
+
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!--                           <p>Total Amount: <span t-field="o.total_amount"/></p>-->
+                    </div>
+                </t>
+            </t>
+
+
+        </template>
+    </data>
+</odoo>
+
+
+
+
+

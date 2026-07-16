@@ -43,6 +43,7 @@ class SchoolStudents(models.Model):
     exam_ids = fields.Many2many('school.exam')
     attendance = fields.Selection([('present', 'Present'), ('absent', 'Absent')], default='present', string="Attendance")
     user_id = fields.Many2one('res.users', string='User')
+    department_id = fields.Many2one('school.department', string='Department')
 
     # sequence
     @api.model_create_multi
@@ -51,7 +52,7 @@ class SchoolStudents(models.Model):
         print("self",self)
         for vals in vals_list:
             if vals.get('sequence' , 'New') == 'New':
-                vals["sequence"] = self.env['ir.sequence'].next_by_code('sequencecode')  or 'New'
+                vals["sequence"] = self.env['ir.sequence'].next_by_code('sequencecodes')  or 'New'
 
         return super(SchoolStudents, self).create(vals_list)
 
@@ -61,7 +62,7 @@ class SchoolStudents(models.Model):
         print("self",self)
         self.status = 'registration'
 
-        self.admission = self.env['ir.sequence'].next_by_code('admissioncode')
+        self.admission = self.env['ir.sequence'].next_by_code('admissioncodes')
 
 
      #  age calculation
@@ -79,7 +80,7 @@ class SchoolStudents(models.Model):
 
 
     def _create_user(self):
-        print("working...")
+        # print("working...")
         for student in self:
             if not student.user_id:
                 if student.status == 'registration':
