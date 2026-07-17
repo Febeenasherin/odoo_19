@@ -11,7 +11,7 @@ class StudentLeaveWizard(models.TransientModel):
 
 
     filter_type = fields.Selection([('day', 'Day'),
-    ('week', 'Week'), ('month', 'Month'), ('custom', 'Custom')], string='Filter Type')
+    ('week', 'Week'), ('month', 'Month'), ('custom', 'Custom')], string='Filter Type',)
 
     start_date = fields.Date()
     end_date = fields.Date()
@@ -26,51 +26,57 @@ class StudentLeaveWizard(models.TransientModel):
         """report show ,is the student name is selected it show that student leave information.
         if class is selected ,show leave based on class.if the day selected show today leaves,or week selected show weekly report,
         or month selected show monthly, if custom selected show leave based on we selected date range."""
-        domain = []
-
-        if self.student_id:
-            domain.append(('student_id', '=', self.student_id.id))
 
 
+        # domain = []
+        #
+        # if self.student_id:
+        #     domain.append(('student_id', '=', self.student_id.id))
+        #
+        #
+        #
+        # print("domain", domain)
+        #
+        # if self.class_id:
+        #     domain.append(('class_id', '=', self.class_id.id))
+        #
+        # today = date.today()
+        # if self.filter_type == 'day':
+        #     domain += [('start_date', '=', today)]
+        #
+        #     print(domain)
+        #
+        # elif self.filter_type == 'week':
+        #     week_start = today - timedelta(days=today.weekday())
+        #     week_end = week_start + timedelta(days=6)
+        #
+        #     domain += [('start_date', '>=', week_start), ('start_date', '<=', week_end)]
+        #
+        #     print(domain)
+        #
+        # elif self.filter_type == 'month':
+        #     month_start = today.replace(day=1)
+        #
+        #     domain += [('start_date', '>=', month_start), ('start_date', '<=', today)]
+        #
+        #     print("month",domain)
+        #
+        # elif self.filter_type == 'custom':
+        #
+        #     domain +=[('start_date', '>=', self.start_date)]
+        #     domain += [('end_date', '<=', self.end_date)]
+        #
+        #     print("custom",domain)
+        #
+        # leave_info = self.env['school.leaves'].search(domain)
+        #
+        # print("info",leave_info)
 
-        print("domain", domain)
+        # return self.env.ref('school_management.action_report_school_leave').report_action(self,data = {'ids' : leave_info.ids})
 
-        if self.class_id:
-            domain.append(('class_id', '=', self.class_id.id))
 
-        today = date.today()
-        if self.filter_type == 'day':
-            domain += [('start_date', '=', today)]
 
-            print(domain)
-
-        elif self.filter_type == 'week':
-            week_start = today - timedelta(days=today.weekday())
-            week_end = week_start + timedelta(days=6)
-
-            domain += [('start_date', '>=', week_start), ('start_date', '<=', week_end)]
-
-            print(domain)
-
-        elif self.filter_type == 'month':
-            month_start = today.replace(day=1)
-
-            domain += [('start_date', '>=', month_start), ('start_date', '<=', today)]
-
-            print("month",domain)
-
-        elif self.filter_type == 'custom':
-
-            domain +=[('start_date', '>=', self.start_date)]
-            domain += [('end_date', '<=', self.end_date)]
-
-            print("custom",domain)
-
-        leave_info = self.env['school.leaves'].search(domain)
-
-        print("info",leave_info)
-
-        return self.env.ref('school_management.action_report_school_leave').report_action(self,data = {'ids' : leave_info.ids})
+        return self.env.ref('school_management.action_report_school_leave').report_action(self)
 
 
 

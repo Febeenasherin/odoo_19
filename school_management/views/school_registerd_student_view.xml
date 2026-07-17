@@ -23,7 +23,7 @@
                     <group>
                         <field name="class_id"/>
                         <field name="phone_no"/>
-                        <field name="sequence"/>
+                        <field name="reg_no"/>
 
                     </group>
                     <group>

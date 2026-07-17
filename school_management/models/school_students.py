@@ -12,7 +12,7 @@ class SchoolStudents(models.Model):
 
     _unique_name = models.Constraint('UNIQUE(aadhaar_no)', 'aadhaar number must be unique!')
 
-    sequence = fields.Char(string='Registration No', copy=False, readonly=True, default='New')
+    reg_no = fields.Char(string='Registration No', copy=False, required=True, default='New')
     first_name = fields.Char(string="First Name", required=True ,help='enter first name')
     last_name = fields.Char(string="Last Name", required=True,  help='enter last name')
     father_name = fields.Char(string="Father Name", help='enter father name')
@@ -45,14 +45,14 @@ class SchoolStudents(models.Model):
     user_id = fields.Many2one('res.users', string='User')
     department_id = fields.Many2one('school.department', string='Department')
 
-    # sequence
     @api.model_create_multi
     def create(self, vals_list):
-        """add sequence number"""
-        print("self",self)
+        """add reg_no number"""
+        print("self",self, vals_list)
         for vals in vals_list:
-            if vals.get('sequence' , 'New') == 'New':
-                vals["sequence"] = self.env['ir.sequence'].next_by_code('sequencecodes')  or 'New'
+            if vals.get('reg_no', 'New') == 'New':
+                # print("aaa", vals['reg_no'])
+                vals["reg_no"] = self.env['ir.sequence'].next_by_code('reg_no')  or 'New'
 
         return super(SchoolStudents, self).create(vals_list)
 

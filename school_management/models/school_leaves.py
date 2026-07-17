@@ -14,10 +14,10 @@ class SchoolLeaves(models.Model):
 
 
     student_id = fields.Many2one('school.students', string="Students", required=True)
-    class_id = fields.Many2one(related='student_id.class_id', string="Class")
+    class_id = fields.Many2one(related='student_id.class_id', string="Class", store=True)
     start_date = fields.Date(string="Start Date", default=fields.Date.today)
     end_date = fields.Date(string="End Date", default=fields.Date.today)
-    total_date = fields.Float(string="Total Date", readonly=True, compute='_compute_total_day')
+    total_date = fields.Float(string="Total Date", readonly=True, compute='_compute_total_day', store=True)
     half_day = fields.Boolean(string="Half Day")
     afternoon = fields.Selection([('fornoon', 'Fornoon'), ('afternoon', 'Afternoon')], default='fornoon', string="Half Day")
     reason = fields.Char(string="Reason")

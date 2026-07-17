@@ -14,7 +14,7 @@
                 </header>
                 <sheet>
                     <field name="image" widget="image" class="oe_avatar"/>
-                    <h1> <field name="sequence" readonly="1"/>
+                    <h1> <field name="reg_no" readonly="1"/>
                     </h1>
                 <group>
                     <group>
@@ -84,7 +84,7 @@
         <field name="arch" type="xml">
             <list string="school management">
 
-                        <field name="sequence"/>
+                        <field name="reg_no"/>
                         <field name="first_name"/>
                         <field name="last_name"/>
                         <field name="email"/>

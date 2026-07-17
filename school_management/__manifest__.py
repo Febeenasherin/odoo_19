@@ -36,8 +36,6 @@
         "views/school_exam_views.xml",
         "views/school_registerd_student_view.xml",
         "views/school_events_views.xml",
-        "views/student_menu_views.xml",
-
 
         "wizard/student_leave_wizard_views.xml",
         "wizard/school_club_data_views.xml",
@@ -52,7 +50,7 @@
         "report/student_information_action.xml",
         "report/student_information_template.xml",
 
-
-],
+        "views/student_menu_views.xml",
+    ],
 }
 
