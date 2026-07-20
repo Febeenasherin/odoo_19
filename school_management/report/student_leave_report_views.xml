@@ -16,10 +16,10 @@
                             <strong>TYPE: </strong>
                             <span t-esc="type"/>
                         </div>
-<!--                        <div class="col-3">-->
-<!--                            <strong>To: </strong>-->
-<!--                            <span t-esc="to_date"/>-->
-<!--                        </div>-->
+                        <div class="col-3" t-if="class_name">
+                            <strong>Class: </strong>
+                            <span t-esc="class_name"/>
+                        </div>
                     </div>
                     <table class="table table-bordered table-sm">
                         <thead class="table-primary">

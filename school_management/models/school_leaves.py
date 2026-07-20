@@ -3,6 +3,7 @@ from openpyxl.worksheet import related
 
 from odoo import fields, models, api
 from datetime import timedelta, date
+from odoo.exceptions import ValidationError
 
 
 class SchoolLeaves(models.Model):
@@ -49,6 +50,13 @@ class SchoolLeaves(models.Model):
         self.env['school.students'].search([]).write({'attendance': 'present'})
         students.attendance = 'absent'
         print("stu",students)
+
+    @api.constrains('start_date', 'end_date')
+    def _end_date(self):
+        for rec in self:
+            if rec.start_date and rec.end_date:
+                if rec.end_date <= rec.start_date:
+                    raise ValidationError("end date greater than start date")
 
 
 

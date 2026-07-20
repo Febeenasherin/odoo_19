@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-from odoo import  models, fields
+from odoo import  models
 from datetime import date, timedelta
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
+
 
 
 class LeaveReport(models.AbstractModel):
@@ -23,7 +24,7 @@ class LeaveReport(models.AbstractModel):
         JOIN school_class as c on l.class_id = c.id WHERE 1=1"""
 
         if leave.class_id:
-            sql += f" AND l.class_id = '{leave.class_id.id}'"
+            sql += f" AND s.class_id = '{leave.class_id.id}'"
 
             print("class",sql)
 
@@ -49,24 +50,23 @@ class LeaveReport(models.AbstractModel):
 
         elif leave.filter_type == 'month':
             month_start = today.replace(day=1)
-            next_month = month_start + timedelta(days=32)
+            next_month = (month_start + timedelta(days=32)).replace(day=1)
             month_end = next_month - timedelta(days=1)
 
             sql +=  f" AND l.start_date >= '{month_start}' AND l.start_date < '{month_end}'"
 
         elif leave.filter_type == 'custom':
-            if leave.start_date:
+            if leave.start_date and leave.end_date:
+                sql += f"AND l.start_date <= '{leave.end_date}' AND l.end_date >= '{leave.start_date}'"
+            elif leave.start_date:
 
                 sql += f" AND l.start_date >= '{leave.start_date}'"
 
-            if  leave.end_date:
+        elif  leave.end_date:
 
                 sql += f" AND l.end_date <= '{leave.end_date}'"
 
 
-            # if leave.start_date and leave.end_date:
-            #
-            #     sql += f"AND l.start_date BETWEEN '{leave.start_date}' AND '{leave.end_date}'"
 
         self.env.cr.execute(sql)
         result = self.env.cr.fetchall()
@@ -77,7 +77,7 @@ class LeaveReport(models.AbstractModel):
         print("result",len(result))
 
         if not result:
-            raise UserError("No leaves found")
+            raise ValidationError("No leaves found")
 
         # data = {'report': result}
         return {
@@ -86,7 +86,7 @@ class LeaveReport(models.AbstractModel):
             'print_date': date.today(),
             'type' : leave.filter_type,
             'docs' : result,
-            # 'class_name' : leave.class_id.name_class if leave.class_id else '',
+            'class_name' : leave.class_id.name_class if leave.class_id else '',
             # 'student_name' : leave.student_id.first_name if leave.student_id else '',
             }
 

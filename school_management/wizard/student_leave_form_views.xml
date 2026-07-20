@@ -9,7 +9,7 @@
                 <sheet>
                     <group>
                         <field name="filter_type"/>
-                        <field name="student_id"/>
+                        <field name="student_id" create="0"/>
                         <field name="class_id"/>
                         <field name="start_date" invisible="filter_type !='custom'"/>
                         <field name="end_date" invisible="filter_type !='custom'"/>

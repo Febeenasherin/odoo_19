@@ -15,24 +15,24 @@ class StudentInformation(models.TransientModel):
     def action_print_student_information(self):
         """ show report of students based on class and department"""
 
-        domain = []
+        # domain = []
+        #
+        # if self.class_id:
+        #     domain += [('class_id', 'in', self.class_id.id)]
+        #
+        #     print("class",domain)
+        #
+        #
+        # if self.department_id:
+        #     domain += [('department_id', 'in', self.department_id.id)]
+        #
+        #     print("dep",domain)
+        #
+        # student_info = self.env['school.students'].search(domain)
+        #
+        # print("info", student_info)
 
-        if self.class_id:
-            domain += [('class_id', 'in', self.class_id.id)]
-
-            print("class",domain)
-
-
-        if self.department_id:
-            domain += [('department_id', 'in', self.department_id.id)]
-
-            print("dep",domain)
-
-        student_info = self.env['school.students'].search(domain)
-
-        print("info", student_info)
-
-        return self.env.ref('school_management.action_report_student').report_action(self, data={'ids': student_info.ids})
+        return self.env.ref('school_management.action_report_student').report_action(self)
 
 
 

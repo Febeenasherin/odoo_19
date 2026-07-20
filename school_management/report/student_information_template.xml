@@ -1,63 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <odoo>
-    <data>
-        <template id="student_information_template">
-            <t t-call="web.html_container">
+    <template id="student_information_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center">Students Information</h2>
+                    <hr/>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <strong>DATE: </strong>
+                            <span t-esc="print_date"/>
+                        </div>
+                        <div class="col-3" t-if="department">
+                            <strong>department: </strong>
+                            <span t-esc="department"/>
+                        </div>
 
-                <t t-call="web.external_layout">
-                    <div class="page">
+<!--                        <div class="col-3" t-if="student_name">-->
+<!--                            <strong> </strong>-->
+<!--                            <span t-esc="student_name"/>-->
+<!--                        </div>-->
+
+<!--                        <div class="row mb-5">-->
+<!--                            <strong>Student details: </strong>-->
+<!--&lt;!&ndash;                            <span t-esc="print_date"/>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="col-3" t-if="class_name">-->
+<!--                            <strong>Class: </strong>-->
+<!--                            <span t-esc="class_name"/>-->
+<!--                        </div>-->
+                    </div>
+<!--                     <div class="oe_structure"/>-->
+<!--                    <h5 class="text-left">Student details:</h5>-->
+<!--                    <hr/>-->
 
 
-                        <h3>Student Information</h3>
-                        <table class="table table-sm">
-                            <thead>
+
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Sl.no</th>
+                                <th>Admission No</th>
+                                <th>Name</th>
+
+                                <th>Class</th>
+                                <th>email</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="st">
                                 <tr>
-                                    <th>Student</th>
-                                    <th>Class</th>
-                                    <th>Department</th>
-                                    <th>Email</th>
-                                    <th>Phn no</th>
+                                    <td><span t-esc="st_index + 1"/></td>
+                                    <td><span t-esc="st[0]"/></td>
+                                    <td><span t-esc="st[1]"/></td>
+                                    <td><span t-esc="st[2]"/></td>
+                                    <td><span t-esc="st[3]"/></td>
+
 
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <t t-foreach="docs" t-as="student">
-                                    <tr>
-                                        <td>
-                                            <span t-field="student.first_name"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="student.class_id.name_class"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="student.department_id.name"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="student.email"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="student.phone_no"/>
-                                        </td>
+
+                            </t>
+                        </tbody>
+                    </table>
 
 
-                                    </tr>
-                                </t>
-                            </tbody>
-                        </table>
 
-                        <!--                           <p>Total Amount: <span t-field="o.total_amount"/></p>-->
-                    </div>
-                </t>
+                </div>
             </t>
-
-
-        </template>
-    </data>
+        </t>
+    </template>
 </odoo>
-
-
-
 
 

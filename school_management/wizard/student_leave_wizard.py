@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models, api
-from datetime import date, timedelta
 
+
+from odoo.exceptions import ValidationError
 
 
 class StudentLeaveWizard(models.TransientModel):
@@ -15,11 +16,26 @@ class StudentLeaveWizard(models.TransientModel):
 
     start_date = fields.Date()
     end_date = fields.Date()
-    student_id = fields.Many2one('school.students', string='Student')
+    student_id = fields.Many2one('school.students', string='Student', domain="[('class_id', '=', class_id)]")
 
     # student_id = fields.Many2one(related='class_id.student_id', string='Student')
-    class_id = fields.Many2one(related='student_id.class_id', string='Class', readonly=False)
+    class_id = fields.Many2one('school.class', string='Class', readonly=False)
 
+    @api.constrains ('start_date','end_date')
+    def _end_date(self):
+        for rec in self:
+            if rec.start_date and rec.end_date:
+                if rec.end_date <= rec.start_date:
+
+                    raise ValidationError("end date greater than start date")
+
+
+
+    @api.onchange('student_id')
+    def _onchange_student_id(self):
+        for rec in self:
+            if rec.student_id:
+                rec.class_id = rec.student_id.class_id
 
 
     def action_print(self):
@@ -28,51 +44,7 @@ class StudentLeaveWizard(models.TransientModel):
         or month selected show monthly, if custom selected show leave based on we selected date range."""
 
 
-        # domain = []
-        #
-        # if self.student_id:
-        #     domain.append(('student_id', '=', self.student_id.id))
-        #
-        #
-        #
-        # print("domain", domain)
-        #
-        # if self.class_id:
-        #     domain.append(('class_id', '=', self.class_id.id))
-        #
-        # today = date.today()
-        # if self.filter_type == 'day':
-        #     domain += [('start_date', '=', today)]
-        #
-        #     print(domain)
-        #
-        # elif self.filter_type == 'week':
-        #     week_start = today - timedelta(days=today.weekday())
-        #     week_end = week_start + timedelta(days=6)
-        #
-        #     domain += [('start_date', '>=', week_start), ('start_date', '<=', week_end)]
-        #
-        #     print(domain)
-        #
-        # elif self.filter_type == 'month':
-        #     month_start = today.replace(day=1)
-        #
-        #     domain += [('start_date', '>=', month_start), ('start_date', '<=', today)]
-        #
-        #     print("month",domain)
-        #
-        # elif self.filter_type == 'custom':
-        #
-        #     domain +=[('start_date', '>=', self.start_date)]
-        #     domain += [('end_date', '<=', self.end_date)]
-        #
-        #     print("custom",domain)
-        #
-        # leave_info = self.env['school.leaves'].search(domain)
-        #
-        # print("info",leave_info)
 
-        # return self.env.ref('school_management.action_report_school_leave').report_action(self,data = {'ids' : leave_info.ids})
 
 
 
