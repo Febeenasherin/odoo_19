@@ -15,7 +15,14 @@ class StudentInformation(models.TransientModel):
     def action_print_student_information(self):
         """ show report of students based on class and department"""
 
-        # domain = []
+
+        return self.env.ref('school_management.action_report_student').report_action(self)
+
+
+
+
+
+    # domain = []
         #
         # if self.class_id:
         #     domain += [('class_id', 'in', self.class_id.id)]
@@ -31,13 +38,6 @@ class StudentInformation(models.TransientModel):
         # student_info = self.env['school.students'].search(domain)
         #
         # print("info", student_info)
-
-        return self.env.ref('school_management.action_report_student').report_action(self)
-
-
-
-
-
 
 
 

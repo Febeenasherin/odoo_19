@@ -6,8 +6,8 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">school_management.leave_information_template</field>
         <field name="report_file">school_management.leave_information_template</field>
-<!--        <field name="print_report_name">'Product Report - %s' % (object.name)</field>-->
-<!--        <field name="binding_model_id" ref="product.model_product_template"/>-->
-<!--        <field name="binding_type">report</field>-->
+        <field name="binding_type">report</field>
+
+
     </record>
 </odoo>

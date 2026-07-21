@@ -10,7 +10,7 @@
 
                     <div class="row mb-4">
                         <div class="col-6">
-                            <strong>DATE: </strong>
+                            <strong>Print Date: </strong>
                             <span t-esc="print_date"/>
                         </div>
                         <div class="col-3" t-if="club_name">
@@ -18,33 +18,22 @@
                             <span t-esc="club_name"/>
                         </div>
 
-<!--                        <div class="col-3" t-if="student_name">-->
-<!--                            <strong> </strong>-->
-<!--                            <span t-esc="student_name"/>-->
-<!--                        </div>-->
-
-<!--                        <div class="row mb-5">-->
-<!--                            <strong>Student details: </strong>-->
-<!--&lt;!&ndash;                            <span t-esc="print_date"/>&ndash;&gt;-->
-<!--                        </div>-->
-<!--                        <div class="col-3" t-if="class_name">-->
-<!--                            <strong>Class: </strong>-->
-<!--                            <span t-esc="class_name"/>-->
-<!--                        </div>-->
+                        <div class="col-3" t-if="student_name">
+                            <strong>Student name: </strong>
+                            <span t-esc="student_name"/>
+                        </div>
                     </div>
                      <div class="oe_structure"/>
-                    <h5 class="text-left">Student details:</h5>
+                    <h6 class="text-left">Student details:</h6>
                     <hr/>
-
-
-
                     <table class="table table-bordered table-sm">
                         <thead class="table-primary">
                             <tr>
-                                <th>Sl.no</th>
-                                <th>Name</th>
-                                <th>Admission No</th>
-                                <th>Class</th>
+                                <th><strong>Sl.no</strong></th>
+                                <th t-if="club"><strong>Name</strong></th>
+                                <th><strong>Admission No</strong></th>
+                                <th><strong>Class</strong></th>
+                                <th t-if="clubs"><strong>Club</strong></th>
 
                             </tr>
                         </thead>
@@ -52,30 +41,28 @@
                             <t t-foreach="students" t-as="st">
                                 <tr>
                                     <td><span t-esc="st_index + 1"/></td>
-                                    <td><span t-esc="st[0]"/></td>
+                                    <td t-if="club"><span t-esc="st[0]"/></td>
                                     <td><span t-esc="st[1]"/></td>
                                     <td><span t-esc="st[2]"/></td>
+                                    <td t-if="clubs"><span t-esc="st[3]"/></td>
 
                                 </tr>
-
                             </t>
                         </tbody>
                     </table>
 
-                    <div class="oe_structure"/>
-                    <h5 class="text-left">Events:</h5>
+                    <div class="oe_structure" t-if="event"/>
+                    <h6 class="text-left" t-if="event">Events:</h6>
                     <hr/>
-
-
-
                     <table class="table table-bordered table-sm">
                         <thead class="table-primary">
                             <tr>
-                                <th>Sl.no</th>
-                                <th>Name</th>
-                                <th>Venue</th>
-                                <th>Start date</th>
-                                <th>End date</th>
+                                <th t-if="event"><strong>Sl.no</strong></th>
+                                <th t-if="event"><strong>Club</strong></th>
+                                <th t-if="event"><strong>Name</strong></th>
+                                <th t-if="event"><strong>Venue</strong></th>
+                                <th t-if="event"><strong>Start date</strong></th>
+                                <th t-if="event"><strong>End date</strong></th>
 
                             </tr>
                         </thead>
@@ -83,8 +70,9 @@
                             <t t-foreach="event" t-as="event">
                                 <tr>
                                     <td><span t-esc="event_index + 1"/></td>
-                                    <td><span t-esc="env['ir.fields.converter'].text_from_html(event.venue)"/></td>
-                                    <td><span t-esc="event[1]"/></td>
+                                    <td><span t-esc="event[4]"/></td>
+                                    <td><span t-raw="event[0]"/></td>
+                                    <td><span t-raw="event[1]"/></td>
                                     <td><span t-esc="event[2]"/></td>
                                     <td><span t-esc="event[3]"/></td>
 
@@ -93,7 +81,6 @@
                             </t>
                         </tbody>
                     </table>
-
                 </div>
             </t>
         </t>

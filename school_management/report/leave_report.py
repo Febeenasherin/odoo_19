@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
 
 
-from odoo import  models
+from odoo import models
 from datetime import date, timedelta
 from odoo.exceptions import ValidationError
 
 
-
 class LeaveReport(models.AbstractModel):
-    """ students leaves"""
-
     _name = 'report.school_management.leave_information_template'
 
     def _get_report_values(self, docids, data=None):
+        """ report show ,is the student name is selected it show that student leave information.
+                if class is selected ,show leave based on class.if the day selected show today leaves,or week selected show weekly report,
+                or month selected show monthly, if custom selected show leave based on we selected date range"""
 
-
-        leave = self.env ['student.leave.wizard'].browse(docids)
-
+        leave = self.env['student.leave.wizard'].browse(docids)
 
         sql = """
         SELECT s.admission, s.first_name, c.name_class, l.start_date, l.end_date, l.total_date,
@@ -26,19 +24,19 @@ class LeaveReport(models.AbstractModel):
         if leave.class_id:
             sql += f" AND s.class_id = '{leave.class_id.id}'"
 
-            print("class",sql)
+            print("class", sql)
 
         if leave.student_id:
-            sql+= f" AND l.student_id = '{leave.student_id.id}'"
+            sql += f" AND l.student_id = '{leave.student_id.id}'"
 
-            print("student",sql)
+            print("student", sql)
 
         today = date.today()
 
         if leave.filter_type == 'day':
-            sql +=  f" AND '{today}' BETWEEN l.start_date AND l.end_date "
+            sql += f" AND '{today}' BETWEEN l.start_date AND l.end_date "
 
-            print("day",sql)
+            print("day", sql)
 
         elif leave.filter_type == 'week':
             week_start = today - timedelta(days=today.weekday())
@@ -46,14 +44,14 @@ class LeaveReport(models.AbstractModel):
 
             sql += f" AND l.start_date >= '{week_start}' AND l.start_date <= '{week_end}'"
 
-            print("week",sql)
+            print("week", sql)
 
         elif leave.filter_type == 'month':
             month_start = today.replace(day=1)
             next_month = (month_start + timedelta(days=32)).replace(day=1)
             month_end = next_month - timedelta(days=1)
 
-            sql +=  f" AND l.start_date >= '{month_start}' AND l.start_date < '{month_end}'"
+            sql += f" AND l.start_date >= '{month_start}' AND l.start_date < '{month_end}'"
 
         elif leave.filter_type == 'custom':
             if leave.start_date and leave.end_date:
@@ -62,19 +60,16 @@ class LeaveReport(models.AbstractModel):
 
                 sql += f" AND l.start_date >= '{leave.start_date}'"
 
-        elif  leave.end_date:
+        elif leave.end_date:
 
-                sql += f" AND l.end_date <= '{leave.end_date}'"
-
-
+            sql += f" AND l.end_date <= '{leave.end_date}'"
 
         self.env.cr.execute(sql)
         result = self.env.cr.fetchall()
 
-
-        print("query",sql)
-        print("r",result)
-        print("result",len(result))
+        print("query", sql)
+        print("r", result)
+        print("result", len(result))
 
         if not result:
             raise ValidationError("No leaves found")
@@ -84,21 +79,21 @@ class LeaveReport(models.AbstractModel):
             # 'doc_ids': leave,
             # 'doc_model': 'school.leave.wizard',
             'print_date': date.today(),
-            'type' : leave.filter_type,
-            'docs' : result,
-            'class_name' : leave.class_id.name_class if leave.class_id else '',
-            # 'student_name' : leave.student_id.first_name if leave.student_id else '',
-            }
+            'type': leave.filter_type,
+            'docs': result,
+            'class_name': leave.class_id.name_class if leave.class_id else '',
+            'student_name': leave.student_id.first_name if leave.student_id else '',
 
+            'c_from': leave.start_date,
+            'c_to': leave.end_date,
+            'd_from': date.today(),
+            'd_to': date.today(),
+            'w_from': today - timedelta(days=today.weekday()),
+            'w_to': today - timedelta(days=today.weekday()) + timedelta(days=6),
+            'm_from': today.replace(day=1),
+            'm_to': (today.replace(day=1) + (timedelta(days=32))).replace(day=1) - timedelta(days=1),
 
-
-
-
-
-
-
-
-
+        }
 
     #     leave_ids = data.get('ids',[])
     #
@@ -111,10 +106,7 @@ class LeaveReport(models.AbstractModel):
     #         'docs': docs,
     #     }
 
-     #
-     # def action_print(self):
-     #
-     #      query = """ select s."""
-
-
-
+    #
+    # def action_print(self):
+    #
+    #      query = """ select s."""

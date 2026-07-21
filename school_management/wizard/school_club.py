@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import date
-
-from odoo import fields, models, api
-
-
+from odoo import fields, models
 
 
 class SchoolClubData(models.TransientModel):
@@ -15,9 +11,7 @@ class SchoolClubData(models.TransientModel):
 
 
     def action_club_print(self):
-        """for getting report, if the club is selected it show the club name and including student name,"""
-        
-
+        """for print report"""
         return self.env.ref('school_management.action_report_club').report_action(self)
 
 

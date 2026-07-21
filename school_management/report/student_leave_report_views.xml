@@ -8,30 +8,68 @@
                     <h2 class="text-center">LEAVE  REPORT</h2>
                     <hr/>
                     <div class="row mb-4">
-                        <div class="col-6">
-                            <strong>DATE: </strong>
+                        <div class="col-3">
+                            <strong>Print Date: </strong>
                             <span t-esc="print_date"/>
                         </div>
-                        <div class="col-3">
-                            <strong>TYPE: </strong>
+                        <div class="col-3" t-if="type">
+                            <strong>Type: </strong>
                             <span t-esc="type"/>
                         </div>
+                        <div class="col-3" t-if="type=='custom'">
+                            <strong>From: </strong>
+                            <span t-esc="c_from"/>
+                        </div>
+                        <div class="col-3" t-if="type=='custom'">
+                            <strong>To: </strong>
+                            <span t-esc="c_to"/>
+                        </div>
+                        <div class="col-3" t-if="type=='day'">
+                            <strong>From: </strong>
+                            <span t-esc="d_from"/>
+                        </div>
+                        <div class="col-3" t-if="type=='day'">
+                            <strong>To: </strong>
+                            <span t-esc="d_to"/>
+                        </div>
+                        <div class="col-3" t-if="type=='week'">
+                            <strong>From: </strong>
+                            <span t-esc="w_from"/>
+                        </div>
+                        <div class="col-3" t-if="type=='week'">
+                            <strong>To: </strong>
+                            <span t-esc="w_to"/>
+                        </div>
+                        <div class="col-3" t-if="type=='month'">
+                            <strong>From: </strong>
+                            <span t-esc="m_from"/>
+                        </div>
+                        <div class="col-3" t-if="type=='month'">
+                            <strong>To: </strong>
+                            <span t-esc="m_to"/>
+                        </div>
+
                         <div class="col-3" t-if="class_name">
                             <strong>Class: </strong>
                             <span t-esc="class_name"/>
                         </div>
+                        <div class="col-3" t-if="student_name">
+                            <strong>Class: </strong>
+                            <span t-esc="student_name"/>
+                        </div>
+
                     </div>
                     <table class="table table-bordered table-sm">
                         <thead class="table-primary">
                             <tr>
-                                <th>Sl.no</th>
-                                <th>Name</th>
-                                <th>Admission No</th>
-                                <th>Class</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Total Days</th>
-                                <th>Reason</th>
+                                <th><strong>Sl.no</strong></th>
+                                <th t-if="type,class_name"><strong>Name</strong></th>
+                                <th><strong>Admission No</strong></th>
+                                <th t-if="type"><strong>Class</strong></th>
+                                <th><strong>Start Date</strong></th>
+                                <th><strong>End Date</strong></th>
+                                <th><strong>Total Days</strong></th>
+                                <th><strong>Reason</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +78,7 @@
                                     <td><span t-esc="leave_index + 1"/></td>
                                     <td><span t-esc="leave[1]"/></td>
                                     <td><span t-esc="leave[0]"/></td>
-                                    <td><span t-esc="leave[2]"/></td>
+                                    <td t-if="type"><span t-esc="leave[2]"/></td>
                                     <td><span t-esc="leave[3]"/></td>
                                     <td><span t-esc="leave[4]"/></td>
                                     <td><span t-esc="leave[5]"/></td>
