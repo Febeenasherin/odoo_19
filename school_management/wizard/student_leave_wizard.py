@@ -55,16 +55,7 @@ class StudentLeaveWizard(models.TransientModel):
 
         return self.env.ref('school_management.action_report_school_leave').report_action(self)
 
-# elif self.filter_type == 'week':
-#     week_start = today - timedelta(days=today.weekday())
-#     week_end = week_start + timedelta(days=6)
-#
-#     domain += [('start_date', '<=', week_start), ('end_date', '>=', week_end)]
-#
-# elif self.filter_type == 'month':
-#     month_start = today - timedelta(days=today.month)
-#
-#     domain += [('start_date', '<=', month_start), ('end_date', '>=', month_start)]
-#
-# elif self.filter_type == 'custom':
-#     domain +=[('start_date', '=', self.start_date), ('end_date', '=', self.end_date)]
+    def generate_excel(self):
+        self.ensure_one()
+        return self.leave_report_excel()
+

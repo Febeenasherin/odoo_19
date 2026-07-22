@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 from odoo import models
 from datetime import date, timedelta
 from odoo.exceptions import ValidationError

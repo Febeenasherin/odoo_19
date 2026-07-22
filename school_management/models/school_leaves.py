@@ -55,7 +55,7 @@ class SchoolLeaves(models.Model):
     def _end_date(self):
         for rec in self:
             if rec.start_date and rec.end_date:
-                if rec.end_date <= rec.start_date:
+                if rec.end_date < rec.start_date:
                     raise ValidationError("end date greater than start date")
 
 

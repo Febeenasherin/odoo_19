@@ -37,12 +37,10 @@ class ClubReport(models.AbstractModel):
 
         self.env.cr.execute(event_sql)
         event = self.env.cr.fetchall()
+        print("event", event)
 
         if not students:
             raise  ValidationError ("not found")
-
-
-
 
         return {
             'print_date': date.today(),

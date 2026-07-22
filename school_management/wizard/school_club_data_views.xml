@@ -12,8 +12,12 @@
                         <field name="student_id"/>
                     </group>
                     <footer>
-                        <button string="Print"
+                        <button string="Print PDF"
                                 name="action_club_print"
+                                type="object"
+                                class="btn-primary"/>
+                        <button string="Print XLSX"
+                                name="club_excel"
                                 type="object"
                                 class="btn-primary"/>
                         <button string="Cancel"

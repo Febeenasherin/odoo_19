@@ -14,6 +14,10 @@ class SchoolClubData(models.TransientModel):
         """for print report"""
         return self.env.ref('school_management.action_report_club').report_action(self)
 
+    def club_excel(self):
+        self.ensure_one()
+        return self.club_report_excel()
+
 
 
 

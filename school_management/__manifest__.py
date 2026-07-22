@@ -51,6 +51,12 @@
         "report/student_information_template.xml",
         "report/school_information_format.xml",
         "views/student_menu_views.xml",
+
     ],
+    'assets': {
+       'web.assets_backend': [
+           "school_management/static/src/js/leave.js",
+       ],
+   },
 }
 

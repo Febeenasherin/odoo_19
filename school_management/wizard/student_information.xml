@@ -14,8 +14,12 @@
 
                     </group>
                     <footer>
-                        <button string="Print"
+                        <button string="Print PDF"
                                 name="action_print_student_information"
+                                type="object"
+                                class="btn-primary"/>
+                        <button string="Print XLSX"
+                                name="student_xlsx"
                                 type="object"
                                 class="btn-primary"/>
                         <button string="Cancel"

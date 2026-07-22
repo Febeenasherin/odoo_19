@@ -18,6 +18,10 @@ class StudentInformation(models.TransientModel):
 
         return self.env.ref('school_management.action_report_student').report_action(self)
 
+    def student_xlsx(self):
+        self.ensure_one()
+        return self.student_report_excel()
+
 
 
 
