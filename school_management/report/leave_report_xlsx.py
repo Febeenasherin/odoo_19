@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from xlrd import sheet
 
-from odoo import models
+
 from datetime import date, timedelta
 
 from odoo.addons.test_convert.tests.test_env import record
@@ -78,6 +78,7 @@ class LeaveReport(models.TransientModel):
             raise ValidationError("No leaves found")
 
         data = {
+            'print_date' : date.today(),
             'student' : self.student_id.first_name if self.student_id else 'All',
             'class' : self.class_id.name_class if self.class_id else 'All',
             'type': self.filter_type if self.filter_type else '',
@@ -117,38 +118,46 @@ class LeaveReport(models.TransientModel):
 
         headings = workbook.add_format({'bold': True, 'font_size': '11px', 'align': 'center', 'font_color': 'white', 'bg_color': 'black'})
         sheet.merge_range('A2:F3', 'Leave Report', head)
-        sheet.merge_range('A4:A5', 'Student:', cell_format)
-        sheet.merge_range('B4:B5', data['student'], txt)
-        sheet.merge_range('C4:C5', 'Class', cell_format)
-        sheet.merge_range('D4:D5', data['class'], txt)
-        sheet.merge_range('E4:E5', 'Type', cell_format)
-        sheet.merge_range('F4:F5', data['type'], txt)
+
+        if  data['student']:
+            sheet.write('A4', 'Student:', cell_format)
+            sheet.write('B4', data['student'], txt)
+
+        if  data['student'] and  data['class']:
+            sheet.write('C4', 'Class', cell_format)
+            sheet.write('D4', data['class'], txt)
+
+        if data['type']:
+            sheet.write('C8', 'Type', cell_format)
+            sheet.write('D8', data['type'], txt)
+        sheet.write('A8', 'Print Date', cell_format)
+        sheet.write('B8', data['print_date'], txt)
 
         if data['type'] == 'day':
 
-            sheet.merge_range('A6:A7', 'From', cell_format)
-            sheet.merge_range('B6:B7', data['d_from'], txt)
-            sheet.merge_range('C6:C7', 'To', cell_format)
-            sheet.merge_range('D6:D7', data['d_to'], txt)
+            sheet.write('A6', 'From', cell_format)
+            sheet.write('B6', data['d_from'], txt)
+            sheet.write('C6', 'To', cell_format)
+            sheet.write('D6', data['d_to'], txt)
 
         if data['type'] == 'week':
-            sheet.merge_range('A6:A7', 'From', cell_format)
-            sheet.merge_range('B6:B7', data['w_from'], txt)
-            sheet.merge_range('C6:C7', 'To', cell_format)
-            sheet.merge_range('D6:D7', data['w_to'], txt)
+            sheet.write('A6', 'From', cell_format)
+            sheet.write('B6', data['w_from'], txt)
+            sheet.write('C6', 'To', cell_format)
+            sheet.write('D6', data['w_to'], txt)
 
 
         if data['type'] == 'month':
-            sheet.merge_range('A6:A7', 'From', cell_format)
-            sheet.merge_range('B6:B7', data['m_from'], txt)
-            sheet.merge_range('C6:C7', 'To', cell_format)
-            sheet.merge_range('D6:D7', data['m_to'], txt)
+            sheet.write('A6', 'From', cell_format)
+            sheet.write('B6', data['m_from'], txt)
+            sheet.write('C6', 'To', cell_format)
+            sheet.write('D6', data['m_to'], txt)
 
         if data['type'] == 'custom':
-            sheet.merge_range('A6:A7', 'From', cell_format)
-            sheet.merge_range('B6:B7', data['c_from'], txt)
-            sheet.merge_range('C6:C7', 'To', cell_format)
-            sheet.merge_range('D6:D7', data['c_to'], txt)
+            sheet.write('A6', 'From', cell_format)
+            sheet.write('B6', data['c_from'], txt)
+            sheet.write('C6', 'To', cell_format)
+            sheet.write('D6', data['c_to'], txt)
 
 
 
@@ -161,35 +170,60 @@ class LeaveReport(models.TransientModel):
         sheet.set_column('E:E', 20)
         sheet.set_column('F:F', 20)
         sheet.set_column('G:G', 20)
+        sheet.set_column('H:H', 20)
 
         row = 9
         col = 0
 
 
-
+        sheet.write(row,col,'SL.no',headings)
+        col+=1
         sheet.write(row,col,'Admission no',headings)
+        col+=1
+        if data['type'] and data['class']:
 
-        sheet.write(row,col+1,'First Name',headings)
+            sheet.write(row,col,'First Name',headings)
+            col+=1
 
-        sheet.write(row,col+2,'Class',headings)
-        sheet.write(row,col+3,'Start Date',headings)
-        sheet.write(row,col+4,'End Date',headings)
-        sheet.write(row,col+5,'Total Date',headings)
-        sheet.write(row,col+6,'Reason',headings)
+        if not data['class']:
+            sheet.write(row,col,'Class',headings)
+            col+=1
+        sheet.write(row,col,'Start Date',headings)
+        col+=1
+        sheet.write(row,col,'End Date',headings)
+        col+=1
+        sheet.write(row,col,'Total Date',headings)
+        col+=1
+        sheet.write(row,col,'Reason',headings)
+
+        col=0
+        seriel = 1
 
         print("rec",data['records'])
         print("data",data)
 
         for rec in data['records']:
             row += 1
-
+            sheet.write(row,col,seriel, txt)
+            col+=1
             sheet.write(row,col, rec[0],txt)
-            sheet.write(row,col+1, rec[1],txt)
-            sheet.write(row,col+2, rec[2],txt)
-            sheet.write(row,col+3, rec[3],txt)
-            sheet.write(row,col+4, rec[4],txt)
-            sheet.write(row,col+5, rec[5],txt)
-            sheet.write(row,col+6, rec[6],txt)
+            col+=1
+            if data['type'] and data['class']:
+                sheet.write(row,col, rec[1],txt)
+                col+=1
+            if data['type']:
+                sheet.write(row,col, rec[2],txt)
+                col+=1
+            sheet.write(row,col, rec[3],txt)
+            col+=1
+            sheet.write(row,col, rec[4],txt)
+            col+=1
+            sheet.write(row,col, rec[5],txt)
+            col+=1
+            sheet.write(row,col, rec[6],txt)
+
+            col = 0
+            seriel += 1
 
         workbook.close()
         output.seek(0)

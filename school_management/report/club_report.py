@@ -13,6 +13,7 @@ class ClubReport(models.AbstractModel):
         """ get club report, students inside club and events."""
 
         clubs = self.env['school.club.data'].browse(docids)
+        print("id",docids)
 
         sql = """
                SELECT s.first_name,s.admission,c.name_class,sc.name from school_students as s JOIN school_class as c on s.class_id = c.id 
@@ -39,6 +40,9 @@ class ClubReport(models.AbstractModel):
         event = self.env.cr.fetchall()
         print("event", event)
 
+        # print("c",clubs.club_id.id)
+        # print("n",clubs.club_id.name)
+
         if not students:
             raise  ValidationError ("not found")
 
@@ -53,6 +57,10 @@ class ClubReport(models.AbstractModel):
             'club' : clubs.club_id,
 
         }
+
+
+
+
 
             
             

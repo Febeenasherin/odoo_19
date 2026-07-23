@@ -80,6 +80,7 @@ class SchoolStudents(models.Model):
 
 
     def _create_user(self):
+        """ when clicking register button create user"""
         # print("working...")
         for student in self:
             if not student.user_id:

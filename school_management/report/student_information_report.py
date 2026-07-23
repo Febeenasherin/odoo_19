@@ -65,6 +65,7 @@ class StudentInformationReport(models.AbstractModel):
 
 
 
+
         # student_ids = data.get('ids',[])
         #
         # docs = self.env['school.students'].browse(student_ids)

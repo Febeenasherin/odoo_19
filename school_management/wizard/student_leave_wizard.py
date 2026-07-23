@@ -56,6 +56,6 @@ class StudentLeaveWizard(models.TransientModel):
         return self.env.ref('school_management.action_report_school_leave').report_action(self)
 
     def generate_excel(self):
-        self.ensure_one()
+        self.ensure_one()   
         return self.leave_report_excel()
 
