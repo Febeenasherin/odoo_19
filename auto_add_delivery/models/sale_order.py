@@ -8,10 +8,10 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         """  when clicking confirm trigger this function,add delivery product in sale order line untaxed amound is less than 1500"""
         self.ensure_one()
-        produ =self.env['product.product'].search([('name' , '=', "Local delivery")],limit=1)
+        # delivery = self.env.ref("auto_add_delivery.delivery_product").product_variant_id
+        # print("jj",delivery.name)
         if self.amount_untaxed < 1500:
-            self.env['sale.order.line'].create({
-                    'order_id': self.id,
-                    'product_id': produ.id,})
-        print ("pro",produ)
+            self.order_line = [fields.Command.create({
+                'product_id':  self.env.ref("auto_add_delivery.delivery_product").product_variant_id.id,
+            }),]
         return super().action_confirm()

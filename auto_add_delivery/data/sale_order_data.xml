@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="product_template" model="product.template">
-            <field name="name">Local delivery</field>
+
+    <data noupdate="1">
+    <record id="delivery_product" model="product.template">
+            <field name="name">delivery</field>
             <field name="type">service</field>
             <field name="list_price">99.00</field>
         </record>
+</data>
 </odoo>
