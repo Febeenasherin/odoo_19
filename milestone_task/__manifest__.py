@@ -13,7 +13,7 @@
     'depends': ['base', 'purchase', 'sale_management', 'project'],
     'data':[
 
-        "views/sale_order_line_views.xml",
+        "views/sale_order_views.xml",
 
 
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "School_Management",
+    'name': "School Management",
     'version': "19.0.1.0.0",
     'license':"LGPL-3",
     'author': "Cybrosys Techno Solutions",
@@ -12,7 +12,7 @@
     'application': True,
     'installable': True,
     'auto_install': True,
-    'depends': ['base','mail', 'sale', 'contacts',],
+    'depends': ['base','mail', 'sale', 'contacts','website'],
     'data':[
         "security/school_management_groups.xml",
         "security/ir.model.access.csv",
@@ -36,6 +36,8 @@
         "views/school_exam_views.xml",
         "views/school_registerd_student_view.xml",
         "views/school_events_views.xml",
+
+        "views/online_menu_views.xml",
 
         "wizard/student_leave_wizard_views.xml",
         "wizard/school_club_data_views.xml",
