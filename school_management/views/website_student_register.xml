@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+        <!-- Student Registration Form Template -->
+        <template id="student_register_form_template" name="Student Form">
+            <t t-call="website.layout">
+                <section class="container py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-5">
+                            <div class="card shadow rounded-3 border-0">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-center">Student Registration</h3>
+                                    <form action="/website/student/create" method="post"  enctype="multipart/form-data">
+                                          <label class="form-label" for="imageUpload">Upload Image:</label>
+                                        <input type="file" id="imageUpload" name="image" accept="image/*"/>
+                                        <br/>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="stud_name">First Name</label>
+                                            <input type="text" id="stud_name" name="first_name" required="required" class="form-control"
+                                            />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="stud_name2">Last Name</label>
+                                            <input type="text" id="stud_name2" name="last_name" required="" class="form-control"
+                                            />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" name="email" class="form-control"/>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label" for="stud_phn">Phone no</label>
+                                            <input type="text" name="phone_no" id="stud_phn" class="form-control"/>
+                                        </div>
+                                        <div class="col">
+                                            <label for="stud_gender">Gender</label>
+                                            <select id="stud_gender" class="form-select">
+
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+
+                                            </select>
+                                        </div><br/>
+                                        <div class="mb-4">
+                                            <label class="fom-label" for="stud_class">Class</label>
+                                            <select id="stud_class" name="class_id" class="form-select">
+                                         <t t-foreach="classes" t-as="class">
+                                                <option t-att-value="class.id"><t t-esc="class.name_class"/></option>
+
+                                            </t>
+                                            </select>
+                                        </div>
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary">register</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </template>
+        <!-- Success Page -->
+        <template id="student_success_template" name="Registration Successful">
+            <t t-call="website.layout">
+                <div class="container">
+                    <h3>Student Created Successfully!</h3>
+                </div>
+            </t>
+        </template>
+
+         <data>
+        <!-- Website Menu Record -->
+        <record id="menu_student_form" model="website.menu">
+            <field name="name">Student Registration</field>
+            <field name="url">/website/student/form</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">60</field>
+        </record>
+    </data>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+<!--<odoo>-->
+<!--    <data>-->
+
+<!--        <template id="student_registration_template" name="Student Registration Page">-->
+<!--            <t t-call="website.layout">-->
+<!--                <div id="wrap" class="oe_structure">-->
+<!--                    <div class="container">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-12 text-center mt-5">-->
+<!--                                <h3>Student registration form</h3>-->
+<!--                                <p class="lead">-->
+<!--                                    Hello,-->
+<!--                                    <t t-esc="user_name"/>-->
+<!--                                </p>-->
+<!--                                <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">-->
+<!--                                    <div class="container">-->
+<!--                                        <form id="registration_form" action="/website/form/submit" method="post"-->
+<!--                                              enctype="multipart/form-data" class="o_mark_required" data-mark="*"-->
+<!--                                              data-model_name="mail.mail" data-success-mode="redirect"-->
+<!--                                              data-success-page="/contactus-thank-you" data-pre-fill="true">-->
+
+<!--&lt;!&ndash;                                            <input type="hidden" name="csrf_token"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                   t-att-value="request.csrf_token()"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="form-group col-md-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <label for="att">Attach file</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input type="file" name="att" class="form-control"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                       accept="image/,application/pdf,video/"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--                                            <div class="s_website_form_rows row s_col_no_bgcolor">-->
+<!--                                                <div class="mb-3 col-lg-6 s_website_form_field s_website_form_custom s_website_form_required"-->
+<!--                                                     data-type="char" data-name="Field">-->
+<!--                                                    <label class="s_website_form_label" style="width: 200px"-->
+<!--                                                           for="contact1">-->
+<!--                                                        <span class="s_website_form_label_content">First Name</span>-->
+<!--                                                        <span class="s_website_form_mark">*</span>-->
+<!--                                                    </label>-->
+<!--                                                    <input id="contact1" type="text"-->
+<!--                                                           class="form-control s_website_form_input" name="first_name"-->
+<!--                                                           required=""/>-->
+<!--                                                </div>-->
+<!--                                                <div class="mb-3 col-lg-6 s_website_form_field s_website_form_custom"-->
+<!--                                                     data-type="char" data-name="Field">-->
+<!--                                                    <label class="s_website_form_label" style="width: 200px"-->
+<!--                                                           for="contact2">-->
+<!--                                                        <span class="s_website_form_label_content">Last Name</span>-->
+<!--                                                    </label>-->
+<!--                                                    <input id="contact2" type="text"-->
+<!--                                                           class="form-control s_website_form_input" name="last_name"/>-->
+<!--                                                </div>-->
+<!--                                                <div class="mb-3 col-lg-6 s_website_form_field s_website_form_required s_website_form_model_required"-->
+<!--                                                     data-type="email" data-name="Field">-->
+<!--                                                    <label class="s_website_form_label" style="width: 200px"-->
+<!--                                                           for="contact3">-->
+<!--                                                        <span class="s_website_form_label_content">Email</span>-->
+<!--                                                        <span class="s_website_form_mark">*</span>-->
+<!--                                                    </label>-->
+<!--                                                    <input id="contact3" type="email"-->
+<!--                                                           class="form-control s_website_form_input" name="email"-->
+<!--                                                           required=""/>-->
+<!--                                                </div>-->
+<!--                                                <div class="mb-3 col-lg-6 s_website_form_field s_website_form_required s_website_form_model_required"-->
+<!--                                                     data-type="phone no" data-name="Field">-->
+<!--                                                    <label class="s_website_form_label" style="width: 200px"-->
+<!--                                                           for="contact4">-->
+<!--                                                        <span class="s_website_form_label_content">Phone no</span>-->
+<!--                                                        <span class="s_website_form_mark">*</span>-->
+<!--                                                    </label>-->
+<!--                                                    <input id="contact4" type="tel"-->
+<!--                                                           class="form-control s_website_form_input" name="phone_no"-->
+<!--                                                           required=""/>-->
+<!--                                                </div>-->
+<!--                                                <div class="mb-3 col-12 s_website_form_field s_website_form_custom s_website_form_required"-->
+<!--                                                     data-type="text" data-name="Field">-->
+<!--                                                    <label class="s_website_form_label" style="width: 200px"-->
+<!--                                                           for="contact6">-->
+<!--                                                        <span class="s_website_form_label_content">Address</span>-->
+<!--                                                        <span class="s_website_form_mark">*</span>-->
+<!--                                                    </label>-->
+<!--                                                    <textarea id="contact6" class="form-control s_website_form_input"-->
+<!--                                                              name="description" required="" rows="5"/>-->
+<!--                                                </div>-->
+<!--                                                <div class="mb-3 col-lg-6 s_website_form_field s_website_form_custom"-->
+<!--                                                     data-type="char" data-name="Field">-->
+<!--                                                    <label class="s_website_form_label" style="width: 200px"-->
+<!--                                                           for="contact5">-->
+<!--                                                        <span class="s_website_form_label_content">Class</span>-->
+<!--                                                    </label>-->
+<!--                                                    <input id="contact5" type="text"-->
+<!--                                                           class="form-control s_website_form_input" name="name_class"-->
+<!--                                                    />-->
+<!--                                                </div>-->
+<!--&lt;!&ndash;                                              <div data-type="char" data-name="Field">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <label for="contact7">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <span>Gender</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <input id="contact7" type="text" name="gender"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    />&ndash;&gt;-->
+<!--&lt;!&ndash;                                                  <select name="gender" id="gender">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <option value="m">Male</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <option value="f">Female</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </select>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                <div class="mb-3 col-12 s_website_form_field s_website_form_custom s_website_form_required"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                     data-type="text" data-name="Field">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    <label class="s_website_form_label" style="width: 200px"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                           for="contact6">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        <span class="s_website_form_label_content">Question</span>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        <span class="s_website_form_mark">*</span>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    </label>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    <textarea id="contact6" class="form-control s_website_form_input"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                              name="description" required="" rows="8"/>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                <div class="mb-3 col-12 s_website_form_field s_website_form_dnone">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    <div class="row s_col_no_resize s_col_no_bgcolor">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        <label class="col-form-label col-sm-auto s_website_form_label"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                               style="width: 200px" for="contact7">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                            <span class="s_website_form_label_content">Email To</span>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        </label>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        <div class="col-sm">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                            <input id="contact7" type="hidden"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                   class="form-control s_website_form_input"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                   name="email_to"/>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        </div>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                                <div class="container"-->
+<!--                                                     data-name="Submit Button">-->
+<!--                                                    <div style="width: 200px;" class="s_website_form_label"/>-->
+<!--                                                    <a href="#" role="button"-->
+<!--                                                       class="btn btn-primary s_website_form_send">Register-->
+<!--                                                    </a>-->
+<!--                                                    <span id="s_website_form_result"/>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </form>-->
+<!--                                           </div>-->
+<!--                                </section>-->
+<!--&lt;!&ndash;                                        <form id="registration_form" action="/website/form/">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div data-type="char">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <label for="gender">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <span>Gender</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <input id="gender" type="text" name="gender"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    />&ndash;&gt;-->
+<!--&lt;!&ndash;                                                  <select name="gender" id="gender">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <option value="m">Male</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <option value="f">Female</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </select>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </form>&ndash;&gt;-->
+
+<!--                                &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </t>-->
+<!--        </template>-->
+
+
+<!--        <record id="student_register_menu" model="website.menu">-->
+<!--            <field name="name">Register</field>-->
+<!--            <field name="url">/hello-odoo</field>-->
+<!--            <field name="parent_id" ref="website.main_menu"/>-->
+<!--            <field name="sequence" type="int">99</field>-->
+<!--        </record>-->
+<!--    </data>-->
+
+<!--</odoo>-->

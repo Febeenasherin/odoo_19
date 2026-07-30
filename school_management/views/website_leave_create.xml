@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- leave Create Form Template -->
+        <template id="leave_form_template" name="Customer Form">
+            <t t-call="website.layout">
+                <section class="container py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-5">
+                            <div class="card shadow rounded-3 border-0">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-center">Create Leave Request</h3>
+                                    <form action="/website/leave/create" method="post">
+
+
+                                        <div id="leave_stud">
+                                            <label class="col-form-label label-optional" for="leave_format">
+                                                Name
+                                            </label>
+                                            <select name="leave_format" class="form-select">
+                                                <option value=""/>
+                                                <option
+                                                        t-foreach="leave"
+                                                        t-as="leave"
+                                                        t-att-value="leave"
+                                                        t-att-selected="leave.student_id.first_name"
+                                                        t-out="leave.student_id.first_name"
+                                                />
+                                            </select>
+                                        </div>
+<!--                                        <div class="mb-3">-->
+<!--                                        <label class="form-label" for="stud_name">Name</label>-->
+<!--                                        <input type="text" id="stud_name" name="sudent_id.first_name" required=""-->
+<!--                                               class="form-control"-->
+<!--                                        />-->
+<!--                                        </div>-->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="stud_leave">Start date</label>
+                                            <input type="date" id="stud_leave" name="start_date" required=""
+                                                   class="form-control"
+                                            />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="stud_end">End Date</label>
+                                            <input type="date" id="stud_end" name="end_date" required=""
+                                                   class="form-control"
+                                            />
+                                        </div>
+<!--                                        <div class="mb-4">-->
+<!--                                            <label class="form-label">Phone</label>-->
+<!--                                            <input type="text" name="phone" class="form-control"/>-->
+<!--                                        </div>-->
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </template>
+        <!-- Success Page -->
+        <template id="student_leave_template" name="Customer Created">
+            <t t-call="website.layout">
+                <div class="container">
+                    <h3>Leave Created Successfully!</h3>
+                </div>
+            </t>
+        </template>
+        <!-- Website Menu Record -->
+        <record id="menu_leave_form" model="website.menu">
+            <field name="name">Create Leave</field>
+            <field name="url">/website/leave/form</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">60</field>
+        </record>
+    </data>
+</odoo>

@@ -17,10 +17,7 @@
         "security/school_management_groups.xml",
         "security/ir.model.access.csv",
         "security/school_student_record_rule.xml",
-        "views/school_students_view.xml",
-        "views/school_department_views.xml",
-        "views/school_class_views.xml",
-        "views/school_subject_views.xml",
+
         "data/sequence_data.xml",
         "data/school_class_data.xml",
         "data/school_department_data.xml",
@@ -28,6 +25,11 @@
         "data/ ir_cron_data.xml",
         "data/mail_template_data.xml",
         "data/action_user_creation_data.xml",
+
+        "views/school_students_view.xml",
+        "views/school_department_views.xml",
+        "views/school_class_views.xml",
+        "views/school_subject_views.xml",
         "views/school_year_views.xml",
         "views/school_clubs_views.xml",
         "views/sale_order_views.xml",
@@ -37,7 +39,9 @@
         "views/school_registerd_student_view.xml",
         "views/school_events_views.xml",
 
-        "views/online_menu_views.xml",
+        "views/website_leave_create.xml",
+        "views/website_student_register.xml",
+
 
         "wizard/student_leave_wizard_views.xml",
         "wizard/school_club_data_views.xml",
@@ -45,13 +49,16 @@
         "wizard/student_leave_form_views.xml",
         "wizard/school_club_action_views.xml",
         "wizard/school_information_action.xml",
-        "report/student_leave_action.xml",
         "report/student_leave_report_views.xml",
+        "report/student_leave_action.xml",
+
         "report/school_club_template.xml",
         "report/school_clubs_action.xml",
-        "report/student_information_action.xml",
-        "report/student_information_template.xml",
         "report/school_information_format.xml",
+        "report/student_information_template.xml",
+        "report/student_information_action.xml",
+
+
         "views/student_menu_views.xml",
 
     ],
