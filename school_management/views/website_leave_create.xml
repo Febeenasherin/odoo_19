@@ -9,24 +9,19 @@
                         <div class="col-md-6 col-lg-5">
                             <div class="card shadow rounded-3 border-0">
                                 <div class="card-body p-4">
-                                    <h3 class="mb-4 text-center">Create Leave Request</h3>
+                                    <h3 class="mb-4 text-center">Leave Request</h3>
                                     <form action="/website/leave/create" method="post">
+                                        
 
+                                      <div class="mb-4">
+                                            <label class="fom-label" for="stud_name">Name</label>
+                                            <select id="stud_name" name="student_id" class="form-select">
+                                         <t t-foreach="leave" t-as="leave">
+                                                <option t-att-value="leave.id"><t t-esc="leave.first_name"/></option>
 
-                                        <div id="leave_stud">
-                                            <label class="col-form-label label-optional" for="leave_format">
-                                                Name
-                                            </label>
-                                            <select name="leave_format" class="form-select">
-                                                <option value=""/>
-                                                <option
-                                                        t-foreach="leave"
-                                                        t-as="leave"
-                                                        t-att-value="leave"
-                                                        t-att-selected="leave.student_id.first_name"
-                                                        t-out="leave.student_id.first_name"
-                                                />
+                                            </t>
                                             </select>
+
                                         </div>
 <!--                                        <div class="mb-3">-->
 <!--                                        <label class="form-label" for="stud_name">Name</label>-->
@@ -41,15 +36,26 @@
                                             />
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="stud_end">End Date</label>
+                                            <label class="form-label" for="stud_end">End Date</label><br/>
                                             <input type="date" id="stud_end" name="end_date" required=""
                                                    class="form-control"
                                             />
                                         </div>
-<!--                                        <div class="mb-4">-->
-<!--                                            <label class="form-label">Phone</label>-->
-<!--                                            <input type="text" name="phone" class="form-control"/>-->
-<!--                                        </div>-->
+                                          <div class="mb-4">
+                                            <label class="fom-label" for="stud_class">Class</label>
+                                            <select id="stud_class" name="class_id" class="form-select">
+                                         <t t-foreach="classes" t-as="class">
+                                                <option t-att-value="class.id"><t t-esc="class.name_class"/></option>
+
+                                            </t>
+                                            </select>
+                                          </div>
+                                        <div class="mb-4">
+                                            <label class="form-label" for="stud_reason">Reason</label>
+                                              <textarea id="stud_reason" class="form-control s_website_form_input"
+                                                              name="reason" required="" rows="3"/>
+
+                                        </div>
                                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                         <div class="d-grid">
                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -76,6 +82,7 @@
             <field name="url">/website/leave/form</field>
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">60</field>
+            <field name="group_ids" eval="[(6, 0, [ref('school_management.group_school_office_staff')])]"/>
         </record>
     </data>
 </odoo>

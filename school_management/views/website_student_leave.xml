@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- leave Create Form Template -->
+        <template id="student_leave_form_template" name="Customer Form">
+            <t t-call="website.layout">
+                <section class="container py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-5">
+                            <div class="card shadow rounded-3 border-0">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-center">Leave Request</h3>
+                                    <form action="/website/student/leave/create" method="post" data-pre-fill="true">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+<!--                                      <div class="mb-4">-->
+<!--                                            <label class="fom-label" for="student_name">Name</label>-->
+<!--                                            <select id="stud_name" name="student_id" class="form-select">-->
+<!--                                         <t t-foreach="leave" t-as="leave">-->
+<!--                                                <option t-att-value="leave.id"><t t-esc="leave.first_name"/></option>-->
+
+<!--                                            </t>-->
+<!--                                            </select>-->
+
+<!--                                        </div>-->
+<!--                                        <input type="hidden" name="student_id" t-att-value="student.first_name"/>-->
+                                        <div class="mb-3">
+                                        <label class="form-label" for="student_name">Name</label>
+                                        <input type="text" id="student_name" t-att-value="student.first_name"
+                                               class="form-control"
+                                        />
+                                        </div>
+                                          <div class="mb-3">
+                                        <label class="form-label" for="student_class">Class</label>
+                                        <input type="text" id="student_class" t-att-value="student.class_id.name_class"
+                                               class="form-control"
+                                        />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="stud_start">Start date</label>
+                                            <input type="date" id="stud_start" name="start_date" required=""
+                                                   class="form-control"
+                                            />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="leave_end">End Date</label><br/>
+                                            <input type="date" id="leave_end" name="end_date" required=""
+                                                   class="form-control"
+                                            />
+                                        </div>
+<!--                                          <div class="mb-4">-->
+<!--                                            <label class="fom-label" for="stud_class">Class</label>-->
+<!--                                            <select id="stud_class" name="class_id" class="form-select">-->
+<!--                                         <t t-foreach="classes" t-as="class">-->
+<!--                                                <option t-att-value="class.id"><t t-esc="class.name_class"/></option>-->
+
+<!--                                            </t>-->
+<!--                                            </select>-->
+<!--                                          </div>-->
+                                        <div class="mb-4">
+                                            <label class="form-label" for="leave_reason">Reason</label>
+                                              <textarea id="leave_reason" class="form-control"
+                                                              name="reason" required="" rows="3"/>
+
+                                        </div>
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </template>
+        <!-- Success Page -->
+        <template id="portal_student_leave_template" name="Customer Created">
+            <t t-call="website.layout">
+                <div class="container">
+                    <h3>Leave Created Successfully!</h3>
+                </div>
+            </t>
+        </template>
+        <!-- Website Menu Record -->
+        <record id="menu_student_leave_form" model="website.menu">
+            <field name="name">Create Leave</field>
+            <field name="url">/website/student/leave/form</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">60</field>
+            <field name="group_ids" eval="[(6, 0, [ref('school_management.group_school_student')])]"/>
+        </record>
+    </data>
+</odoo>

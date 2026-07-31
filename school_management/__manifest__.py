@@ -41,6 +41,8 @@
 
         "views/website_leave_create.xml",
         "views/website_student_register.xml",
+        "views/website_student_leave.xml",
+
 
 
         "wizard/student_leave_wizard_views.xml",

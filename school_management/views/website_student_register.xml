@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <template id="student_register_list_template" name="Student list">
+            <t t-call="website.layout">
+                <section class="container py-5">
+                    <div class="row justify-content-center">
+
+                        <div class="o_action_manager">
+                            <div class="d-flex h-100 w-100">
+                                <div class="o_website_preview flex-grow-1 border-top">
+                                    <div class="o_iframe_container">
+                                        <h3>Registered students</h3>
+                                        <a href="/website/student/form" class="btn btn-primary">Register</a><br/>
+                                    </div><br/>
+                                    <table class="table table-striped">
+                                         <thead class="table-primary">
+                            <tr>
+                                <th><strong>Sl.no</strong></th>
+                                <th><strong>First name</strong></th>
+                                <th><strong>Last name</strong></th>
+                                <th><strong>email</strong></th>
+                                <th><strong>Phone no</strong></th>
+                                <th><strong>Class</strong></th>
+                            </tr>
+                        </thead>
+                                 <tbody>
+                            <t t-foreach="students" t-as="st">
+                                <tr class='clickable-row' style="cursor:pointer;">
+                                    <td><a t-att-href=""><t t-out="st_index+1"/></a></td>
+<!--                                    <td><span t-esc="st_index + 1"/></td>-->
+                                    <td><span t-esc="st.first_name"/></td>
+                                    <td><span t-esc="st.last_name"/></td>
+                                    <td><span t-esc="st.email"/></td>
+                                    <td><span t-esc="st.phone_no"/></td>
+                                    <td><span t-esc="st.class_id.name_class"/></td>
+
+                                </tr>
+                            </t>
+                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                    </div>
+                        </div>
+
+                </section>
+            </t>
+        </template>
+
+
+
 
 
         <!-- Student Registration Form Template -->
@@ -36,10 +85,10 @@
                                         </div>
                                         <div class="col">
                                             <label for="stud_gender">Gender</label>
-                                            <select id="stud_gender" class="form-select">
+                                            <select id="stud_gender" class="form-select" name="gender">
 
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
+                                                <option value="m">Male</option>
+                                                <option value="f">Female</option>
 
                                             </select>
                                         </div><br/>
@@ -54,7 +103,7 @@
                                         </div>
                                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                         <div class="d-grid">
-                                            <button type="submit" class="btn btn-primary">register</button>
+                                            <button type="submit" class="btn btn-primary" name="register">register</button>
                                         </div>
                                     </form>
                                 </div>
@@ -77,9 +126,10 @@
         <!-- Website Menu Record -->
         <record id="menu_student_form" model="website.menu">
             <field name="name">Student Registration</field>
-            <field name="url">/website/student/form</field>
+            <field name="url">/website/student/list</field>
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">60</field>
+
         </record>
     </data>
 </odoo>
