@@ -27,7 +27,7 @@ class SchoolStudents(models.Model):
     dob = fields.Date(string="DOB", help='select DOB')
     student_age = fields.Integer(string="Age" , compute='_compute_student_age', store=True)
 
-    gender = fields.Selection([('m','male'),('f','female')], string="Gender")
+    gender = fields.Selection([('Male','male'),('Female','female')], string="Gender")
     registration_date = fields.Date(string="Registration Date", required=True, default=fields.Date.today , help='enter registration date')
     image = fields.Image(string= "image", help='upload image')
     school_id = fields.Many2one('school.department', string='Head of Department', help='select department')

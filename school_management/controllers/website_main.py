@@ -17,16 +17,25 @@ class WebsiteMain(http.Controller):
     @http.route(['/website/student/form'], type='http', auth="public", website=True)
     def student_form(self, **kw):
         classes = request.env['school.class'].sudo().search([])
-        print("jj",classes)
+
 
 
         return request.render('school_management.student_register_form_template',
                               {'classes': classes})
 
+    # student form view
+    @http.route(['/website/student/form/view/<int:student_id>'], type='http', auth="public", website=True)
+
+    def student_form_view(self, student_id, **kw):
+        student = request.env['school.students'].sudo().browse(student_id)
+
+        return request.render('school_management.student_form_view_template',
+                          {'students': student})
+
     @http.route(['/website/student/create'], type='http', auth="public", methods=['POST'], website=True, csrf=True)
     def create_student(self, **post):
 
-
+        image_encode = False
         image = post.get('image')
         if image:
             image_encode = base64.b64encode(image.read())
@@ -39,6 +48,7 @@ class WebsiteMain(http.Controller):
             'phone_no': post.get('phone_no'),
             'gender': post.get('gender'),
             'class_id': post.get('class_id'),
+            'status' : 'registration'
             # 'customer_rank': 1,
         })
 
@@ -56,6 +66,7 @@ class WebsiteMain(http.Controller):
         return request.render('school_management.leave_form_template',
                               {'leave': leave,
                                'classes': classes})
+
 
     @http.route(['/website/leave/create'], type='http', auth="public", methods=['POST'], website=True, csrf=True)
     def create_customer(self, **post):

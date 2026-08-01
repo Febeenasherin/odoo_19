@@ -26,8 +26,8 @@
                         </thead>
                                  <tbody>
                             <t t-foreach="students" t-as="st">
-                                <tr class='clickable-row' style="cursor:pointer;">
-                                    <td><a t-att-href=""><t t-out="st_index+1"/></a></td>
+                                <tr t-attf-onclick="location.href='/website/student/form/view/{{st.id}}'" style="cursor:pointer;">
+                                    <td><t t-out="st_index+1"/></td>
 <!--                                    <td><span t-esc="st_index + 1"/></td>-->
                                     <td><span t-esc="st.first_name"/></td>
                                     <td><span t-esc="st.last_name"/></td>
@@ -48,11 +48,7 @@
             </t>
         </template>
 
-
-
-
-
-        <!-- Student Registration Form Template -->
+    <!-- Student Registration Form Template -->
         <template id="student_register_form_template" name="Student Form">
             <t t-call="website.layout">
                 <section class="container py-5">
@@ -87,8 +83,8 @@
                                             <label for="stud_gender">Gender</label>
                                             <select id="stud_gender" class="form-select" name="gender">
 
-                                                <option value="m">Male</option>
-                                                <option value="f">Female</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
 
                                             </select>
                                         </div><br/>
@@ -113,6 +109,66 @@
                 </section>
             </t>
         </template>
+
+
+    <!--    form view template-->
+     <template id="student_form_view_template" name="Student Form">
+            <t t-call="website.layout">
+                <section class="container py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-5">
+                            <div class="card shadow rounded-3 border-0">
+                                <div class="card-body p-4">
+<!--                                    <h3 class="mb-4 text-center">Student</h3>-->
+                                    <div class="text-center mb-4">
+                                        <t t-if="students.image">
+
+<!--                                        <img t-att-src="'website/img/school.students/image/'?students.id" width="150" class="o_image_64_cover float-start me-2"/>-->
+                                        <img t-att-src="'/web/image/school.students/' + str(students.id) + '/image'" width="150" height="170"/>
+                                        </t>
+                                    </div>
+
+<!--                                    <img t-att-src="'/web/image/hr.employee.public/' + record.employee_id.raw_value + '/avatar_128'"-->
+<!--                                    class="o_image_64_cover float-start me-2" alt="Employee's image"/>-->
+                                    <div class="mb-3">
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" t-att-value="students.first_name" required="" class="form-control" readonly="readonly"
+                                            />
+                                        </div>
+                                    <div class="mb-3">
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" t-att-value="students.last_name" class="form-control" readonly="readonly"
+                                            />
+                                        </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" t-att-value="students.email" readonly="readonly"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone no</label>
+                                        <input type="tel" class="form-control" t-att-value="students.phone_no" readonly="readonly"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Gender</label>
+                                        <input type="text" class="form-control" t-att-value="students.gender" readonly="readonly"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Class</label>
+                                        <input type="text" class="form-control" t-att-value="students.class_id.name_class" readonly="readonly"/>
+                                    </div>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                     <a href="/website/student/list" class="btn btn-primary">Back</a><br/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </template>
+
         <!-- Success Page -->
         <template id="student_success_template" name="Registration Successful">
             <t t-call="website.layout">
