@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <template id="latest_event_template_highlight" name="Latest event">
+       <section class="latest_event_section">
+           <div class="container">
+               <div class="alert alert-info">
+                   <h4>Latest Events
+                   </h4>
+               </div>
+               <div class="latest_event_container"/>
+           </div>
+       </section>
+   </template>
+
+   <template id="latest_even_snippet" inherit_id="website.snippets"
+             name="Latest Event Snippet">
+       <xpath expr="//snippets[@id='snippet_groups']" position="inside">
+           <t t-snippet="school_management.latest_event_template_highlight"
+              t-thumbnail="/school_management/static/src/images.svg"/>
+       </xpath>
+       <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+           <t t-snippet="school_management.latest_event_template_highlight"/>
+       </xpath>
+   </template>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

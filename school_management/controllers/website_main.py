@@ -110,6 +110,32 @@ class WebsiteMain(http.Controller):
 
 
 
+    # latest event
+
+    @http.route('/get_events', auth="public", type='jsonrpc',website=True)
+    def get_events(self):
+        print("dsdf")
+        """Get the website categories for the snippet."""
+
+        event = request.env['school.events'].sudo().search([],limit=1)
+
+        # return request.render('school_management.events_template',
+        #                       {'event': event})
+        values = {
+            'event': event,
+        }
+        print("val",values)
+        print("event",event)
+        return values
+
+    # @http.route(['/website/students/events/<int:event_id>'], auth="public", type='jsonrpc', website=True)
+    # def latest_event(self, event_id, **kw):
+    #     event = request.env['school.events'].sudo().search([()] , order = 'start_date desc', limit=4)
+    #
+    #     print("eve",event)
+    #
+    #     return request.render('school_management.school_event_template',
+    #                           {'event': event})
 
 
 

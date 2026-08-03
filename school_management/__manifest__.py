@@ -42,6 +42,7 @@
         "views/website_leave_create.xml",
         "views/website_student_register.xml",
         "views/website_student_leave.xml",
+        "/home/cybrosys/odoo-19/custom/school_management/views/snippets/website_snippet.xml",
 
 
 
@@ -65,9 +66,16 @@
 
     ],
     'assets': {
+        'web.assets_frontend': [
+            "school_management/static/src/xml/website_event_template_views.xml",
+            "school_management/static/src/js/website_leave.js",
+
+        ],
        'web.assets_backend': [
            "school_management/static/src/js/leave.js",
+
        ],
+
    },
 }
 
