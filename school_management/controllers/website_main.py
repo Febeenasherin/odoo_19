@@ -3,6 +3,9 @@ from odoo import http
 from odoo.http import request
 import base64
 
+from odoo.tests import result
+
+
 class WebsiteMain(http.Controller):
     """ website"""
     # registration
@@ -114,19 +117,51 @@ class WebsiteMain(http.Controller):
 
     @http.route('/get_events', auth="public", type='jsonrpc',website=True)
     def get_events(self):
-        print("dsdf")
+
         """Get the website categories for the snippet."""
 
-        event = request.env['school.events'].sudo().search([],limit=1)
 
-        # return request.render('school_management.events_template',
-        #                       {'event': event})
+
+        events = request.env['school.events'].sudo().search([], order='start_date desc', limit=4)
+
+        # image_encode = False
+        # image = events.image
+        # if image:
+        #     image_encode = base64.b64encode(image.read())
+
+        result = []
+        for event in events:
+            result.append({
+                'id': event.id,
+                'name': event.name,
+                'start_date': event.start_date,
+                'end_date': event.end_date,
+                'venue': event.venue,
+                'image' : event.image,
+            })
+
+
         values = {
-            'event': event,
+            'event': events,
         }
-        print("val",values)
-        print("event",event)
-        return values
+        # print("val",values)
+        print("event",result)
+        # print("image",event.image)
+        return result
+        # return request.render('school_management.latest_event', values)
+
+    @http.route(['/website/event/form/view/<int:event_id>'], type='http', auth="public", website=True)
+    def student_form_view(self, event_id, **kw):
+        event = request.env['school.events'].sudo().browse(event_id)
+
+        print("eve", event)
+        print(event.name)
+
+        return request.render('school_management.event_form_view_template',
+                              {'event': event})
+
+
+
 
     # @http.route(['/website/students/events/<int:event_id>'], auth="public", type='jsonrpc', website=True)
     # def latest_event(self, event_id, **kw):

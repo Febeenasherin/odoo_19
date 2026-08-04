@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<template id="event_form_view_template" name="event Form">
+            <t t-call="website.layout">
+                <section class="container py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-5">
+                            <div class="card shadow rounded-3 border-0">
+                                <div class="card-body p-4">
+                                    <t t-foreach="event" t-as="event" t-key="event.id">
+<!--                                    <h3 class="mb-4 text-center">Student</h3>-->
+                                    <div class="text-center mb-4">
+                                        <t t-if="event.image">
+
+<!--                                        <img t-att-src="'website/img/school.students/image/'?students.id" width="150" class="o_image_64_cover float-start me-2"/>-->
+                                        <img t-att-src="'/web/image/school.events/' + str(event.id) + '/image'" width="150" height="170"/>
+                                        </t>
+                                    </div>
+                                        <div class="text-center mb-4">
+                                        <h5>Event Name: <span t-out="event.name"/></h5>
+                                        <p><strong>Venue:<span t-out="event.venue"/></strong></p>
+                                        <p><strong>Start_date:<span t-out="event.start_date"/></strong></p>
+                                        <p><strong>End_date:<span t-out="event.end_date"/></strong></p>
+                                        <p>---------------------</p><br/><br/>
+                                        </div>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                     <a href="http://localhost:8019/" class="btn btn-primary">Back</a><br/>
+
+
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </template>
+</odoo>

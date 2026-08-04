@@ -15,7 +15,7 @@ class SchoolEvents(models.Model):
     venue = fields.Html('Venue')
     club_id = fields.Many2one('school.clubs', string='Club')
     start_date = fields.Date(string='Start Date')
-    end_date = fields.Datetime(string='End Date')
+    end_date = fields.Date(string='End Date')
     image = fields.Image(string="image")
     status = fields.Selection([("new", "New"), ("ongoing", "Ongoing"), ("completed", "Completed")],
                               default='new', string="Status")

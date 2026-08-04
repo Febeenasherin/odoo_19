@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--Product Category tab content template-->
+<templates xml:space="preserve" name="latest_event" id="latest_event">
+   <t t-name="school_management.latest_event">
+       <section class="latest_event_section">
+           <div class="container">
+               <h5 class="section_heading">Latest Events</h5><br/><br/><br/>
+
+               <t t-foreach="result" t-as="event" t-key="event.id">
+<!--                    <div class="col-sm-6 mb-3 mb-sm-0">-->
+                        <div class="oe_product  g-col-6 g-col-md-4 g-col-lg-4 ">
+                            <div class="row">
+
+                   <div class="card" style="width: 18rem;">
+<!--                       <t t-if="event.image">-->
+                       <img t-att-src="event.image" width="150" height="170" enctype="multipart/form-data"
+                                    class="card-img-top" alt="" t-attf-onclick="location.href='/website/event/form/view/{{event.id}}'" style="cursor:pointer;"/>
+<!--                       </t>-->
+
+
+                       <div class="card-body">
+                            <h5>Event Name: <span t-out="event.name"/></h5>
+                        </div>
+<!--                        </div>-->
+                    </div>
+                            </div>
+                    </div><br/><br/>
+
+<!--                   <h5>Name: <span t-out="event.name"/></h5>-->
+<!--                   <p><strong>Venue:<span t-raw="event.venue"/></strong></p>-->
+<!--                   <p><strong>Start_date:<span t-out="event.start_date"/></strong></p>-->
+<!--                   <p><strong>End_date:<span t-out="event.end_date"/></strong></p>-->
+<!--                   <p>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p><br/><br/>-->
+               </t>
+
+
+
+
+
+
+           </div>
+       </section>
+   </t>
+</templates>
+
+
+
+
+<!--Product Category tab content template-->
+<!--<templates xml:space="preserve" name="latest_event_view" id="latest_event_view">-->
+<!--   <t t-name="school_management.latest_event">-->
+<!--       <section class="latest_event_section">-->
+<!--           <div class="container">-->
+
+<!--               <t t-foreach="result" t-as="event" t-key="event.id">-->
+<!--                    <div class="col-sm-6 mb-3 mb-sm-0">-->
+<!--                        <div class="oe_product  g-col-6 g-col-md-4 g-col-lg-4 ">-->
+
+<!--                   <div class="card" style="width: 18rem;">-->
+<!--&lt;!&ndash;                       <t t-if="event.image">&ndash;&gt;-->
+<!--                       <img t-att-src="'/web/image/school.events/'  + '/event.image'" width="150" height="170" enctype="multipart/form-data"-->
+<!--                                    class="card-img-top" alt=""/>-->
+<!--&lt;!&ndash;                       </t>&ndash;&gt;-->
+
+
+<!--                       <div class="card-body">-->
+<!--                            <h5>Event Name: <span t-out="event.name"/></h5>-->
+<!--                        </div>-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    </div><br/><br/>-->
+
+<!--                   <h5>Name: <span t-out="event.name"/></h5>-->
+<!--                   <p><strong>Venue:<span t-raw="event.venue"/></strong></p>-->
+<!--                   <p><strong>Start_date:<span t-out="event.start_date"/></strong></p>-->
+<!--                   <p><strong>End_date:<span t-out="event.end_date"/></strong></p>-->
+<!--                   <p>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p><br/><br/>-->
+<!--               </t>-->
+
+
+
+
+
+
+<!--           </div>-->
+<!--       </section>-->
+<!--   </t>-->
+<!--</templates>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
