@@ -115,19 +115,15 @@ class WebsiteMain(http.Controller):
 
     # latest event
 
-    @http.route('/get_events', auth="public", type='jsonrpc',website=True)
+    @http.route('/get_events', auth="public", type='json',website=True)
     def get_events(self):
 
         """Get the website categories for the snippet."""
 
 
 
-        events = request.env['school.events'].sudo().search([], order='start_date desc', limit=4)
+        events = request.env['school.events'].sudo().search([], order='start_date desc', limit=10)
 
-        # image_encode = False
-        # image = events.image
-        # if image:
-        #     image_encode = base64.b64encode(image.read())
 
         result = []
         for event in events:
@@ -137,7 +133,7 @@ class WebsiteMain(http.Controller):
                 'start_date': event.start_date,
                 'end_date': event.end_date,
                 'venue': event.venue,
-                'image' : event.image,
+                'image' : 'web/image/school.events/%s/image/' %event.id,
             })
 
 
@@ -148,7 +144,7 @@ class WebsiteMain(http.Controller):
         print("event",result)
         # print("image",event.image)
         return result
-        # return request.render('school_management.latest_event', values)
+
 
     @http.route(['/website/event/form/view/<int:event_id>'], type='http', auth="public", website=True)
     def student_form_view(self, event_id, **kw):
