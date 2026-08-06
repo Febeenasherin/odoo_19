@@ -74,7 +74,7 @@ publicWidget.registry.get_events = publicWidget.Widget.extend({
        console.log("events")
        const result = await rpc('/get_events', {});
        if(result){
-           this.$().html(renderToElement('school_management.latest_event', {result: result}))
+           this.$().html(renderToElement('school_management.latest_event', {chunks: result}))
        }
    },
 

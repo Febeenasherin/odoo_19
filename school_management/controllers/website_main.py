@@ -137,13 +137,26 @@ class WebsiteMain(http.Controller):
             })
 
 
-        values = {
-            'event': events,
-        }
-        # print("val",values)
-        print("event",result)
-        # print("image",event.image)
-        return result
+        chunks = []
+
+        for i in range(0, len(result), 4):
+
+
+            chunk = [result[i:i + 4]]
+            chunk.insert(0, [True if i == 0 else False])
+            chunks.append(chunk)
+
+
+
+
+            print("chunks",chunks)
+
+        print("qq:",chunks)
+
+        return chunks
+
+
+
 
 
     @http.route(['/website/event/form/view/<int:event_id>'], type='http', auth="public", website=True)
@@ -168,9 +181,16 @@ class WebsiteMain(http.Controller):
     #     return request.render('school_management.school_event_template',
     #                           {'event': event})
 
+    # else:
+    #     chunk = result[i:i + 4]
+    #     chunks.append(chunk)
 
-
-
+    # chunks.append(chunk)
+    # chunks.append({
+    #     'is_active': i == 0,})
+    #
+    # chunk = result[i:i + 4]
+    # chunks.append(chunk)
 
 
 
