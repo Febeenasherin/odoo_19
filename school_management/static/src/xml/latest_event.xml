@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
 	<t t-name="school_management.latest_event">
 		<section class="latest_event_section">
-			<h3 class="section_heading" color="red">Latest Events</h3>
+			<h3 class="section_heading">Latest Events</h3>
             <br/>
             <br/>
             <br/>
@@ -12,8 +12,8 @@
           	<t t-foreach="chunks" t-as="events" t-key="events.id">
 			<div t-att-class="events[0] ? 'carousel-item active' : 'carousel-item'">
 				<div class="row">
-                        	<t t-foreach="events[1]" t-as="event" t-key="event.id">
-								<div class="block span3 col-3" t-log="event">
+                        	<t t-foreach="events[1]" t-as="event" t-key="event.id" t-log="events[1]">
+								<div class="block span3 col-3">
                                	<div class="card-group">
                                    	<div class="card">
 
@@ -28,7 +28,7 @@
 							</div>
                                    	</div>
                                	</div>
-                                <!--                           	</div>-->
+
                         	</t>
                     	</div>
                 	</div>

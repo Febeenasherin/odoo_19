@@ -39,11 +39,11 @@
         "views/school_registerd_student_view.xml",
         "views/school_events_views.xml",
 
-        "views/website_leave_create.xml",
-        "views/website_student_register.xml",
+        "views/website_student_leave.xml",
+        "views/school_students_template.xml",
         "views/website_student_leave.xml",
         "views/snippets/website_snippet.xml",
-        "/home/cybrosys/odoo-19/custom/school_management/views/snippets/event_views.xml",
+        "views/snippets/event_views.xml",
 
 
 

@@ -17,6 +17,7 @@ class WebsiteMain(http.Controller):
         return request.render('school_management.student_register_list_template',
                               {'students': students})
 
+    # registration form
     @http.route(['/website/student/form'], type='http', auth="public", website=True)
     def student_form(self, **kw):
         classes = request.env['school.class'].sudo().search([])
@@ -35,6 +36,8 @@ class WebsiteMain(http.Controller):
         return request.render('school_management.student_form_view_template',
                           {'students': student})
 
+
+    # student creation
     @http.route(['/website/student/create'], type='http', auth="public", methods=['POST'], website=True, csrf=True)
     def create_student(self, **post):
 
@@ -70,7 +73,7 @@ class WebsiteMain(http.Controller):
                               {'leave': leave,
                                'classes': classes})
 
-
+    # manager leave creation
     @http.route(['/website/leave/create'], type='http', auth="public", methods=['POST'], website=True, csrf=True)
     def create_customer(self, **post):
         request.env['school.leaves'].sudo().create({
@@ -133,7 +136,7 @@ class WebsiteMain(http.Controller):
                 'start_date': event.start_date,
                 'end_date': event.end_date,
                 'venue': event.venue,
-                'image' : 'web/image/school.events/%s/image/' %event.id,
+                'image' : 'web/image/school.events/%s/image/' % event.id,
             })
 
 
@@ -143,8 +146,11 @@ class WebsiteMain(http.Controller):
 
 
             chunk = [result[i:i + 4]]
+            print("it:",chunk)
             chunk.insert(0, [True if i == 0 else False])
             chunks.append(chunk)
+            print("qq",chunk[0])
+
 
 
 
@@ -157,7 +163,7 @@ class WebsiteMain(http.Controller):
 
 
 
-
+    # event details
 
     @http.route(['/website/event/form/view/<int:event_id>'], type='http', auth="public", website=True)
     def student_form_view(self, event_id, **kw):

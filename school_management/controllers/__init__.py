@@ -1,4 +1,6 @@
-from . import leaave_report
+# -*- coding: utf-8 -*-
 from . import club_report
+from . import leaave_report
 from . import student_information
 from . import website_main
+

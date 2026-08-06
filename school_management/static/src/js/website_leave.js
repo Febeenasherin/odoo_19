@@ -1,69 +1,4 @@
 
-// /** @odoo-module */
-// odoo.define('school_management.snippet', function(require) {'use strict';
-//     var PublicWidget = require('web.public.widget');
-// 	var rpc = require('web.rpc');
-// 	var core = require('web.core');
-// 	var qweb = core.qweb;
-// 	var Dynamic = PublicWidget.Widget.extend({selector: '.latest_event_section',
-//     	willStart: async function() {
-//         	var self = this;
-//         	await rpc.query({
-//             	route: '/get_events',
-//         	}).then((data) => {
-//             	this.data = data;
-//         	});
-//     	},
-//         start: function() {
-//         	var chunks = _.chunk(this.data, 4)
-//         	chunks[0].is_active = true
-//         	this.$el.find('#courosel').html(
-//             	qweb.render('school_management.latest_event', {
-//                 	chunks
-//             	})
-//         	)
-//     	},
-// 	});
-// 	PublicWidget.registry.dynamic_snippet_blog = Dynamic;
-// 	return Dynamic;
-// });
-
-
-// /** @odoo-module */
-// import { renderToElement } from "@web/core/utils/render";
-// import publicWidget from "@web/legacy/js/public/public_widget";
-// import { rpc } from "@web/core/network/rpc";
-//
-// publicWidget.registry.get_events = publicWidget.Widget.extend({
-//     selector: '.latest_event_section',
-//     async willStart() {
-//         console.log("events")
-//         const result = await rpc('/get_events', {});
-//     },
-//     start: function () {
-//         var chunks = _.chunk(this.data, 4)
-//         chunks[0].is_active = true
-//         this.$el.find('#courosel').html(
-//             (renderToElement('school_management.latest_event', {
-//                 chunks: chunks
-//             }))
-//         )
-//     },
-
-
-	// PublicWidget.registry.dynamic_snippet_blog = Dynamic;
-	// return Dynamic;
-// });
-
-
-
-
-
-
-
-
-
-
 /** @odoo-module */
 import { renderToElement } from "@web/core/utils/render";
 import publicWidget from "@web/legacy/js/public/public_widget";
@@ -71,7 +6,6 @@ import { rpc } from "@web/core/network/rpc";
 publicWidget.registry.get_events = publicWidget.Widget.extend({
    selector : '.latest_event_section',
    async willStart() {
-       console.log("events")
        const result = await rpc('/get_events', {});
        if(result){
            this.$().html(renderToElement('school_management.latest_event', {chunks: result}))

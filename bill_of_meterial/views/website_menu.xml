@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <menuitem name="Product"
+        id="website_websites_list"
+
+        parent="menu_website_global_configuration"
+
+        />
+    </odoo>
