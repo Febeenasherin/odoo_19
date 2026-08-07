@@ -146,18 +146,18 @@ class WebsiteMain(http.Controller):
 
 
             chunk = [result[i:i + 4]]
-            print("it:",chunk)
+            # print("it:",chunk)
             chunk.insert(0, [True if i == 0 else False])
             chunks.append(chunk)
-            print("qq",chunk[0])
+            # print("qq",chunk[0])
 
 
 
 
 
-            print("chunks",chunks)
-
-        print("qq:",chunks)
+            # print("chunks",chunks)
+        #
+        # print("qq:",chunks)
 
         return chunks
 

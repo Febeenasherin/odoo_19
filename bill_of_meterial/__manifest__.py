@@ -10,11 +10,11 @@
     'application': False,
     'installable': True,
     'auto_install': True,
-    'depends': ['base','website'],
+    'depends': ['base','website', 'website_sale', 'mrp'],
     'data':[
             "views/website_menu.xml",
+            "views/website_template.xml",
 
 
-
-    ],
+   ],
 }
