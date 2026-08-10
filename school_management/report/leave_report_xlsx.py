@@ -4,7 +4,7 @@ from xlrd import sheet
 
 from datetime import date, timedelta
 
-from odoo.addons.test_convert.tests.test_env import record
+
 from odoo.exceptions import ValidationError
 import io
 import json

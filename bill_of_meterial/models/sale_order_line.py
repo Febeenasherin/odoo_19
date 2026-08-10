@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
             print("hjk")
             print(line)
 
-            # line.bom_component = ''
+            line.bom_component = ''
 
             website = line.order_id.website_id
 
@@ -34,14 +34,11 @@ class SaleOrderLine(models.Model):
                     bom = self.env['mrp.bom'].search([('product_id', '=', rec.id)], )
                     print("bom:",bom)
 
-                # else:
-                #     print("no")
-                #     continue
-                #     print("no")
-            #
+
+
                     if bom:
-                        for bom_line in bom:
-                            line.bom_component += (bom_line.product_id.display_name + '-' + str(bom_line.product_qty))
-            #
+                        for bom_line in bom.bom_line_ids:
+                            line.bom_component += (bom_line.product_id.display_name + ' - ' + str(bom_line.product_qty) + "\n")
+
                             print(line.bom_component)
 

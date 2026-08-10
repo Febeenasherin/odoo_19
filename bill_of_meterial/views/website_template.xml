@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="bom_product_view_template" inherit_id="website_sale.cart_lines">
-        <xpath expr="//div[contains(@class, 'o_cart_product_image')]" position="inside">
+    <template id="bom_product_view_template" inherit_id="website_sale.cart_line_description_following_lines">
+        <xpath expr="//div[contains(@class,'text-muted small')]" position="after"><br/>
+            <div class="text">
                 <t t-if="line.bom_component">
-                    <strong>Components</strong>
+                    <strong>Components:</strong><br/>
+                    <span t-esc="line.bom_component"><br/></span><br/>
                 </t>
+            </div>
         </xpath>
 
 <!--        <t t-call="website.layout">-->
