@@ -5,7 +5,7 @@ from odoo import fields, models, api
 class Website(models.Model):
     _inherit = 'website'
 
-    bom_product_ids = fields.Many2many('product.template', string='BOM Products')
+    bom_product_ids = fields.Many2many('product.product', string='BOM Products')
 
     # @api.model
     # def get_values(self):

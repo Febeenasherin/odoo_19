@@ -1,43 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="bom_product_view_template" name="Product">
-        <t t-call="website.layout">
-            <div class="oe_structure">
-                <div class="container">
-                        <xpath expr="//div[@id='cart_products']" position="after">
-                            <h2>hii</h2>
-                            <a href="/bom/product" class="btn btn-primary">Register</a><br/>
-<!--                            <field name="bom_product_ids"/>-->
-                        </xpath>
-                     <table class="table table-striped">
-                                         <thead class="table-primary">
-                            <tr>
-                                <th><strong>Component</strong></th>
-                                <th><strong>Quantity</strong></th>
 
-                            </tr>
-                        </thead>
-                         <tbody>
-                            <t t-foreach="bom.bom_line_ids" t-as="line">
-                                <tr>
-<!--                                    <td><t t-out="st_index+1"/></td>-->
-<!--                                    <td><span t-esc="st_index + 1"/></td>-->
-                                    <td><span t-esc="line.product_id.display_name"/></td>
-                                    <td><span t-esc="line.product_qty"/></td>
+    <template id="bom_product_view_template" inherit_id="website_sale.cart_lines">
+        <xpath expr="//div[contains(@class, 'o_cart_product_image')]" position="inside">
+                <t t-if="line.bom_component">
+                    <strong>Components</strong>
+                </t>
+        </xpath>
 
+<!--        <t t-call="website.layout">-->
+<!--            <div class="oe_structure">-->
+<!--                <div class="container">-->
+<!--                        <xpath expr="//div[@id='cart_products']" position="after">-->
+<!--                            <h2>hii</h2>-->
+<!--                            <a href="/bom/product" class="btn btn-primary">Register</a><br/>-->
+<!--&lt;!&ndash;                            <field name="bom_product_ids"/>&ndash;&gt;-->
+<!--                        </xpath>-->
+<!--                     <table class="table table-striped">-->
+<!--                                         <thead class="table-primary">-->
+<!--                            <tr>-->
+<!--                                <th><strong>Component</strong></th>-->
+<!--                                <th><strong>Quantity</strong></th>-->
 
-                                </tr>
-                            </t>
-                        </tbody>
-                     </table>
-
-
-
+<!--                            </tr>-->
+<!--                        </thead>-->
+<!--                         <tbody>-->
+<!--                            <t t-foreach="bom.bom_line_ids" t-as="line">-->
+<!--                                <tr>-->
+<!--&lt;!&ndash;                                    <td><t t-out="st_index+1"/></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <td><span t-esc="st_index + 1"/></td>&ndash;&gt;-->
+<!--                                    <td><span t-esc="line.product_id.display_name"/></td>-->
+<!--                                    <td><span t-esc="line.product_qty"/></td>-->
 
 
-                </div>
-                    </div>
-<!--                </section>-->
-            </t>
+<!--                                </tr>-->
+<!--                            </t>-->
+<!--                        </tbody>-->
+<!--                     </table>-->
+
+
+
+
+
+<!--                </div>-->
+<!--                    </div>-->
+<!--&lt;!&ndash;                </section>&ndash;&gt;-->
+<!--            </t>-->
         </template>
 </odoo>
