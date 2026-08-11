@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!--event reminder mail-->
+        <record id="automatic_purchase" model="ir.cron">
+            <field name="name">purchase order</field>
+            <field name="model_id" ref="model_stock_warehouse_orderpoint"/>
+            <field name="state">code</field>
+            <field name="code">model.create_purchase()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="priority">2</field>
+            <field name="active">True</field>
+        </record>
+
+
+</odoo>
+

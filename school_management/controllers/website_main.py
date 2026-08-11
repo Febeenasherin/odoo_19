@@ -27,14 +27,7 @@ class WebsiteMain(http.Controller):
         return request.render('school_management.student_register_form_template',
                               {'classes': classes})
 
-    # student form view
-    @http.route(['/website/student/form/view/<int:student_id>'], type='http', auth="public", website=True)
 
-    def student_form_view(self, student_id, **kw):
-        student = request.env['school.students'].sudo().browse(student_id)
-
-        return request.render('school_management.student_form_view_template',
-                          {'students': student})
 
 
     # student creation
@@ -60,6 +53,16 @@ class WebsiteMain(http.Controller):
 
         request.env['school.students'].sudo().write( {'status': 'registration'})
         return request.render('school_management.student_success_template')
+
+        # student form view
+
+    @http.route(['/website/student/form/view/<int:student_id>'], type='http', auth="public", website=True)
+    def student_form_view(self, student_id, **kw):
+        student = request.env['school.students'].sudo().browse(student_id)
+        print(student, "ff")
+
+        return request.render('school_management.student_form_view_template',
+                              {'students': student})
 
 
 
@@ -166,7 +169,7 @@ class WebsiteMain(http.Controller):
     # event details
 
     @http.route(['/website/event/form/view/<int:event_id>'], type='http', auth="public", website=True)
-    def student_form_view(self, event_id, **kw):
+    def student_event_view(self, event_id, **kw):
         event = request.env['school.events'].sudo().browse(event_id)
 
         print("eve", event)

@@ -112,7 +112,7 @@
 
 
     <!--    form view template-->
-     <template id="student_form_view_template" name="Student Form">
+        <template id="student_form_view_template" name="Student Form view">
             <t t-call="website.layout">
                 <section class="container py-5">
                     <div class="row justify-content-center">
