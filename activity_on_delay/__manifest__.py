@@ -14,7 +14,7 @@
     'auto_install': False,
     'depends': ['base', 'purchase',],
     'data':[
-
+            "/home/cybrosys/odoo-19/custom/activity_on_delay/data/ir_cron_data.xml",
 
      ],
 }

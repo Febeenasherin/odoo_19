@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    form-->
+    <record id="material_request_view_form" model="ir.ui.view">
+        <field name="name">material.request.form</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable':0}" statusbar_visible="draft,requested,rejected"/>
+                    <button  name="action_request" type="object" string="Request" class="oe_highlight" invisible ="state !='draft'"
+                    groups="material_request.group_material_user"/>
+                    <button  name="action_first_approve" type="object" string="First Approve" class="oe_highlight" invisible="state !='requested'"
+                    groups="material_request.group_material_manager"/>
+                    <button  name="action_second_approve" type="object" string="Second Approve" class="oe_highlight" invisible="state !='first_approval'"
+                    groups="material_request.group_material_head"/>
+                    <button  name="action_reject" type="object" string="Reject" class="oe_highlight" invisible="state !='first_approval'"
+                    groups="material_request.group_material_head"/>
+
+
+
+                </header>
+                <sheet>
+
+                    <div class="oe_button_box" name="button_box">
+                         <button name="action_open_purchase" type="object" class="oe_stat_button" icon="fa-star">
+                                <div class="o_stat_info">
+                                    <field name="purchase_count" class="o_stat_value"/>
+                                    <span class="o_stat_text">Purchase Order</span>
+                                </div>
+                            </button>
+<!--                    </div>-->
+<!--                     <div class="oe_button_box" name="button_box">-->
+                         <button name="action_open_internal" type="object" class="oe_stat_button" icon="fa-star">
+                                <div class="o_stat_info">
+                                    <field name="internal_count" class="o_stat_value"/>
+                                    <span class="o_stat_text">Internal Transfer</span>
+                                </div>
+                            </button>
+                    </div>
+
+                    <h1> <field name="name" readonly="1"/>
+                    </h1>
+                    <group>
+                        <field name="requested_id"/>
+                        <field name="requested_date"/>
+
+                         </group>
+                         <group>
+                        <notebook>
+                            <page name="Material information" string="Material information">
+                                <field name="request_line_ids">
+                                    <list editable="bottom">
+
+                        <field name="product_id"/>
+                        <field name="product_qty"/>
+                        <field name="request_type"/>
+                        <field name="vendor_ids" widget="many2many_tags"
+                        invisible="request_type == 'internal transfer'"/>
+                        <field name="source_id" invisible="request_type == 'purchase order'"/>
+                        <field name="destination_id" invisible="request_type == 'purchase order'"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+                 <chatter/>
+            </form>
+        </field>
+    </record>
+    <!--    list-->
+    <record  id="employee_loan_list" model="ir.ui.view">
+        <field name="name">material.request.list</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+
+            <list>
+<!--                    <field name="name"/>-->
+                    <field name="requested_id"/>
+                    <field name="requested_date"/>
+
+            </list>
+        </field>
+    </record>
+
+    <record id="material_request_action"  model="ir.actions.act_window">
+        <field name="name">Material</field>
+        <field name="res_model">material.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="view_content">
+                no record found.
+            </p>
+        </field>
+        </record>
+</odoo>

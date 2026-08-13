@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- main menu -->
+    <menuitem id="simple_production" name="Simple Production"/>
+    <menuitem id="menu_simple_production" name="Products" parent="simple_production" sequence="1" action="simple_production_action"/>
+<!--    <menuitem id="menu_material_request_line" name="Material" parent="material_request" sequence="1" action="material_request_line_action"/>-->
+</odoo>

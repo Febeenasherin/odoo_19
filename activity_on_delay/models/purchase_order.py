@@ -7,65 +7,72 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
 
-    # def _create_activity(self):
-    #     order = self.search([])
-    #     print(order)
-    #     today = date.today()
-    #     print(today)
-    #     for rec in order:
-    #         print(rec.date_planned.date())
-    #         if rec.date_planned.date() == today and rec.receipt_status == 'pending':
-    #             # ac = super().create(vals)
-    #             activity_type = self.env.ref('mail.mail_activity_data_todo')
-    #             self.env['mail.activity'].create({
-    #                 'activity_type_id': activity_type.id,
-    #                 'res_model_id': self.env['ir.model']._get_id('purchase.order'),
-    #                 'res_id': rec.id,
-    #                 'user_id': rec.user_id.id,
-    #                 'date_deadline': fields.Date.today(),
-    #                 'summary': 'Review Sales Order',
-    #             })
-    #
-    #             return
-    #             # activity = self.env['mail.activity.schedule'].create({
-    #             #     ''
-    #             # })
-
-
 
     @api.model
-    def create(self, vals):
-        order = self.search([])
-        today = datetime.today()
-        yesterday = today - timedelta(days=1)
-        print(yesterday)
+    def create_mail(self):
+        order = self.search([('receipt_status', '=', 'pending'),('state', '=', 'purchase')])
+        today = date.today()
+        manager = self.env.ref('purchase.group_purchase_manager')
+        # manager = manager
+        print(manager)
+        user = self.env['res.users'].search([('group_ids', '=', manager.id)],limit=1)
+        print(user,"user")
+
+
+        print(today)
         for rec in order:
-            # print(rec.date_planned.date())
-            print("fff",rec.date_planned < today and rec.receipt_status == 'pending')
-            if rec.date_planned < today and rec.receipt_status == 'pending':
-                activity = super().create(vals)
-                activity_type = rec.env.ref('mail.mail_activity_data_call')
-                self.env['mail.activity'].create({
-                'activity_type_id': activity_type.id,
-                'res_model_id': self.env['ir.model']._get_id('purchase.order'),
-                'res_id': activity.id,
-                'user_id': activity.user_id.id or self.env.user.id,
-                'date_deadline': fields.Date.today() + timedelta(days=2),
-                'summary': 'Follow-up with vendor',
+            print("records",rec)
+            print(rec.date_planned.date() < today,"today")
+            # print("fff",rec.date_planned < today and rec.receipt_status == 'pending')
+            if rec.date_planned.date() < today:
+                # activity = super().create(vals)
+                actitvity = self.env['mail.activity'].search([('res_model_id', '=', 'res.partner'),('res_id', '=', rec.partner_id.id)])
+
+                if not actitvity:
+                    activity_type = rec.env.ref('mail.mail_activity_data_call')
+                    self.env['mail.activity'].create({
+                    'activity_type_id': activity_type.id,
+                    'res_model_id': self.env['ir.model']._get_id('res.partner'),
+                    'res_id': rec.partner_id.id,
+                    'partner_id': rec.partner_id.id,
+                    'date_deadline': fields.Date.today() + timedelta(days=2),
+                    'summary': (f'Follow-up with {rec.name}'),
             })
-                return activity
-    # @api.model
-    # def create_mail(self):
-    #     order = self.search([])
-    #     today = date.today()
-    #     for rec in order:
-    #         # print(rec.date_planned.date())
-    #         if rec.date_planned.date() == today and rec.receipt_status == 'pending':
-    #
-    #             emails = self.env.user.id
-    #             template = self.env.ref('activity_on_delay.email_template_purchase')
-    #
-    #
-    #             template.send_mail(rec.id, force_send=True, email_values={'email_to': emails,
-    #                                                                 })
+
+                    rec.message_post(
+                    body=(f"the {rec.name} has been delayed. please follow with {rec.partner_id.name}") ,
+                    message_type="comment",
+                    subtype_xmlid="mail.mt_comment",
+                    partner_ids =  [user.id],
+                )
+
+
+
+
+
+
+            # if rec.date_planned.date() < today:
+            #     # activity = super().create(vals)
+            #     actitvity = self.env['mail.activity'].search(
+            #         [('res_model_id', '=', 'purchase.order'), ('res_id', '=', rec.id)])
+            #
+            #     if not actitvity:
+            #         activity_type = rec.env.ref('mail.mail_activity_data_call')
+            #         self.env['mail.activity'].create({
+            #             'activity_type_id': activity_type.id,
+            #             'res_model_id': self.env['ir.model']._get_id('purchase.order'),
+            #             'res_id': rec.id,
+            #             'user_id': rec.user_id.id,
+            #             'date_deadline': fields.Date.today() + timedelta(days=2),
+            #             'summary': 'Follow-up with vendor',
+            #         })
+            #
+            #         rec.message_post(
+            #             body=(f"the {rec.name} has been delayed. please follow with {rec.partner_id.name}"),
+            #             message_type="comment",
+            #             subtype_xmlid="mail.mt_comment",
+            #             partner_ids=[user.id],
+            #         )
+
+
 
