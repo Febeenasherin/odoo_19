@@ -10,7 +10,7 @@
     'application': False,
     'installable': True,
     'auto_install': True,
-    'depends': ['base', 'mrp'],
+    'depends': ['base', 'mrp', 'stock'],
     'data':[
             "security/ir.model.access.csv",
             "views/simple_production.xml",
