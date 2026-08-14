@@ -2,21 +2,26 @@
 from odoo import fields, models, api
 
 class SimpleProduction(models.Model):
+    """ Simple production model"""
     _name = 'simple.production'
     _description = 'Simple Production'
+    _rec_name = 'product_id'
 
 
     product_id = fields.Many2one('product.product', string='Product', required=True)
     # variant_id = fields.Many2one('product.product', string='Product Variant',)
     quantity = fields.Float(string='Quantity', required=True, default=1)
     state = fields.Selection([
-        ('draft', 'Draft'),('created', 'Created'),('done', 'Done')
+        ('draft', 'Draft'),('created', 'Created'),
     ])
 
     line_ids = fields.One2many('simple.production.line', 'production_id', string='Lines')
+    production_line_ids = fields.One2many('production.order.line', 'order_id', 'Production Lines')
 
 
     def action_create(self):
+        """" when clicking create button the main product stock will move from production to warehouse and component product move from
+        whare house to production"""
 
         location = self.env.ref('stock.stock_location_stock')
         dest = self.env.ref('stock.stock_location_output')
@@ -41,34 +46,41 @@ class SimpleProduction(models.Model):
             print("qty",line.product_id.uom_id.id)
             print("line qty",line.quantity)
 
-            # stock._action_confirm()
-            # stock._action_assign()
+            stock._action_confirm()
+
+
+
+            stock.picked = True
+            stock._action_assign()
 
             stock.move_line_ids.write({
                 'quantity': line.quantity,
             })
             stock.quantity = line.quantity
-            # stock._action_done()
+            stock._action_done()
 
 
 
 
-            product = self.env['stock.move'].create({
-                'product_id': self.product_id.id,
-                'product_uom_qty' : self.quantity,
-                'product_uom': self.product_id.uom_id.id,
-                'location_id': production.id,
-                'location_dest_id': location.id,
-            })
+        product = self.env['stock.move'].create({
+            'product_id': self.product_id.id,
+            'product_uom_qty' : self.quantity,
+            'product_uom': self.product_id.uom_id.id,
+            'location_id': production.id,
+            'location_dest_id': location.id,
+        })
 
 
-            product._action_confirm()
-            product.quantity = self.quantity
-            product._action_done()
+        product._action_confirm()
+        product.picked = True
+        product.quantity = self.quantity
+        product._action_done()
 
 
 
-            self.state = 'created'
+        self.state = 'created'
+
+
 
     #
     #
@@ -81,11 +93,13 @@ class SimpleProduction(models.Model):
         # product =  self.env['product.product'].search([('id', '=', self.product_id.id)])
         # print("product",product)
 
+    # self.env['stock.move.line'].create({
+    #     'move_id': stock.id,
+    #     'product_id': line.product_id.id,
+    #     'product_uom_id': line.product_id.uom_id.id,
+    #
+    #     'location_id': location.id,
+    #     'location_dest_id': production.id,
+    #     'quantity': line.quantity,
 
-
-
-
-
-
-
-
+    # })

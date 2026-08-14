@@ -7,5 +7,6 @@ class SimpleProductionLine(models.Model):
 
 
     production_id = fields.Many2one('simple.production',)
+
     product_id = fields.Many2one('product.product', string='Components')
     quantity = fields.Float(string='Quantity', default=1)
