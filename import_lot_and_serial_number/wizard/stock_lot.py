@@ -37,13 +37,22 @@ class ImportCustomerWizard(models.TransientModel):
          products = self.env['product.product'].search([('name', 'like', product), ('is_storable', '=', True)],limit=1)
          print("product",products)
 
+
          if not products:
-            raise UserError(_('product not found'))
+            products = self.env['product.product'].create({
+            'name': product,
+            'type' : 'consu',
+
+            'tracking': 'lot',
+            'is_storable': True,
+
+            })
+
 
          if not search:
             print("hii")
             serl = self.env['stock.lot'].create({
-            'name': record[0],
+            'name': number,
             'product_id': products.id,
             'company_id': self.env.company.id,
 
@@ -53,7 +62,7 @@ class ImportCustomerWizard(models.TransientModel):
 
 
 
-            return  {
+         return  {
                'type': 'ir.actions.client',
                'tag': 'display_notification',
                'params': {
@@ -62,7 +71,7 @@ class ImportCustomerWizard(models.TransientModel):
                   'type': 'success',
                   'sticky': False,
                }
-         }
+        }
 
 
 
