@@ -7,15 +7,15 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-<!--                    <field name="state" widget="statusbar" options="{'clickable':0}"/>-->
-<!--                    <button  type="object" string="" class="oe_highlight"/>-->
+                    <field name="state" widget="statusbar" options="{'clickable':0}"/>
+                    <button  name="action_produce" type="object" string="Produce" class="oe_highlight"/>
 
 
 
 
                 </header>
                 <sheet>
-
+                    <h1> <field name="name" readonly="1"/></h1>
                     <group>
                         <field name="product_id"/>
 <!--                        <field name="variant_id"/>-->
@@ -62,7 +62,7 @@
     </record>
 
     <record id="production_action"  model="ir.actions.act_window">
-        <field name="name">Products</field>
+        <field name="name">Manufacturing Orders</field>
         <field name="res_model">production.order</field>
         <field name="view_mode">list,form</field>
         <field name="help" type="html">

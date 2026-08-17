@@ -6,9 +6,9 @@
         <field name="model">simple.production</field>
         <field name="arch" type="xml">
             <form>
-                <header>
-                    <field name="state" widget="statusbar" options="{'clickable':0}"/>
-                    <button  name="action_create" type="object" string="Create" class="oe_highlight"/>
+<!--                <header>-->
+<!--                    <field name="state" widget="statusbar" options="{'clickable':0}"/>-->
+<!--                    <button  name="action_create" type="object" string="Create" class="oe_highlight"/>-->
 <!--                    groups="material_request.group_material_user"/>-->
 <!--                    <button  name="action_done" type="object" string="done" class="oe_highlight"/>-->
 <!--                    groups="material_request.group_material_manager"/>-->
@@ -19,7 +19,7 @@
 
 
 
-                </header>
+<!--                </header>-->
                 <sheet>
 
 <!--                    <div class="oe_button_box" name="button_box">-->

@@ -11,12 +11,12 @@ class SimpleProduction(models.Model):
     product_id = fields.Many2one('product.product', string='Product', required=True)
     # variant_id = fields.Many2one('product.product', string='Product Variant',)
     quantity = fields.Float(string='Quantity', required=True, default=1)
-    state = fields.Selection([
-        ('draft', 'Draft'),('created', 'Created'),
-    ])
+    # state = fields.Selection([
+    #     ('draft', 'Draft'),('created', 'Created'),
+    # ])
 
     line_ids = fields.One2many('simple.production.line', 'production_id', string='Lines')
-    production_line_ids = fields.One2many('production.order.line', 'order_id', 'Production Lines')
+    # production_line_ids = fields.One2many('production.order.line', 'order_id', 'Production Lines')
 
 
     def action_create(self):

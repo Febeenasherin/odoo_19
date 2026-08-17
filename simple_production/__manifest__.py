@@ -14,6 +14,7 @@
     'data':[
             "security/ir.model.access.csv",
             "views/simple_production.xml",
+            "data/sequence_data.xml",
             "views/simple_production_line_view.xml",
             "views/production_order_views.xml",
             "views/production_order_line_views.xml",

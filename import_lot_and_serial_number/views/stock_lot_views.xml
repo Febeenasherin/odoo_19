@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <record id="inventory_excel_inherit" model="ir.ui.view">
+       <field name="name">inventory.excel.form.inherit</field>
+       <field name="model">stock.lot</field>
+       <field name="inherit_id" ref="stock.view_production_lot_tree"/>
+       <field name="arch" type="xml">
+
+           <xpath expr="//list" position="inside">
+<!--                <div class="oe_button_box" name="button_box">-->
+                <header>
+                   <button name="action_excel" type="object" string="Import Excel" class="oe_highlight" display="always"/>
+                </header>
+
+<!--               </div>-->
+
+           </xpath>
+       </field>
+   </record>
+
+<!--    <menuitem id="stock.import_excel" name="Import Excel"-->
+<!--            parent="stock.menu_stock_root"/>-->
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="sequence_manufacture" model="ir.sequence">
+        <field name="name">namee</field>
+        <field name="code">namee</field>
+        <field name="prefix">MO</field>
+        <field name="padding">3</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>
