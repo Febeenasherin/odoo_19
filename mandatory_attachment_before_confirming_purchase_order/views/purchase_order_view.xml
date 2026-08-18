@@ -14,7 +14,7 @@
 
 <!--           <page string="Attachments">-->
 
-                <field name="attachment_ids" widget="many2many_binary" options="{'accepted_file_extensions': '.pdf', 'image/*'"/>
+                <field name="attachment_ids" widget="many2many_binary" options="{'accepted_file_extensions': '.pdf , image/*'}"/>
 
 <!--            </page>-->
 

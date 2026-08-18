@@ -54,19 +54,20 @@ class MaterialRequest(models.Model):
         return super(MaterialRequest, self).create(vals_list)
 
     def action_request(self):
-        if not self.env.user._has_group('material_request.group_material_user'):
+        """ when clicking button the state changed to requested. and only the button click"""
+        if not self.env.user.has_group('material_request.group_material_user'):
             raise ValidationError("only user can create request")
 
         print("button request")
         self.state = 'requested'
 
     def action_first_approve(self):
-        if not self.env.user._has_group('material_request.group_material_manager'):
+        if not self.env.user.has_group('material_request.group_material_manager'):
             raise ValidationError("only manager can approve")
         self.state = 'first_approval'
 
     def action_second_approve(self):
-        if not self.env.user._has_group('material_request.group_material_head'):
+        if not self.env.user.has_group('material_request.group_material_head'):
             raise ValidationError("only head can approve")
         self.state = 'second_approval'
 
