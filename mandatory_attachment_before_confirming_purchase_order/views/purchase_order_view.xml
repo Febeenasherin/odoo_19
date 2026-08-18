@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+
+    <field name="name">purchase.order.inherit</field>
+
+    <field name="model">purchase.order</field>
+
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+
+    <field name="arch" type="xml">
+
+       <xpath expr="//field[@name='partner_ref']" position="after">
+
+<!--           <page string="Attachments">-->
+
+                <field name="attachment_ids" widget="many2many_binary" options="{'accepted_file_extensions': '.pdf', 'image/*'"/>
+
+<!--            </page>-->
+
+        </xpath>
+
+    </field>
+
+</record>
+
+
+
+
+<!--   <record id="attachment_file" model="ir.ui.view">-->
+<!--       <field name="name">attachment.file.inherit</field>-->
+<!--       <field name="model">purchase.order</field>-->
+<!--       <field name="inherit_id" ref="purchase.purchase_order_form"/>-->
+<!--       <field name="arch" type="xml">-->
+
+<!--           <xpath expr="//header" position="inside">-->
+<!--&lt;!&ndash;                <div class="oe_button_box" name="button_box">&ndash;&gt;-->
+<!--                <header>-->
+<!--               <field name="attach_file" invisible=""/>-->
+<!--&lt;!&ndash;               <button name="action_file" type="object" string="Attach file" class="oe_highlight" invisible="not attach_file"/>&ndash;&gt;-->
+<!--                </header>-->
+
+
+<!--&lt;!&ndash;               </div>&ndash;&gt;-->
+
+<!--           </xpath>-->
+<!--       </field>-->
+<!--   </record>-->
+</odoo>

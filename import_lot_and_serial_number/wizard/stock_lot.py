@@ -6,12 +6,14 @@ from odoo.exceptions import UserError
 
 
 class ImportCustomerWizard(models.TransientModel):
+   """ wizard """
    _name = "import.customer.wizard"
 
    file = fields.Binary(string="File", required=True)
 
 
    def import_excel(self):
+      """import excel . data read from excel and create lot and serial number"""
       print("valid")
 
 
