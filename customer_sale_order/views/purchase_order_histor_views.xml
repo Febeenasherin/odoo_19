@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    form-->
+    <record id="purchase_order_view_form" model="ir.ui.view">
+        <field name="name">purchae.order.form</field>
+        <field name="model">purchase.order.history</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sale_id"/>
+
+                        <field name="partner_id"/>
+                        <field name="date"/>
+                        <field name="salesperson_id"/>
+                        <field name="vendor_id"/>
+                        <field name="purchase_ids"/>
+                    </group>
+                </sheet>
+<!--                <chatter/>-->
+            </form>
+        </field>
+    </record>
+    <!--    list-->
+    <record  id="history_view_list" model="ir.ui.view">
+        <field name="name">history.list</field>
+        <field name="model">purchase.order.history</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sale_id"/>
+                        <field name="purchase_ids"/>
+                        <field name="partner_id"/>
+                        <field name="date"/>
+                        <field name="salesperson_id"/>
+                        <field name="vendor_id"/>
+                        <field name="purchase_ids"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="history_action"  model="ir.actions.act_window">
+        <field name="name">History</field>
+        <field name="res_model">purchase.order.history</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="view_content">
+                no record found.
+            </p>
+        </field>
+        </record>
+</odoo>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- main menu -->
+    <menuitem id="history" name="History"/>
+    <menuitem id="menu_history" name="History" parent="history" sequence="1" action="history_action" groups="sales_team.group_sale_manager"/>
+</odoo>

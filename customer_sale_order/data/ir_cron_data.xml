@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!--event reminder mail-->
+        <record id="cron_event_reminder" model="ir.cron">
+            <field name="name">History</field>
+            <field name="model_id" ref="model_purchase_order_history"/>
+            <field name="state">code</field>
+            <field name="code">action=model.action_history()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="priority">5</field>
+            <field name="active">True</field>
+        </record>
+
+<!--attendance-->
+
+<!--    <record id="ir_cron_attendance_data" model="ir.cron">-->
+<!--        <field name="name">Attendance</field>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="model_id" ref="model_school_leaves"/>-->
+<!--        <field name="code">model.update_attendance()</field>-->
+<!--        <field name="interval_number">1</field>-->
+<!--        <field name="interval_type">days</field>-->
+<!--        <field name="priority">1</field>-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+</odoo>
+
