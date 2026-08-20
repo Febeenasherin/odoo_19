@@ -33,8 +33,9 @@ class PurchaseOrderHistory(models.Model):
 
 
         for rec in order:
-            purchase = self.env['purchase.order'].search([('date_order', '>=', today), ('date_order', '<=', today)])
+            purchase = self.env['purchase.order'].search([('origin', '=', rec.name)])
             print("purchase", purchase)
+            print("rec", rec.name)
 
             self.env['purchase.order.history'].create({
                     'sale_id': rec.id,
@@ -42,7 +43,7 @@ class PurchaseOrderHistory(models.Model):
                     'partner_id' : rec.partner_id.id,
                     'date' : today,
                     'salesperson_id' : rec.user_id.id,
-                    'vendor_id' : purchase.partner_id.id
+                    'vendor_id' : purchase[0].partner_id.id
 
             })
 

@@ -9,21 +9,21 @@ class SalesOrder(models.Model):
     def action_confirm(self):
         print("hhh")
 
-
-        products =self.order_line.mapped('product_id')
-        print("products", products)
+        #
+        # products =self.order_line.mapped('product_id')
+        # print("products", products)
 
         for line in self.order_line:
 
-            vendor = line.product_id.seller_ids[:1].partner_id
+            vendor = line.product_id.seller_ids[0].partner_id
             print("vendor", vendor)
 
 
-
+            print(self.name,"orders")
 
             rfq = self.env['purchase.order'].create({
                         'partner_id': vendor.id,
-                        # 'state': 'purchase',
+                        'origin': self.name,
 
                         'order_line' : [fields.Command.create({
                             'product_id': line.product_id.id,
@@ -35,7 +35,8 @@ class SalesOrder(models.Model):
 
             print(rfq,"rfq")
 
-            return super().action_confirm()
+
+        return super().action_confirm()
 
 
 

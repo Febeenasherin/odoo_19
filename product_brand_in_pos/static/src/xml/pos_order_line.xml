@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_sale.Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+        <xpath expr="//small[hasclass('attribute-line fst-italic')]" position="after"><br/>
+
+           <span class="attribute-line fst-italic">
+               Brand: <t t-esc="props.line.product_id.brand"/>
+           </span><br/>
+
+
+       </xpath>
+    </t>
+</templates>
