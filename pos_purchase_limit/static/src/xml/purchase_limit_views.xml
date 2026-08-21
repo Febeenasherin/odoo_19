@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_sale.partnerline" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension">
+        <xpath expr="//td[hasclass('edit-partner-button-cell align-middle')]" position="inside">
+
+            <div class="d-flex justify-content-between align-items-center p-1">
+           <span>
+               limit:<t t-esc="props.partner.purchase_limit"/>
+           </span>
+            </div>
+
+
+       </xpath>
+    </t>
+</templates>

@@ -16,5 +16,12 @@
         "views/res_partner_views.xml",
 
     ],
+
+    'assets': {
+        'point_of_sale._assets_pos': [
+            "pos_purchase_limit/static/src/js/purchase_limit.js",
+            "pos_purchase_limit/static/src/xml/purchase_limit_views.xml",
+        ]
+    },
 }
 

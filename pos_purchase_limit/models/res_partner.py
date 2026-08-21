@@ -10,4 +10,14 @@ class ResPartner(models.Model):
     is_purchase_limit = fields.Boolean('Purchase Limit')
     purchase_limit = fields.Float('limit')
 
-    ActionpadWidget
+
+    @api.model
+    def _load_pos_data_fields(self, config_id):
+        """
+        Adds the 'is_purchase_limit and purchase limit' field to the list of fields loaded into the POS.
+        """
+        data = super()._load_pos_data_fields(config_id)
+        print("data", data)
+        data += ['is_purchase_limit', 'purchase_limit']
+        print("add data", data)
+        return data
