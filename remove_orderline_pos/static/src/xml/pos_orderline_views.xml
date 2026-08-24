@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_sale.ProductScreen" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('control-buttons d-flex justify-content-between gap-2 w-100 pt-2')]" position="inside"><br/>
+
+<!--           <span class="attribute-line fst-italic">-->
+<!--               Brand: <t t-esc="props.line.product_id.brand"/>-->
+<!--           </span><br/>-->
+<!--            <button class="btn btn-secondary btn-lg lh-lg flex-shrink-0">-->
+<!--                <span>Clear</span>-->
+<!--            </button>-->
+            <button t-on-click="() => this.onButtonClick()" class="btn btn-secondary btn-lg lh-lg flex-shrink-0">Clear</button>
+
+
+       </xpath>
+    </t>
+</templates>
