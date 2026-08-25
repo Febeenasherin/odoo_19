@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <t t-name="pos_sale.Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('product-name d-flex flex-grow-1 pe-2 text-truncate')]" position="after"><br/>
+        <xpath expr="//div[hasclass('line-details d-flex justify-content-between')]" position="inside"><br/><br/>
 
 <!--           <span class="attribute-line fst-italic">-->
 <!--               Brand: <t t-esc="props.line.product_id.brand"/>-->
 <!--           </span><br/>-->
-            <button class="btn btn-secondary" t-on-click="() => this.onremove()">X</button>
+            <div class="oe_structure">
+            <button class=" btn-sm rounded-pill ms-2 my-1" t-on-click="() => this.onClear()" layout_width="200dp"
+                layout_height="60dp" minWidth="0dp" minHeight="0dp" text="Small" textSize="12sp">X</button>
+            </div>
+
 
 
        </xpath>

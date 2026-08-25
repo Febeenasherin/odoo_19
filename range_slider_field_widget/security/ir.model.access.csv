@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+range_slider_field_widget.access_slider_widget,access_slider_widget,range_slider_field_widget.model_slider_widget,base.group_user,1,1,1,1

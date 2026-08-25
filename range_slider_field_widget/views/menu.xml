@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- main menu -->
+    <menuitem id="slider_widget" name="Slider Widget"/>
+    <menuitem id="menu_slider_widget" name="slider" parent="slider_widget" sequence="1" action="slider_widget_action" groups="sales_team.group_sale_manager"/>
+</odoo>

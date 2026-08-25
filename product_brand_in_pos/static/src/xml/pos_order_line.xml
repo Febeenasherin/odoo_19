@@ -3,7 +3,7 @@
     <t t-name="pos_sale.Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
         <xpath expr="//small[hasclass('attribute-line fst-italic')]" position="after"><br/>
 
-           <span class="attribute-line fst-italic">
+           <span class="attribute-line fst-italic" t-if="props.line.product_id.brand">
                Brand: <t t-esc="props.line.product_id.brand"/>
            </span><br/>
 

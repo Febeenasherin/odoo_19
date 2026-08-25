@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--<odoo>-->
+<!--<record id="product_product_form" model="ir.ui.view">-->
+<!--  <field name="name">product_product.form.inherit</field>-->
+<!--  <field name="model">product.product</field>-->
+<!--  <field name="inherit_id" ref="product.product_normal_form_view"/>-->
+<!--  <field name="arch" type="xml">-->
+<!--      <field name="default_code" position="after">-->
+<!--          <field name='quality_level' widget='RangeSliderField' min='5' max='15'/>-->
+<!--      </field>-->
+<!--  </field>-->
+<!--</record>-->
+<!--</odoo>-->
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<odoo>
+    <!--    form-->
+    <record id="slider_widget_view_form" model="ir.ui.view">
+        <field name="name">slider.widget.form</field>
+        <field name="model">slider.widget</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+
+                    <group>
+
+                <field name='slider' widget='RangeSliderField' min='5' max='15'/>
+
+
+
+                         </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <!--    list-->
+    <record  id="slider_widget_list" model="ir.ui.view">
+        <field name="name">slider.widget.list</field>
+        <field name="model">slider.widget</field>
+        <field name="arch" type="xml">
+
+            <list>
+<!--                    <field name="name"/>-->
+                    <field name="slider"/>
+
+
+            </list>
+        </field>
+    </record>
+
+    <record id="slider_widget_action"  model="ir.actions.act_window">
+        <field name="name">Widget</field>
+        <field name="res_model">slider.widget</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="view_content">
+                no record found.
+            </p>
+        </field>
+        </record>
+</odoo>
