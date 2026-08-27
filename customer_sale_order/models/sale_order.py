@@ -15,7 +15,7 @@ class SalesOrder(models.Model):
 
         for line in self.order_line:
 
-            vendor = line.product_id.seller_ids[0].partner_id
+            vendor = line.product_id.seller_ids[:1].partner_id
             print("vendor", vendor)
 
 
@@ -37,6 +37,10 @@ class SalesOrder(models.Model):
 
 
         return super().action_confirm()
+
+
+
+
 
 
 

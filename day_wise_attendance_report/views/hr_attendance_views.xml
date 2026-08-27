@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_attendance.hr_attendance_reporting" model="ir.actions.act_window">
+    <field name="view_mode">list,pivot,graph</field>
+
+    </record>
+
+
+    <record id="hr_attendance.hr_attendance_view_filter" model="ir.ui.view">
+<!--        <search>-->
+<!--            <group>-->
+<!--                <filter string="Date" name="groupby_name" context="{'group_by': 'check_in: datetime.date.today()'}"/>-->
+<!--            </group>-->
+<!--        </search>-->
+    </record>
+</odoo>

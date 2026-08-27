@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--<odoo>-->
-<!--<record id="product_product_form" model="ir.ui.view">-->
-<!--  <field name="name">product_product.form.inherit</field>-->
-<!--  <field name="model">product.product</field>-->
-<!--  <field name="inherit_id" ref="product.product_normal_form_view"/>-->
-<!--  <field name="arch" type="xml">-->
-<!--      <field name="default_code" position="after">-->
-<!--          <field name='quality_level' widget='RangeSliderField' min='5' max='15'/>-->
-<!--      </field>-->
-<!--  </field>-->
-<!--</record>-->
-<!--</odoo>-->
-
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
 <odoo>
     <!--    form-->
     <record id="slider_widget_view_form" model="ir.ui.view">
@@ -26,7 +11,7 @@
 
                     <group>
 
-                <field name='slider' widget='RangeSliderField' min='5' max='15'/>
+                <field name='slider' widget='RangeSliderField' min="5" max="20"/>
 
 
 

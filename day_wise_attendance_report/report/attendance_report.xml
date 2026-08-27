@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="attendance_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center">Daily Attendance Report </h2>
+                    <hr/>
+
+<!--                    <div class="row mb-4">-->
+<!--                        <div class="col-6">-->
+<!--                            <strong>Print Date: </strong>-->
+<!--                            <span t-esc="print_date"/>-->
+<!--                        </div>-->
+<!--                        <div class="col-3" t-if="club_name">-->
+<!--                            <strong>CLUB: </strong>-->
+<!--                            <span t-esc="club_name"/>-->
+<!--                        </div>-->
+
+<!--                        <div class="col-3" t-if="student_name">-->
+<!--                            <strong>Student name: </strong>-->
+<!--                            <span t-esc="student_name"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                     <div class="oe_structure"/>-->
+<!--                    <h6 class="text-left">Student details:</h6>-->
+<!--                    <hr/>-->
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-primary">
+                            <tr>
+                                <th><strong>Sl.no</strong></th>
+                                <th><strong>Name</strong></th>
+                                <th><strong>Check in</strong></th>
+                                <th><strong>Check out</strong></th>
+                                <th><strong>Worked Hours</strong></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="o">
+<!--                                    <t t-if="o.check_in == datetime.date.today()">-->
+                                <tr>
+                                    <td><span t-esc="o_index + 1"/></td>
+                                    <td><span t-field="o.employee_id.name"/></td>
+                                    <td><span t-esc="o.check_in"/></td>
+                                    <td><span t-esc="o.check_out"/></td>
+                                    <td><span t-esc="o.worked_hours"/></td>
+
+                                </tr>
+                            </t>
+<!--                        </t>-->
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+

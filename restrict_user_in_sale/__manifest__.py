@@ -15,7 +15,6 @@
     'depends': ['base', 'sale_management'],
     'data':[
 
-
      ],
 }
 

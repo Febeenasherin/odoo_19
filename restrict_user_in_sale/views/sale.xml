@@ -1,0 +1,14 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--    <record id="view_order_form_inherit_hide_delivery" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.form.inherit.hide.delivery</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            &lt;!&ndash; Target the delivery smart button by its name &ndash;&gt;-->
+<!--            <xpath expr="//button[@name='action_view_delivery']" position="attributes">-->
+<!--                <attribute name="invisible">state == 'sale', state == 'draft'</attribute>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
