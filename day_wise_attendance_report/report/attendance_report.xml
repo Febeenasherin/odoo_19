@@ -11,7 +11,7 @@
 <!--                    <div class="row mb-4">-->
 <!--                        <div class="col-6">-->
 <!--                            <strong>Print Date: </strong>-->
-<!--                            <span t-esc="print_date"/>-->
+<!--                            <span t-esc="date.today()"/>-->
 <!--                        </div>-->
 <!--                        <div class="col-3" t-if="club_name">-->
 <!--                            <strong>CLUB: </strong>-->
