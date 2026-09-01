@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="import_data" name="import" parent="purchase.menu_purchase_root" sequence="5"/>
+</odoo>
