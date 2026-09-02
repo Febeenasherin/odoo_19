@@ -14,8 +14,9 @@
     'auto_install': False,
     'depends': ['base', 'purchase'],
     'data':[
-
-        "/home/cybrosys/odoo-19/custom/fetch_purchase_order/views/purchase_order_menu.xml",
+        "security/ir.model.access.csv",
+        "wizard/purchase_migraton_wizard_views.xml",
+        "/home/cybrosys/odoo-19/custom/fetch_purchase_order/views/purchase_order_views.xml",
      ],
 }
 

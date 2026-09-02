@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   <record id="import_data_wizard" model="ir.ui.view">
+       <field name="name">purchase.migration.wizard.import</field>
+       <field name="model">purchase.migration.wizard</field>
+       <field name="arch" type="xml">
+           <form string="Import Purchase order">
+               <group>
+                   <group>
+                       <field name="url"/>
+                       <field name="database"/>
+                       <field name="username"/>
+                       <field name="password"/>
+                   </group>
+               </group>
+               <footer>
+                   <button
+                        name="import_purchase_order_action"
+                       string="Import"
+                       type="object"
+                       class="btn-primary"
+                   />
+               </footer>
+           </form>
+       </field>
+   </record>
+   <record id="import_data_action" model="ir.actions.act_window">
+       <field name="name">Import Excel</field>
+       <field name="res_model">purchase.migration.wizard</field>
+       <field name="view_mode">form</field>
+       <field name="view_id" ref="import_data_wizard"/>
+       <field name="target">new</field>
+   </record>
+   <menuitem id="import_data_menu"
+       name="Import"
+       action="import_data_action"
+       parent="purchase.menu_purchase_root"
+       />
+</odoo>
