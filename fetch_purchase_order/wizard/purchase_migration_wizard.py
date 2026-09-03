@@ -44,7 +44,7 @@ class PurchaseMigrationWizard(models.TransientModel):
 
         purchase_order = models.execute_kw(self.database, uid, self.password, 'purchase.order', 'search_read',
                                            [[]], {
-                                        'fields' : ['id', 'name', 'partner_id', 'date_order', 'amount_total' , 'order_line']
+                                        'fields' : ['id', 'name', 'partner_id', 'date_order', 'amount_total' , 'order_line',]
                                          })
 
         print("order:", purchase_order)
@@ -85,9 +85,11 @@ class PurchaseMigrationWizard(models.TransientModel):
             print(partner,"partner_id")
 
             if partner:
-                vendor_name = partner[0]
+                vendor_name = partner[1]
                 print(id(vendor_name))
 
+                currnt_pro = self.env['product.product'].search([('name', '=', vendor_name)], limit=1)
+                print("current", currnt_pro)
 
 
                 order = self.env['purchase.order'].create({
@@ -108,19 +110,29 @@ class PurchaseMigrationWizard(models.TransientModel):
             # #
             # #
             # #
-            line = models.execute_kw(self.database, uid, self.password, 'purchase.order.line', 'read',
+            orders = models.execute_kw(self.database, uid, self.password, 'purchase.order.line', 'read',
                                            [line_ids], {
                                                'fields': ['product_id', 'product_qty', 'price_unit', 'price_subtotal',]
                                            })
-            # print("orderline", line)
-            # for lines in line:
-            #     liness = self.env['purchase.migration.line'].create({
-            #     'product' : lines.get('product_id'),
-            #     'quantity' : lines.get('product_qty'),
-            #         'unit_price': lines.get('price_unit'),
-            #         'amount' : lines.get('amount_total'),})
-            #
-            #     print("lines", liness)
+            print("orderline",orders)
+            for line in orders:
+                print("line",line)
+                product = line.get('product_id')
+                print(product,"product")
+
+
+                if product:
+                    pro = product[1]
+                    print("name", pro)
+                    # prod = product[1]
+                    liness = self.env['purchase.order.line'].create({
+                        'order_id': order.id,
+                        'product_id' : pro,
+                        'product_qty' : line.get('product_qty'),
+                        'price_unit': line.get('price_unit'),
+                        'price_subtotal' : line.get('amount_total'),})
+
+                    print("lines", liness)
 
 
 
