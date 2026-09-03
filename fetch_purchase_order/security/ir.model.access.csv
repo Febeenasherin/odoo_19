@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 fetch_purchase_order.access_purchase_migration_wizard,access_purchase_migration_wizard,fetch_purchase_order.model_purchase_migration_wizard,base.group_user,1,1,1,1
+
+
+fetch_purchase_order.access_purchase_migration,access_purchase_migration,fetch_purchase_order.model_purchase_migration,base.group_user,1,1,1,1
+fetch_purchase_order.access_purchase_migration_line,access_purchase_migration_line,fetch_purchase_order.model_purchase_migration_line,base.group_user,1,1,1,1

@@ -46,8 +46,8 @@ class MrpProductionExt(models.Model):
         for line in self.bom_id.bom_line_ids:
             print("line", line.product_id.id)
 
-            if not self.bom_id.bom_line_ids:
-                raise ValidationError("Bom line not available")
+            # if not self.bom_id.bom_line_ids:
+            #     raise ValidationError("Bom line not available")
 
             quantity = line.product_qty * self.quantity
             print("quantity", quantity)

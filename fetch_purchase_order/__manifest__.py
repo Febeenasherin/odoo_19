@@ -15,8 +15,9 @@
     'depends': ['base', 'purchase'],
     'data':[
         "security/ir.model.access.csv",
-        "wizard/purchase_migraton_wizard_views.xml",
-        "/home/cybrosys/odoo-19/custom/fetch_purchase_order/views/purchase_order_views.xml",
+        "views/purchase_migraton_wizard_views.xml",
+        "views/purchase_order_views.xml",
+        "views/purchase_migration_line_views.xml",
      ],
 }
 
