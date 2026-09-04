@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
-from psycopg2._psycopg import cursor
-
 from odoo import fields, models, api
 import xmlrpc.client
-import ssl
-import requests
-
-
 from odoo.exceptions import ValidationError
 
 
@@ -50,108 +44,76 @@ class PurchaseMigrationWizard(models.TransientModel):
         print("order:", purchase_order)
         print(f"Fetched {len(purchase_order)} customers from Odoo 16")
 
-
-        #19
-
-        # url_dest = "http://localhost:8019"
-        # db_dest = "aug19"
-        # user_dest = "1"
-        # pwd_dest = "1"
-        # common_dest = xmlrpc.client.ServerProxy(f"{url_dest}/xmlrpc/2/common")
-        # uid_dest = common_dest.authenticate(db_dest, user_dest, pwd_dest, {})
-        # models_dest = xmlrpc.client.ServerProxy(f"{url_dest}/xmlrpc/2/object")
-
-        # models_dest.execute_kw(db_dest, uid_dest, pwd_dest, 'purchase.order', 'create',)
-
-        # self.env['purchase.migration'].search([]).unlink()
-
         for record in purchase_order:
             print(record,"rec")
-            # partner = record.get('partner_id')
-            # name = partner[1]
+
+            ref = record.get('id')
+            purchase = self.env['purchase.order'].search([('purchase_no', '=', ref)])
+            print(purchase)
+
+            if not purchase:
+
+                partner = record.get('partner_id')
+                print(partner,"partner_id")
+
+                if partner:
+                    vendor_name = partner[1]
+                    print(id(vendor_name))
+
+                    select_vendor = self.env['res.partner'].search([('name', '=', vendor_name)], limit=1)
+                    print("current",select_vendor)
 
 
-            # new = {
-            #     'name': record.get('name'),
-            #                 'partner_id': name,
-            #                 'date_order': record.get('date_order'),
-            #                 'amount_total': record.get('amount_total'),
-            #             }
-            #
-            # models_dest.execute_kw(db_dest, uid_dest, pwd_dest, 'purchase.order', 'create', [new])
+                    order = self.env['purchase.order'].create({
+                        'purchase_no': record.get('id'),
+                        'name': record.get('name'),
+                        'partner_id': select_vendor.id,
+                        'date_order': record.get('date_order'),
+                        'amount_total': record.get('amount_total'),
+                    })
 
-
-            partner = record.get('partner_id')
-            print(partner,"partner_id")
-
-            if partner:
-                vendor_name = partner[1]
-                print(id(vendor_name))
-
-                currnt_pro = self.env['product.product'].search([('name', '=', vendor_name)], limit=1)
-                print("current", currnt_pro)
-
-
-                order = self.env['purchase.order'].create({
-                    # 'old_id': record.get('id'),
-                    'name': record.get('name'),
-                    'partner_id': vendor_name,
-                    'date_order': record.get('date_order'),
-                    'amount_total': record.get('amount_total'),
-                })
-
-            print(order)
+                print(order)
 
 
 
-        # order line
+            # order line
 
-            line_ids = record.get('order_line')
-            # #
-            # #
-            # #
-            orders = models.execute_kw(self.database, uid, self.password, 'purchase.order.line', 'read',
-                                           [line_ids], {
-                                               'fields': ['product_id', 'product_qty', 'price_unit', 'price_subtotal',]
-                                           })
-            print("orderline",orders)
-            for line in orders:
-                print("line",line)
-                product = line.get('product_id')
-                print(product,"product")
-
-
-                if product:
-                    pro = product[1]
-                    print("name", pro)
-                    # prod = product[1]
-                    liness = self.env['purchase.order.line'].create({
-                        'order_id': order.id,
-                        'product_id' : pro,
-                        'product_qty' : line.get('product_qty'),
-                        'price_unit': line.get('price_unit'),
-                        'price_subtotal' : line.get('amount_total'),})
-
-                    print("lines", liness)
+                line_ids = record.get('order_line')
+                # #
+                # #
+                # #
+                orders = models.execute_kw(self.database, uid, self.password, 'purchase.order.line', 'read',
+                                               [line_ids], {
+                                                   'fields': ['product_id', 'product_qty', 'price_unit', 'price_subtotal',]
+                                               })
+                print("orderline",orders)
+                for line in orders:
+                    print("line",line)
+                    product = line.get('product_id')
+                    print(product,"product")
 
 
+                    if product:
+                        pro = product[1]
+                        print("name", pro)
+                        select_products = self.env['product.product'].search([('name', '=', pro)], limit=1)
+                        print("select pro",select_products)
 
-            #
-            # return {
-            #     'type': 'ir.actions.act_window',
-            #     'name': 'po order',
-            #     'res_model': 'purchase.migration.line',
-            #     'view_mode': 'list',
-            #     'target': 'current',
-            # }
+                        # prod = product[1]
+                        liness = self.env['purchase.order.line'].create({
+                            'order_id': order.id,
+                            'product_id' : select_products.id,
+                            'product_qty' : line.get('product_qty'),
+                            'price_unit': line.get('price_unit'),
+                            'price_subtotal' : line.get('amount_total'),})
 
-
+                        print("lines", liness)
 
         return {
-                'type': 'ir.actions.act_window',
-                'name': 'po order',
-                'res_model': 'purchase.order',
-                'view_mode': 'list,form',
-                'target': 'current',
-            }
+                    'type': 'ir.actions.act_window',
+                    'name': 'po order',
+                    'res_model': 'purchase.order',
+                    'view_mode': 'list,form',
+                    'target': 'current',
+                }
 

@@ -17,7 +17,7 @@
         "security/ir.model.access.csv",
         "views/purchase_migraton_wizard_views.xml",
         "views/purchase_order_views.xml",
-        "views/purchase_migration_line_views.xml",
+
      ],
 }
 

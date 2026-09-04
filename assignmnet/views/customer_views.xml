@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record  id="line_view_list" model="ir.ui.view">
+        <field name="name">production.line.list</field>
+        <field name="model">customer.pricing.line</field>
+        <field name="arch" type="xml">
+            <list>
+                        <field name="prod_id"/>
+                        <field name="customer_id"/>
+                        <field name="unit_price"/>
+                        <field name="quantity"/>
+
+
+
+
+            </list>
+        </field>
+    </record>
+
+    <record id="production_action"  model="ir.actions.act_window">
+        <field name="name">production line</field>
+        <field name="res_model">customer.pricing.line</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="view_content">
+                no record found.
+            </p>
+        </field>
+        </record>
+</odoo>

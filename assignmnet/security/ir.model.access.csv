@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+assignmnet.access_customer_pricing_line,access_customer_pricing_line,assignmnet.model_customer_pricing_line,base.group_user,1,1,1,1

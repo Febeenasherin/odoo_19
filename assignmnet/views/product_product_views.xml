@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_form_inherit" model="ir.ui.view">
+
+        <field name="name">product.form.sale.count</field>
+
+        <field name="model">product.product</field>
+
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+
+        <field name="arch" type="xml">
+
+           <xpath expr="//field[@name='default_code']" position="after">
+
+                <field name="approve"/>
+
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+
+    <record id="product_customer" model="ir.ui.view">
+
+    <field name="name">partner.customer.inherit</field>
+
+    <field name="model">product.product</field>
+
+    <field name="inherit_id" ref="product.product_normal_form_view"/>
+
+    <field name="arch" type="xml">
+
+
+       <xpath expr="//notebook" position="inside">
+
+
+           <page string="Customer pricing" name="Customer pricing">
+
+<!--               <list name="price">-->
+                   <field name="pricing_ids">
+                   <list editable="bottom">
+
+                               <field name="customer_id"/>
+                               <field name="unit_price"/>
+                                <field name="quantity"/>
+
+                   </list>
+                   </field>
+
+           </page>
+
+
+        </xpath>
+
+    </field>
+
+</record>
+</odoo>
+
+
+
