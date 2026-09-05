@@ -57,7 +57,7 @@
                         <field name="request_type"/>
                         <field name="vendor_ids" widget="many2many_tags"
                         invisible="request_type == 'internal transfer'"/>
-                        <field name="source_id" invisible="request_type == 'purchase order'"/>
+               `         <field name="source_id" invisible="request_type == 'purchase order'"/>
                         <field name="destination_id" invisible="request_type == 'purchase order'"/>
                                     </list>
                                 </field>

@@ -10,19 +10,15 @@
     'application': False,
     'installable': True,
     'auto_install': True,
-    'depends': ['web'],
-    'data':[
-
-
-
-   ],
-
-    # 'assets': {
-    #         'web.assets_backend': [
-    #             "weather_notification/statics/src/js/systras_icon.js",
-    #             "weather_notification/statics/src/xml/systras_icon.xml",
+    'depends': ['base','sale_management','purchase','web'],
+    # 'data':[
     #
+    #         ],
+    'assets': {
+            'web.assets_backend': [
 
-    #     ],
-    # }xml
+                # "weather_notification/statics/src/xml/systray_icon.xml",
+                # "weather_notification/statics/src/js/systray_icon.js",
+        ],
+    },
 }

@@ -1,0 +1,24 @@
+<!--&lt;!&ndash;<?xml version="1.0" encoding="utf-8"?>&ndash;&gt;-->
+<!--&lt;!&ndash;<odoo>&ndash;&gt;-->
+<!--    <record id="view_users_form_inherit_recently_viewed" model="ir.ui.view">-->
+<!--        <field name="name">res.users.form.recently.viewed</field>-->
+<!--        <field name="model">res.users</field>-->
+<!--        <field name="inherit_id" ref="base.view_users_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//notebook/page[last()]" position="after">-->
+<!--                <page name="recently_viewed_history" string="Recently Viewed History">-->
+<!--                    <field name="recently_viewed_ids" readonly="1">-->
+<!--                        <list create="0" delete="1" edit="0">-->
+<!--                            <field name="access_date" string="Visited Date"/>-->
+<!--                            <field name="model_description" string="Model"/>-->
+<!--                            <field name="res_name" string="Record Name"/>-->
+<!--                            <field name="res_model" string="Model Tech Name" optional="hide"/>-->
+<!--                            <field name="res_id" string="Record ID" optional="hide"/>-->
+<!--                            <button name="action_open_record" type="object" string="Open Record" icon="fa-external-link" class="btn-secondary btn-sm"/>-->
+<!--                        </list>-->
+<!--                    </field>-->
+<!--                </page>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--</odoo>-->
