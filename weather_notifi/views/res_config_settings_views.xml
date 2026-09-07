@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <!-- Config Settings Inherit -->
+   <record id="res_config_settings_inherit_weather" model="ir.ui.view">
+       <field name="name">res.config.settings.view.form.inherit.wether</field>
+       <field name="model">res.config.settings</field>
+       <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+       <field name="arch" type="xml">
+            <xpath expr="//block[@name='integration']" position="inside">
+<!--                <block title="Cloud Storage" name="cloud_storage">-->
+                    <setting id="Weather_notifications" >
+                        <field name="weather_notification"/>
+                        <div class="mt16 row">
+                            <label for="api_key" class="col-3 o_light_label" invisible="not weather_notification"/>
+                        <field name="api_key" invisible="not weather_notification"/>
+
+                    </div>
+                        <div class="mt17 row">
+                            <label for="city" class="col-3 o_light_label" invisible="not weather_notification"/>
+                        <field name="city" invisible="not weather_notification"/>
+
+                    </div>
+
+                    </setting>
+<!--                    <setting string="Minimum File Size"-->
+<!--                             help="Minimum size for attachments to be stored in the cloud storage">-->
+<!--                        <field name="cloud_storage_min_file_size_mb"/><span>MB</span>-->
+<!--                    </setting>-->
+<!--                </block>-->
+            </xpath>
+       </field>
+   </record>
+</odoo>

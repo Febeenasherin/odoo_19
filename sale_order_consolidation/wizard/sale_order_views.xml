@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <record id="view_sale_order_inherit_dominating" model="ir.ui.view">
+       <field name="name">sale.order.form.inherit.dominating</field>
+       <field name="model">sale.order</field>
+       <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+       <field name="arch" type="xml">
+           <xpath expr="//button[@class='btn-secondary']" position="after">
+               <button class="btn-secondary btn" string="Dominating" type="object" name="action_order_sale"/>
+           </xpath>
+       </field>
+   </record>
+</odoo>

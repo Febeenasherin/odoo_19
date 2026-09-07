@@ -20,16 +20,14 @@ Key Features:
     "images": ["static/description/banner.png"],
     "depends": ["base", "web"],
     "data": [
-        # "security/ir.model.access.csv",
-        # "security/ir_recent_record_rule.xml",
-        # "views/res_users_views.xml",
+            "views/res_config_settings_views.xml",
     ],
     "assets": {
         "web.assets_backend": [
-            # "micra_recently_viewed_basic/static/src/css/recently_viewed.css",
+
             "weather_notifi/static/src/xml/recently_viewed_systray.xml",
             "weather_notifi/static/src/js/recently_viewed_systray.js",
-            # "micra_recently_viewed_basic/static/src/js/form_controller_patch.js",
+
         ],
     },
     "installable": True,

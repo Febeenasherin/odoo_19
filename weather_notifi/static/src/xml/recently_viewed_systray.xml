@@ -8,17 +8,25 @@
                          <i id='create_order'
                             class="fa fa-cloud"
                             style="color: white; margin-bottom:10px; padding:13px;"
-                            role="img" aria-label=" Weather Notification"/>
+                            role="img" aria-label=" Weather Notification" t-on-click="shownotification"/>
                      </div>
                  </div>
              </div>
           <t t-set-slot="content">
-              <DropdownItem onSelected="() => this._openSaleModel()">
-                  Sale Orders
+              <DropdownItem>
+<!--                  <div class="card mb-2">-->
+                  <div class="card-body py-2" style="color: blue;">
+                      <h3>Weather Notification</h3><br/>
+                      <p>Date: <t t-esc="state.day"/></p>
+                      <img t-att-src="state.icon"/>
+                      <p> <t t-esc="state.weather"/></p>
+                      <p>Location: <t t-esc="state.name"/> </p>
+                      <p>Temperature: <t t-esc="state.temp"/></p>
+                  </div>
+<!--                  </div>-->
+
               </DropdownItem>
-              <DropdownItem onSelected="() => this._openPurchaseModel()">
-                  Purchase Orders
-              </DropdownItem>
+
           </t>
       </Dropdown>
   </t>

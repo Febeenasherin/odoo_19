@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+ <record id="action_sale_order_creation" model="ir.actions.server">
+        <field name="name">Dominating</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">record._action_record()</field>
+
+    </record>
+
+
+</odoo>
+

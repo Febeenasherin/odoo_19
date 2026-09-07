@@ -1,3 +1,4 @@
-from . import ir_recent_record
-from . import res_users
+
+from . import  weather_notificatioon
+from . import res_config_settings
 
