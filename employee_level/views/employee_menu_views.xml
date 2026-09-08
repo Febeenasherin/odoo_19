@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="employee_level" name="Employee level"/>
+    <menuitem id="employee_level_inherit" name="Employee Level" action="employee_level_action" parent="hr.menu_human_resources_configuration"/>
+</odoo>

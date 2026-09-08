@@ -6,17 +6,19 @@ class MrpProductionExt(models.Model):
     _name = 'mrp.production.ext'
 
     name = fields.Char(string='name')
-    product_id = fields.Many2one(comodel_name='product.product', compute='_compute_product_id', readonly=False,)
-    bom_id = fields.Many2one(comodel_name='mrp.bom', )
+    product_id = fields.Many2one(comodel_name='product.product', readonly=False,)
+    bom_id = fields.Many2one(comodel_name='mrp.bom',required=True)
     planned_date = fields.Date(string="Planned Date")
     quantity = fields.Float(string="Quantity")
     state = fields.Selection([
-        ('draft', 'Draft'),('done', 'Done'),
+        ('draft', 'Draft'),('confirm', 'Confirm'),('in progress', 'In progress'),('done', 'Done'),('cancel', 'Cancel'),
 
 
-    ])
+    ], default='draft')
     bom_component = fields.Char(string='Bom Component')
     material_line_ids = fields.One2many(comodel_name='mrp.production.material.line', inverse_name='production_id')
+
+
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -42,6 +44,8 @@ class MrpProductionExt(models.Model):
         values = []
 
 
+        # if self.product_id not in self.bom_id.product_id:
+        #     raise ValidationError("Product dont have bom")
 
         for line in self.bom_id.bom_line_ids:
             print("line", line.product_id.id)
@@ -60,6 +64,34 @@ class MrpProductionExt(models.Model):
             self.material_line_ids = values
 
             print(values)
+
+
+    def action_confirm_button(self):
+        print("d")
+
+        self.state = 'confirm'
+
+
+    def action_in_progress(self):
+
+        if self.material_line_ids.available_qty == 0:
+            raise ValidationError("Material not available")
+
+
+        self.state = 'in progress'
+
+    def action_done(self):
+
+        self.state = 'done'
+
+    def action_cancel(self):
+
+        self.state = 'cancel'
+
+    def action_consume_material(self):
+        print("button")
+
+
 
     # @api.depends('product_id')
     # def _compute_product_id(self):

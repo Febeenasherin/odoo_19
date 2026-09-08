@@ -32,8 +32,7 @@ class StockWarehouseOrderPoint(models.Model):
                 order.action_replenish()
 
 
-        # product = self.search([('qty_on_hand', '>', 0)])
-        # print("product",product)
+
 
 
 

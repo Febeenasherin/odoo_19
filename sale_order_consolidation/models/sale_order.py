@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models, api
+from odoo.exceptions import ValidationError
 
 
 class SalesOrder(models.Model):
@@ -7,39 +8,28 @@ class SalesOrder(models.Model):
     _inherit = "sale.order"
 
 
-    # @api.model
-    # def sale_quotation(self):
-    #     print("print")
 
 
 
-
-    def action_record(self):
+    def _action_record(self):
         print("jjj")
+        print(self)
 
-        # for order in self:
-        #      draft = order.search([('state', '=', 'draft')])
-        #      print("draft", draft)
-        #      if draft:
-        #         # customer =
-
-
+        partner = []
+        if len(self) <= 1:
+            raise ValidationError("Sales Order cannot be created")
         for order in self:
             print("oder",order)
 
-            orders = self.env['sale.order.wizard'].write({
-                'sale_order_ids': order.ids,
-            })
-
-            print("orders",orders)
-
-            customer = order.partner_id.name
-            print("customer",customer)
-
-            draft = self.search([('state', '=', 'draft')])
+            if order.state != 'draft':
+                raise ValidationError("only select draft orders")
 
 
+            if len(partner) == 0:
+                partner.append(order.partner_id)
 
+            elif partner[0] != order.partner_id:
+                raise ValidationError("partner id is different from order")
 
 
 
@@ -51,6 +41,7 @@ class SalesOrder(models.Model):
                     'name': 'dominating order',
                     'res_model': 'sale.order.wizard',
                     'view_mode': 'form',
-
+                    'context': {'default_sale_order_ids' : self.ids,
+                        'default_partner_id' : partner[0].id,},
                     'target': 'new',
                 }

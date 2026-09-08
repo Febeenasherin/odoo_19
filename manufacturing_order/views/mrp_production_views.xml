@@ -7,29 +7,25 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="state" widget="statusbar" options="{'clickable':0}"/>
-<!--                    <button  name="action_request" type="object" string="Request" class="oe_highlight" invisible ="state !='draft'"-->
-<!--                    groups="material_request.group_material_user"/>-->
-<!--                    <button  name="action_first_approve" type="object" string="First Approve" class="oe_highlight" invisible="state !='requested'"-->
-<!--                    groups="material_request.group_material_manager"/>-->
-<!--                    <button  name="action_second_approve" type="object" string="Second Approve" class="oe_highlight" invisible="state !='first_approval'"-->
-<!--                    groups="material_request.group_material_head"/>-->
-<!--                    <button  name="action_reject" type="object" string="Reject" class="oe_highlight" invisible="state !='first_approval'"-->
-<!--                    groups="material_request.group_material_head"/>-->
+                    <field name="state" widget="statusbar" options="{'clickable':0}" statusbar_visible="draft,confirm,in progress,done,cancel"/>
+                    <button name="action_confirm_button" type="object" string="Confirm" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button  name="action_in_progress" type="object" string="Progress" class="oe_highlight" invisible="state != 'in progress'"/>
+                    <button  name="action_done" type="object" string="Done" class="oe_highlight" invisible="state != 'done'"/>
+                    <button  name="action_cancel" type="object" string="Cancel" class="oe_highlight"/>
 
 
 
                 </header>
                 <sheet>
 
-<!--                    <div class="oe_button_box" name="button_box">-->
-<!--                         <button name="action_open_purchase" type="object" class="oe_stat_button" icon="fa-star">-->
-<!--                                <div class="o_stat_info">-->
+                    <div class="oe_button_box" name="button_box">
+                         <button name="action_consume_material" type="object" class="oe_stat_button" icon="fa-star">
+                                <div class="o_stat_info">
 <!--                                    <field name="purchase_count" class="o_stat_value"/>-->
-<!--                                    <span class="o_stat_text">Purchase Order</span>-->
-<!--                                </div>-->
-<!--                            </button>-->
-<!--                    </div>-->
+                                    <span class="o_stat_text">Consume MMaterial</span>
+                                </div>
+                            </button>
+                    </div>
 <!--                     <div class="oe_button_box" name="button_box">-->
 <!--                         <button name="action_open_internal" type="object" class="oe_stat_button" icon="fa-star">-->
 <!--                                <div class="o_stat_info">-->

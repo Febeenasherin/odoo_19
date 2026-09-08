@@ -6,7 +6,7 @@
        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
        <field name="arch" type="xml">
            <xpath expr="//button[@class='btn-secondary']" position="after">
-               <button class="btn-secondary btn" string="Dominating" type="object" name="action_order_sale"/>
+               <button class="btn-secondary btn" string="Dominating" type="object"/>
            </xpath>
        </field>
    </record>

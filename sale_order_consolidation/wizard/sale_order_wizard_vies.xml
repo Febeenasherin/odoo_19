@@ -7,17 +7,18 @@
            <form string="Import Purchase order">
                <group>
                    <group>
-<!--                       <field name="customer_id"/>-->
-                       <field name="sale_order_ids" widget="many2many_tags"/>
+
+                       <field name="partner_id"/>
+                       <field name="dominating_order_id" domain="[('id', 'in', sale_order_ids)]"/>
+
                    </group>
                </group>
                <footer>
                    <button
-
+                           name="action_merge"
                        string="Import"
                        type="object"
-                       class="btn-primary"
-                   />
+                       class="btn-primary"/>
                </footer>
            </form>
        </field>

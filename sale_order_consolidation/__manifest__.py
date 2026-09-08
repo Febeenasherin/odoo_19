@@ -14,8 +14,9 @@
     'data':[
 
         "/home/cybrosys/odoo-19/custom/sale_order_consolidation/security/ir.model.access.csv",
-            "data/ir_cron_data.xml",
-        # "/home/cybrosys/odoo-19/custom/sale_order_consolidation/views/sale_order_views.xml",
+        "data/ir_cron_data.xml",
+
         "/home/cybrosys/odoo-19/custom/sale_order_consolidation/wizard/sale_order_views.xml",
-    "/home/cybrosys/odoo-19/custom/sale_order_consolidation/wizard/sale_order_wizard_vies.xml",],
+        "/home/cybrosys/odoo-19/custom/sale_order_consolidation/wizard/sale_order_wizard_vies.xml",
+    ],
 }
