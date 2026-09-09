@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   <record id="import_data_wizard_delivery" model="ir.ui.view">
+       <field name="name">sale.order.wizard.delivery</field>
+       <field name="model">sale.order.wizard.delivery</field>
+       <field name="arch" type="xml">
+           <form string="Update delivery">
+               <group>
+                   <group>
+
+                       <field name="new_delivery_date"/>
+                       <field name="reason"/>
+
+
+                   </group>
+               </group>
+               <footer>
+                   <button
+                        name="action_update"
+                       string="Update"
+                       type="object"
+                       class="btn-primary"/>
+               </footer>
+           </form>
+       </field>
+   </record>
+   <record id="import_data_action_delivery" model="ir.actions.act_window">
+       <field name="name">Update</field>
+       <field name="res_model">sale.order.wizard.delivery</field>
+       <field name="view_mode">form</field>
+       <field name="view_id" ref="import_data_wizard_delivery"/>
+       <field name="target">new</field>
+   </record>
+
+</odoo>

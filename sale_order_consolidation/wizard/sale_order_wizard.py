@@ -18,7 +18,7 @@ class SaleOrderWizard(models.TransientModel):
 
 
     def action_merge(self):
-        orders = self.dominating_order_id.id
+        orders = self.dominating_order_id
         partner = self.partner_id.id
         sale_order = self.sale_order_ids
         print("order",orders)
@@ -35,18 +35,48 @@ class SaleOrderWizard(models.TransientModel):
         first_pro = first_order.order_line.mapped("product_id")
         print("first_pro",first_pro)
 
+        others = sale_order - orders
+        print("others",others)
+        count = 0
 
+        for order in others:
+            for line in order.order_line:
+                print("line",line)
+                products = orders.filtered(lambda p: p.order_line.product_id == line.product_id)
+                print("products",products)
+                if products:
+                    orders.order_line.product_uom_qty += line.product_uom_qty
 
-        for order in self:
-            not_choose = order not in orders
-            for line in not_choose:
-                    orders.write({
-                    'order_id': orders,
-                        'order_line': [fields.Command.create({
-                            'product_id': line.product_id.id,
-                            'product_uom_qty': line.product_uom_qty,
-                        })]
+                else :
+                    print("jj")
+                    orders = line.copy({
+                        'order_id' :  self.dominating_order_id.id,
                     })
+                    print("orders",orders)
+                count += 1
+            print("count",count)
+
+
+        return {
+            'name': 'Dominating orders',
+            'type': 'ir.actions.act_window',
+            'res_model': 'sale.order',
+            'view_mode': 'form',
+            'res_id': orders.id,
+            'target': 'current',
+
+        }
+
+        # for order in self:
+        #     not_choose = order not in orders
+        #     for line in not_choose:
+        #             orders.write({
+        #             'order_id': orders,
+        #                 'order_line': [fields.Command.create({
+        #                     'product_id': line.product_id.id,
+        #                     'product_uom_qty': line.product_uom_qty,
+        #                 })]
+        #             })
 
         # for order in sale_order:
         #     print("order",order)

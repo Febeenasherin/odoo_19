@@ -12,8 +12,6 @@ class MrpProductionExt(models.Model):
     quantity = fields.Float(string="Quantity")
     state = fields.Selection([
         ('draft', 'Draft'),('confirm', 'Confirm'),('in progress', 'In progress'),('done', 'Done'),('cancel', 'Cancel'),
-
-
     ], default='draft')
     bom_component = fields.Char(string='Bom Component')
     material_line_ids = fields.One2many(comodel_name='mrp.production.material.line', inverse_name='production_id')

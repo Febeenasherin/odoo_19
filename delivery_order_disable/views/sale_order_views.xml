@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_order_inherit_button" model="ir.ui.view">
+        <field name="name">sale.order.inherit.button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+                    <xpath expr="//header/button[@name='action_confirm']" position="after">
+                        <button  type="object" string="Create Delivery" name="action_delivery" invisible="state not in 'sale'"/>
+                    </xpath>
+
+        </field>
+    </record>
+
+
+<!--        <record id="view_order_form_inherit_hide_delivery" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.form.inherit.hide.delivery</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//button[@name='action_view_delivery']" position="attributes">-->
+<!--                <attribute name="invisible">state in ['sale','draft']</attribute>-->
+<!--&lt;!&ndash;                <attribute name="invisible">stock_picikg_ids and  state == 'draft'</attribute>&ndash;&gt;-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+</odoo>
+
+

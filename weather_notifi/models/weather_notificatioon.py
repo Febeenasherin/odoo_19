@@ -13,10 +13,19 @@ class WeatherNotification(models.Model):
 
         url = "https://api.openweathermap.org/data/2.5/weather?"
 
-        api_key = "ecce2d1d8762057bf306d613724829ab"
+        # api_key = "ecce2d1d8762057bf306d613724829ab"
+
+        api = self.env['res.config.settings'].search([])
+        key = api.api_key
+        city = api.city
+        print(key)
+        print(city)
+
+        if city:
+            url_city = "http://api.openweathermap.org/data/2.5/weather?"
 
         value = {
-            'appid': api_key,
+            'appid': key,
             'units': 'metric',
             'lat' : latitude,
             'lon' : longitude,
