@@ -17,18 +17,7 @@ class SaleOrder(models.Model):
 
 
 
-        # if self.env.context("skip_stoke"):
-        #
-        #     return True
-        #
-        #
-        #
-        # return super(SaleOrder,self)._action_launch_stock_rule()
 
-
-    # def _action_confirm(self):
-    #     self.order_line._action_launch_stock_rule()
-    #     return super(SaleOrder, self)._action_confirm()
 
 
 
@@ -36,19 +25,38 @@ class SaleOrder(models.Model):
         print("gg")
 
 
-        new = self.picking_ids
-        print("new",new)
-        if self.picking_ids:
-            print("hh",self.picking_ids)
-            return self.action_view_delivery()
+        order = self.order_line._action_launch_stock_rule()
+        print("order",order)
+
+        return order
 
 
-        if not self.order_line:
-            raise ValidationError("select product")
 
-        if self.picking_ids:
-            print("hh",self.picking_ids)
-            return self.action_view_delivery()
+
+
+
+
+
+
+
+
+
+
+
+
+        # new = self.picking_ids
+        # print("new",new)
+        # if self.picking_ids:
+        #     print("hh",self.picking_ids)
+        #     return self.action_view_delivery()
+        #
+        #
+        # if not self.order_line:
+        #     raise ValidationError("select product")
+        #
+        # if self.picking_ids:
+        #     print("hh",self.picking_ids)
+        #     return self.action_view_delivery()
         # deliv = super().action_view_delivery
 
         # return self._get_action_view_picking(self.picking_ids)
