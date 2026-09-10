@@ -2,7 +2,7 @@
 from odoo import fields, models, api
 from datetime import date
 
-from odoo.tests import result
+# from odoo.tests import result
 
 
 class MaterialRequestLine(models.Model):

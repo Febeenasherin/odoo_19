@@ -13,7 +13,7 @@
     'depends': ['base', 'contacts', 'sale_management'],
     'data':[
            "views/res_partner_views.xml",
-        '/home/cybrosys/odoo-19/custom/task_two/views/sale_order_views.xml',
+            "views/sale_order_views.xml",
 
     ],
     }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    form-->
+    <record id="mnyhly_weekly_report_view_form" model="ir.ui.view">
+        <field name="name">monthly.weekly.report.form</field>
+        <field name="model">monthly.weekly.sales.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                </header>
+                <sheet>
+                    <group>
+                        <field name="customer_ids" widget="many2many_tags"/>
+                        <field name="sale_team_id"/>
+                        <field name="filter_type"/>
+                        <field name="start_date" invisible="filter_type !='custom'"/>
+                        <field name="end_date" invisible="filter_type !='custom'"/>
+
+                         </group>
+
+                </sheet>
+<!--                 <chatter/>-->
+            </form>
+        </field>
+    </record>
+
+    <record  id="montly_list_viewh" model="ir.ui.view">
+        <field name="name">report.list.view.sale</field>
+        <field name="model">monthly.weekly.sales.report</field>
+        <field name="arch" type="xml">
+
+            <list>
+
+                    <field name="customer_ids"/>
+                        <field name="sale_team_id"/>
+                        <field name="filter_type"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+
+            </list>
+        </field>
+    </record>
+
+    <record id="report_view_action"  model="ir.actions.act_window">
+        <field name="name">Report</field>
+        <field name="res_model">monthly.weekly.sales.report</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="view_content">
+                no record found.
+            </p>
+        </field>
+        </record>
+
+
+
+
+    <menuitem id="report_menu" name="Sale Report" parent="sale.sale_menu_root" action="report_view_action"/>
+</odoo>
