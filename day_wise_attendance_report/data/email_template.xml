@@ -8,8 +8,8 @@
 <!--       <field name="email_to">{{user.email}}</field>-->
        <field name="body_html" type="html">
            <p>Hi>,</p>
-           <p>Please find attached the Daily Attendance report.</p>
-           <p>This report provides an overview working hour of employee</p>
+           <p>Please find attached the  Sale report.</p>
+           <p>Please check that</p>
            <br/>
            <p>Regards,<br/></p>
        </field>

@@ -15,8 +15,13 @@
     'depends': ['base', 'sale_management'],
     'data':[
             "security/ir.model.access.csv",
+
+            "data/email_template.xml",
+            "data/ir_cron_data.xml",
             "views/monthly_weekly_sale_report_views.xml",
-            "/home/cybrosys/odoo-19/custom/monthly_weekly_sales_report/data/ir_cron_data.xml",
+            "report/sale_report_template.xml",
+            "report/ir_action_report.xml"
+            ,
      ],
 }
 

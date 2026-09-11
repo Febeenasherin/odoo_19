@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center">Sale Report </h2>
+                    <hr/>
+                    <t t-foreach="docs" t-as="o">
+                        <div class="row mb-4">
+                        <div class="col-6">
+                            <strong>Name: </strong>
+                            <span t-esc="customer.name"/>
+                        </div>
+                            <div class="col-7">
+                            <strong>Sale Team: </strong>
+                            <span t-esc="o.sale_team_id.name"/>
+                        </div>
+                            <div class="col-3">
+                            <strong>Start Date: </strong>
+                            <span t-esc="start_date"/>
+                        </div>
+                            <div class="col-4">
+                            <strong>End Date: </strong>
+                            <span t-esc="end_date"/>
+                        </div>
+                            <hr/>
+                        </div>
+                        <div class="col-6" >
+                            <strong>Type: </strong>
+                            <span t-esc="o.type"/>
+                        </div>
+
+<!--                        <div class="row mb-4" >-->
+                            <div class="col-6" t-if="o.type=='normal'">
+                            <strong>Sl no: </strong>
+                            <span t-esc="o_index + 1"/>
+
+                            <t t-foreach="sale_orders" t-as="order">
+                               <div class="col-6">
+                            <strong>Order date: </strong>
+                            <span t-esc="order.date_order"/>
+                        </div>
+                                  <div class="col-6">
+                            <strong>Ref no: </strong>
+                            <span t-esc="order.name"/>
+                        </div>
+                                  <div class="col-6">
+                            <strong>Total: </strong>
+                            <span t-esc="order.amount_total"/>
+                        </div>
+
+                                <table class="table table-bordered table-sm">
+                        <thead class="table-primary">
+                            <tr>
+                                <th><strong>Sl.no</strong></th>
+                                <th><strong>Price</strong></th>
+                                <th><strong>Quantity</strong></th>
+                                <th><strong>Sub Total</strong></th>
+                            </tr>
+                        </thead>
+                                <tbody>
+
+                                <tr>
+
+                                        <t t-set="i" t-value="1"/>
+                                        <t t-foreach="order.order_line" t-as="line">
+
+
+                                            <tr  t-foreach="line" t-as="l">
+
+                                                <td><span t-esc="i"/></td>
+                                            <td><span t-esc="l.price_unit"/></td>
+                                            <td><span t-esc="l.product_uom_qty"/></td>
+                                            <td><span t-esc="l.price_subtotal"/></td>
+                                                <t t-set="i" t-value="i+1"/>
+
+
+
+                                        </tr>
+
+
+                                    </t>
+<!--                                    <td><span t-esc="o.check_in"/></td>-->
+<!--                                    <td><span t-esc="o.check_out"/></td>-->
+<!--                                    <td><span t-esc="o.worked_hours"/></td>-->
+
+                                </tr>
+<!--                            </t>-->
+<!--&lt;!&ndash;                        </t>&ndash;&gt;-->
+                        </tbody>
+                    </table>
+
+                            </t>
+
+
+<!--                        </div>-->
+                        </div>
+
+
+
+<!--                     <div class="row mb-4" >-->
+                            <div class="col-6" t-if="o.type=='detailed'">
+                            <strong>Sl no: </strong>
+                            <span t-esc="o_index + 1"/>
+
+                            <t t-foreach="sale_orders" t-as="order">
+                               <div class="col-6">
+                            <strong>Order date: </strong>
+                            <span t-esc="order.date_order"/>
+                        </div>
+                                  <div class="col-6">
+                            <strong>Ref no: </strong>
+                            <span t-esc="order.name"/>
+                        </div>
+                                  <div class="col-6">
+                            <strong>Total: </strong>
+                            <span t-esc="order.amount_total"/>
+                        </div>
+
+                                <table class="table table-bordered table-sm">
+                        <thead class="table-primary">
+                            <tr>
+                                <th><strong>Sl.no</strong></th>
+                                <th><strong>Product</strong></th>
+                                <th><strong>Price</strong></th>
+                                <th><strong>Quantity</strong></th>
+                                <th><strong>Sub Total</strong></th>
+                            </tr>
+                        </thead>
+                                <tbody>
+<!--                            <t t-foreach="sale_orders" t-as="order">-->
+<!--&lt;!&ndash;                                    <t t-if="o.check_in == datetime.date.today()">&ndash;&gt;-->
+                                <tr>
+
+
+                                        <t t-set="i" t-value="1"/>
+                                        <t t-foreach="order.order_line" t-as="line">
+
+
+                                            <tr  t-foreach="line" t-as="l">
+<!--                                                <span t-esc="i"/>-->
+
+
+<!--                                            <td><span t-esc="l.product_id.name"/></td>-->
+                                                <td><span t-esc="i"/></td>
+                                                  <td><span t-esc="l.product_id.name"/></td>-->
+                                            <td><span t-esc="l.price_unit"/></td>
+                                            <td><span t-esc="l.product_uom_qty"/></td>
+                                            <td><span t-esc="l.price_subtotal"/></td>
+                                                <t t-set="i" t-value="i+1"/>
+
+
+
+                                        </tr>
+
+
+                                    </t>
+<!--                                    <td><span t-esc="o.check_in"/></td>-->
+<!--                                    <td><span t-esc="o.check_out"/></td>-->
+<!--                                    <td><span t-esc="o.worked_hours"/></td>-->
+
+                                </tr>
+<!--                            </t>-->
+<!--&lt;!&ndash;                        </t>&ndash;&gt;-->
+                        </tbody>
+                    </table>
+
+                            </t>
+
+
+                        </div>
+<!--                        </div>-->
+
+                    </t>
+
+
+
+
+
+
+
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+
