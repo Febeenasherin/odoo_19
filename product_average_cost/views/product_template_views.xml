@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-   <record id="view_product_template_inherit" model="ir.ui.view">
-       <field name="name">product.template.form.inherit</field>
-       <field name="model">product.template</field>
-       <field name="inherit_id" ref="product.product_template_only_form_view"/>
-       <field name="arch" type="xml">
+<!--   <record id="view_product_template_inherit" model="ir.ui.view">-->
+<!--       <field name="name">product.template.form.inherit</field>-->
+<!--       <field name="model">product.template</field>-->
+<!--       <field name="inherit_id" ref="product.product_template_only_form_view"/>-->
+<!--       <field name="arch" type="xml">-->
 
-           <xpath expr="//sheet" position="before">
-<!--                <div class="oe_button_box" name="button_box">-->
+<!--           <xpath expr="//sheet" position="before">-->
+<!--&lt;!&ndash;                <div class="oe_button_box" name="button_box">&ndash;&gt;-->
 
-<!--                   <button name="action_sale_order" string="Create Sale Order"-->
-<!--                           type="object"-->
-<!--                           class="oe_highlight"/>-->
+<!--&lt;!&ndash;                   <button name="action_sale_order" string="Create Sale Order"&ndash;&gt;-->
+<!--&lt;!&ndash;                           type="object"&ndash;&gt;-->
+<!--&lt;!&ndash;                           class="oe_highlight"/>&ndash;&gt;-->
 
-<!--               </div>-->
+<!--&lt;!&ndash;               </div>&ndash;&gt;-->
 
-           </xpath>
-       </field>
-   </record>
+<!--           </xpath>-->
+<!--       </field>-->
+<!--   </record>-->
 </odoo>

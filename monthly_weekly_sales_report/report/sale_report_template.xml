@@ -32,7 +32,6 @@
                             <span t-esc="o.type"/>
                         </div>
 
-<!--                        <div class="row mb-4" >-->
                             <div class="col-6" t-if="o.type=='normal'">
                             <strong>Sl no: </strong>
                             <span t-esc="o_index + 1"/>
@@ -82,20 +81,16 @@
 
 
                                     </t>
-<!--                                    <td><span t-esc="o.check_in"/></td>-->
-<!--                                    <td><span t-esc="o.check_out"/></td>-->
-<!--                                    <td><span t-esc="o.worked_hours"/></td>-->
+
 
                                 </tr>
-<!--                            </t>-->
-<!--&lt;!&ndash;                        </t>&ndash;&gt;-->
+
                         </tbody>
                     </table>
 
                             </t>
 
 
-<!--                        </div>-->
                         </div>
 
 
@@ -130,8 +125,7 @@
                             </tr>
                         </thead>
                                 <tbody>
-<!--                            <t t-foreach="sale_orders" t-as="order">-->
-<!--&lt;!&ndash;                                    <t t-if="o.check_in == datetime.date.today()">&ndash;&gt;-->
+
                                 <tr>
 
 
@@ -140,10 +134,7 @@
 
 
                                             <tr  t-foreach="line" t-as="l">
-<!--                                                <span t-esc="i"/>-->
 
-
-<!--                                            <td><span t-esc="l.product_id.name"/></td>-->
                                                 <td><span t-esc="i"/></td>
                                                   <td><span t-esc="l.product_id.name"/></td>-->
                                             <td><span t-esc="l.price_unit"/></td>
@@ -157,13 +148,10 @@
 
 
                                     </t>
-<!--                                    <td><span t-esc="o.check_in"/></td>-->
-<!--                                    <td><span t-esc="o.check_out"/></td>-->
-<!--                                    <td><span t-esc="o.worked_hours"/></td>-->
+
 
                                 </tr>
-<!--                            </t>-->
-<!--&lt;!&ndash;                        </t>&ndash;&gt;-->
+
                         </tbody>
                     </table>
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "product_average_cost",
+    'name': "restrict_delete_product",
     'version': "19.0.1.0.0",
     'license':"LGPL-3",
     'author': "Cybrosys Techno Solutions",
@@ -11,13 +11,11 @@
     'application': False,
     'installable': True,
     'auto_install': False,
-    'depends': ['base', 'purchase', 'sale'],
+    'depends': ['base', 'sale_management'],
     'data':[
-        "views/product_product_views.xml",
-        # "views/product_template_views.xml",
-        "views/product_average_cost_menu.xml",
-        "wizard/sale_order_wizard_views.xml",
+                "data/sequence.xml",
 
+                "views/product_category_views.xml",
 
     ],
 }
