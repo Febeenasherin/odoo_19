@@ -13,10 +13,7 @@
     'auto_install': False,
     'depends': ['base', 'sale_management'],
     'data':[
-                "data/sequence.xml",
-
-                "views/product_category_views.xml",
-
-    ],
+            "views/product_category_views.xml",
+     ],
 }
 

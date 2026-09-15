@@ -10,3 +10,4 @@ class ProductProduct(models.Model):
 
 
     prefix_val = fields.Char(string="Prefix")
+    sequence_id = fields.Many2one('ir.sequence', string="Sequence",copy=False, readonly=True)
