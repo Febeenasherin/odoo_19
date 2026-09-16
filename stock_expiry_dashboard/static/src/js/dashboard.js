@@ -1,19 +1,41 @@
 /** @odoo-module **/
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { Component } from  "@odoo/owl";
-const actionRegistry = registry.category("actions");
-class CrmDashboard extends Component {
-  setup() {
+import { Component, onWillStart } from  "@odoo/owl";
+
+
+
+// const actionRegistry = registry.category("actions");
+class Expirydashboard extends Component {
+    setup() {
         super.setup();
         this.orm = useService('orm');
-        this._fetch_data();
-  }
-  async _fetch_data(){
-     let result = await this.orm.call("stock.expiry", "stock_expiration", [], {});
-     document.getElementById('count_expiry').innerHTML = `<span>${result.total_count}</span>`;
+        this.action = useService("action");
+        this.data = {};
 
-  }
+
+        onWillStart(async () => {
+            this.data = await this.orm.call("stock.expiry", "stock_expiration", [], {});
+
+
+        })
+    }
+
+    openexpired() {
+        this.action.doAction({
+            name: 'lot expiry',
+            type: "ir.actions.act_window",
+            res_model: 'stock.lot',
+            views: [
+                [false, "list"],
+                [false, "form"],
+            ],
+            // domain: [["id", "in", ids]],
+            // context: context,
+        });
+    }
 }
-CrmDashboard.template = "my_module.CrmDashboard";
-actionRegistry.add("crm_dashboard_tag", CrmDashboard);
+// }
+Expirydashboard.template = "stock_expiry.Dashboard";
+registry.category('actions').add('stock_expiry',Expirydashboard);
+// registry.category("views").add("stock_dashboard_kanban", Expirydashboard);

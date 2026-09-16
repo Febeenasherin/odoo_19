@@ -13,13 +13,14 @@
     'depends': ['base', 'stock'],
     'data':[
                 "security/ir.model.access.csv",
-                "views/stock_expiry_views.xml",
+                # "views/stock_expiry_views.xml",
+                "views/dashboard_views.xml",
     ],
 
-#     'assets': {
-#         'web.assets_backend': [
-#                     "stock_expiry_dashboard/static/src/js/dashboard.js",
-#                     "stock_expiry_dashboard/static/src/xml/dashboard.xml",
-#    ],
-# },
+    'assets': {
+        'web.assets_backend': [
+                    "stock_expiry_dashboard/static/src/js/dashboard.js",
+                    "stock_expiry_dashboard/static/src/xml/dashboard.xml",
+   ],
+},
     }
