@@ -14,7 +14,10 @@
     'auto_install': False,
     'depends': ['base', 'purchase','account'],
     'data':[
+
+            "security/group_rule.xml",
             "views/account_move_views.xml",
+
      ],
 }
 

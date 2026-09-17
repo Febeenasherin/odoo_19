@@ -7,20 +7,47 @@
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='state']" position="attributes">
+<!--            <xpath expr="//header" position="inside">-->
+<!--                <field name="approve_state" widget="statusbar" options="{'clickable':0}" statusbar_visible="draft,submitted,finance_approved,cfo_approved,post"/>-->
                 <attribute name="statusbar_visible">draft,submitted,finance_approved,cfo_approved,posted,cancel</attribute>
             </xpath>
 
+
             <xpath expr="//header" position="inside">
                 <button name="action_submitted" type="object" string="Submitted" class="oe_highlight"
-                    groups="account.group_account_user"/>
+                     invisible="state != 'draft' or move_type != 'in_invoice'" groups="account.group_account_user,account.group_account_manager"/>
                 <button  name="action_finance_approve" type="object" string="Finance Approve" class="oe_highlight"
-                   groups="account.group_account_manager"/>
+                   invisible="state != 'submitted'" groups="account.group_account_manager"/>
+                <button  name="action_cfo_approve" type="object" string="Cfo Approve" class="oe_highlight"
+                  invisible="state != 'finance_approved'" groups="multi_step_approval_or_vendor_bills.account_cfo_approver"/>
+
             </xpath>
 
              <xpath expr="//header/button[@name='action_post'][2]" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="invisible">state != 'cfo_approved' or move_type != 'in_invoice'</attribute>
             </xpath>
+
+<!--            <xpath expr="//field[@name='state']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+
 
         </field>
     </record>
+
+<!--    <record id="vendor_bill_payment_view_form" model="ir.ui.view">-->
+<!--        <field name="name">vendor.bill.form.payment</field>-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="inherit_id" ref="account.view_account_payment_form"/>-->
+<!--        <field name="arch" type="xml">-->
+
+
+<!--                        <xpath expr="//field[@name='status_in_payment']" position="attributes">-->
+
+<!--&lt;!&ndash;                <attribute name="statusbar_visible">draft,submitted,finance_approved,cfo_approved,posted,cancel</attribute>&ndash;&gt;-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
 </odoo>

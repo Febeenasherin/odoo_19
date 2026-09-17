@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    form-->
+    <record id="project_task_view_form" model="ir.ui.view">
+        <field name="name">project.template.form</field>
+        <field name="model">project.task.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+                    <button  name="create_project_task" type="object" string="Create project" class="oe_highlight"/>
+
+                </header>
+                <sheet>
+
+                    <h1> <field name="name"/>
+                    </h1>
+                    <group>
+<!--                        <field name="requested_id"/>-->
+                        <field name="project_id"/>
+
+                         </group>
+<!--                         <group>-->
+<!--                        <notebook>-->
+<!--                            <page name="Material information" string="Material information">-->
+<!--                                <field name="request_line_ids">-->
+<!--                                    <list editable="bottom">-->
+
+<!--                        <field name="product_id"/>-->
+<!--                        <field name="product_qty"/>-->
+<!--                        <field name="request_type"/>-->
+<!--                        <field name="vendor_ids" widget="many2many_tags"-->
+<!--                        invisible="request_type == 'internal transfer'"/>-->
+<!--               `         <field name="source_id" invisible="request_type == 'purchase order'"/>-->
+<!--                        <field name="destination_id" invisible="request_type == 'purchase order'"/>-->
+<!--                                    </list>-->
+<!--                                </field>-->
+<!--                            </page>-->
+<!--                        </notebook>-->
+<!--                    </group>-->
+                </sheet>
+<!--                 <chatter/>-->
+            </form>
+        </field>
+    </record>
+    <!--    list-->
+    <record  id="project_task_template_list" model="ir.ui.view">
+        <field name="name">project.template.list</field>
+        <field name="model">project.task.template</field>
+        <field name="arch" type="xml">
+
+            <list>
+<!--                    <field name="name"/>-->
+                    <field name="name"/>
+                    <field name="project_id"/>
+
+            </list>
+        </field>
+    </record>
+
+    <record id="project_task_creation_action"  model="ir.actions.act_window">
+        <field name="name">Project</field>
+        <field name="res_model">project.task.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="view_content">
+                no record found.
+            </p>
+        </field>
+        </record>
+</odoo>
