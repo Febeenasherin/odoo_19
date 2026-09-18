@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    form-->
+    <record id="work_report_view_form" model="ir.ui.view">
+        <field name="name">work.report.form</field>
+        <field name="model">work.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+
+                        <field name="date"/>
+                        <field name="employee_name"/>
+
+                    </group>
+                    <group>
+                        <notebook>
+                            <page name="Report" string="Report">
+                                <field name="report"/>
+
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+<!--                <chatter/>-->
+            </form>
+        </field>
+    </record>
+    <!--    list-->
+    <record  id="work_report_view_list" model="ir.ui.view">
+        <field name="name">work.report.list</field>
+        <field name="model">work.report</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+
+                        <field name="date"/>
+                        <field name="employee_name"/>
+<!--                        <field name="purchase_ids"/>-->
+            </list>
+        </field>
+    </record>
+
+    <record id="work_report_action"  model="ir.actions.act_window">
+        <field name="name">Work report</field>
+        <field name="res_model">work.report</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="view_content">
+                no record found.
+            </p>
+        </field>
+        </record>
+</odoo>

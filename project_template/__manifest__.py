@@ -15,10 +15,13 @@
     'data':[
 
             "security/ir.model.access.csv",
+            "security/group.xml",
             "views/project_template_views.xml",
             "views/project_task_template_views.xml",
             "views/project_task_views.xml",
             "views/project_project_views.xml",
+            "views/project_project_task_views.xml",
+
             "views/project_project_menu.xml",
 
     ],

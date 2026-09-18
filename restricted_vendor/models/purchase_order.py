@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from reportlab.pdfbase.pdfdoc import count
+
 
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError

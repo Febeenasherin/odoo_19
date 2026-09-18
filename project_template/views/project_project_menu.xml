@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="template_menu" name="Template" parent="project.menu_main_pm"/>
+    <menuitem id="template_menu" name="Template" parent="project.menu_main_pm" groups="group_project_manager"/>
     <menuitem id="project_templates" name="Project template" parent="template_menu" action="project_creation_action"/>
     <menuitem id="project_task_template" name="Task template" parent="template_menu" action="project_task_creation_action"/>
 </odoo>

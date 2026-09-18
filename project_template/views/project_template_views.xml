@@ -18,35 +18,36 @@
                     <group>
 <!--                        <field name="requested_id"/>-->
                         <field name="partner_id"/>
+                        <field name="project_manager"/>
+                        <field name="company_id"/>
+
 
                          </group>
 
-                    <div class="oe_button_box" name="button_box">
-                         <button name="action_open_tasks" type="object" class="oe_stat_button" icon="fa-star">
-                                <div class="o_stat_info">
-<!--                                    <field name="event_count" class="o_stat_value"/>-->
-                                    <span class="o_stat_text">Events</span>
-                                </div>
-                            </button>
-                    </div>
-<!--                         <group>-->
-<!--                        <notebook>-->
-<!--                            <page name="Material information" string="Material information">-->
-<!--                                <field name="request_line_ids">-->
-<!--                                    <list editable="bottom">-->
+<!--                    <div class="oe_button_box" name="button_box">-->
+<!--                         <button name="action_open_tasks" type="object" class="oe_stat_button" icon="fa-star">-->
+<!--                                <div class="o_stat_info">-->
+<!--&lt;!&ndash;                                    <field name="event_count" class="o_stat_value"/>&ndash;&gt;-->
+<!--                                    <span class="o_stat_text">Events</span>-->
+<!--                                </div>-->
+<!--                            </button>-->
+<!--                    </div>-->
+                         <group>
+                        <notebook>
+                            <page name="Task" string="Task">
+                                <field name="task_ids">
+                                    <list editable="bottom">
 
-<!--                        <field name="product_id"/>-->
-<!--                        <field name="product_qty"/>-->
-<!--                        <field name="request_type"/>-->
-<!--                        <field name="vendor_ids" widget="many2many_tags"-->
-<!--                        invisible="request_type == 'internal transfer'"/>-->
-<!--               `         <field name="source_id" invisible="request_type == 'purchase order'"/>-->
-<!--                        <field name="destination_id" invisible="request_type == 'purchase order'"/>-->
-<!--                                    </list>-->
-<!--                                </field>-->
-<!--                            </page>-->
-<!--                        </notebook>-->
-<!--                    </group>-->
+                        <field name="name"/>
+                        <field name="milestone"/>
+<!--                                        <field name="customer"/>-->
+                        <field name="assigners" widget="many2many_tags"/>
+
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
                 </sheet>
 <!--                 <chatter/>-->
             </form>
