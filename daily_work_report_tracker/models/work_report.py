@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models, api, _
+from odoo.exceptions import UserError
+from datetime import datetime, date
+
+
 
 
 
@@ -19,29 +23,55 @@ class WorkReport(models.Model):
     def message_new(self, msg_dict, custom_values=None):
         print(self)
         print("working")
-        if custom_values is None:
-            custom_values = {}
-            defaults = {
-            'name': msg_dict.get('subject') or _("No Subject"),
-            # 'email_from': msg_dict.get('from'),
+        super(WorkReport, self).message_new(msg_dict)
+
+        subject = msg_dict.get('subject')
+        print("subject", subject)
+        email_from = msg_dict.get('from')
+        print('from', email_from)
+        body = msg_dict.get('body')
+        print('body', body)
+
+        part = subject.split('_', 2)
+        print("split", part)
+
+        if len(part) != 3:
+            raise UserError('Invalid subject format')
+
+        sub = part[0].strip()
+        print("sub", sub)
+        date = part[1].strip()
+        emp_name = part[2].strip()
+
+        # real_date = datetime.strptime(date, '%d-%m-%y').date()
+
+
+        employee = self.env['hr.employee'].search([('name', '=', emp_name)], limit=1)
+        if not employee:
+            raise UserError('Employee not found')
+
+        # if custom_values is None:
+        #     custom_values = {}
+
+        self.create({
+            'name': sub,
+            # 'date': real_date,
+            'employee_name': employee.id,
+            'report': body,
             # 'partner_id': msg_dict.get('author_id', False),
-            }
-
-            subject = msg_dict.get('subject')
-            print(defaults)
-            email_from = msg_dict.get('from')
-            print('from', email_from)
-
-
-            self.create({
-            'name' : subject
             })
 
+        # self.env['hr.employee'].create(values)
 
 
 
-        return super(WorkReport, self).message_new(msg_dict, custom_values=defaults)
 
+
+            # self.create({
+            # 'name' : subject
+            # })
+
+        return
 
 
 

@@ -5,5 +5,6 @@
     <field name="alias_model_id" ref="model_work_report"/>
 <!--    <field name="alias_user_id" ref="base.user_admin"/>-->
     <field name="alias_parent_model_id" ref="model_work_report"/>
+    <field name="alias_contact">employees</field>
 </record>
 </odoo>
