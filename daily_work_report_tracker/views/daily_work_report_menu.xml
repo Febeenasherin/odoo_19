@@ -2,6 +2,7 @@
 <odoo>
     <menuitem id="daily_work_report" name="Work Report"/>
     <menuitem id="menu_employees" name="Employees" parent="daily_work_report" action="res_partner_employee_action"/>
-    <menuitem id="menu_wor_report" name="Report" parent="daily_work_report" action="work_report_action"/>
+    <menuitem id="menu_work_report" name="Report" parent="daily_work_report" action="work_report_action"/>
+    <menuitem id="menu_reporting_datly_report" name="Reporting" parent="daily_work_report" action="reporting_work_report_action"/>
 
 </odoo>

@@ -40,22 +40,28 @@ class SaleOrder(models.Model):
             note =" "
 
 
-            if rec.state == 'send':
+            if rec.state == 'sent':
 
                 if 'state' in vals:
                     state=vals['state']
                     note = f"state changed to {state}"
 
 
+                # if rec.partner_id:
+                #     partner = vals['partner_id']
+                #     note = f"partner changed to {partner}"
 
 
 
 
-                self.env['sale.order.revision'].create({
+
+
+                new = self.env['sale.order.revision'].create({
+                        'sale_id': self.id,
                         'revision_no' : len(rec.revision_ids)+1,
                         'revision_note' : note
                     })
-
+                print("new",new)
 
 
 

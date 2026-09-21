@@ -18,6 +18,7 @@
             "data/alias.xml",
             "views/hr_employee_views.xml",
             "views/work_report_view.xml",
+            "views/work_report_reporting.xml",
             "views/daily_work_report_menu.xml",
      ],
 }

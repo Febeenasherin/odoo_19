@@ -11,7 +11,7 @@
                         <field name="name"/>
 
                         <field name="date"/>
-                        <field name="employee_name"/>
+                        <field name="employee_id"/>
 
                     </group>
                     <group>
@@ -36,16 +36,45 @@
                 <field name="name"/>
 
                         <field name="date"/>
-                        <field name="employee_name"/>
+                        <field name="employee_id"/>
 <!--                        <field name="purchase_ids"/>-->
             </list>
+
         </field>
     </record>
+
+
+    <record id="work_report_view_search" model="ir.ui.view">
+   <field name="name">work.report.view.search</field>
+   <field name="model">work.report</field>
+   <field name="arch" type="xml">
+       <search>
+           <field name="date" string="Date"/>
+           <field name="employee_id" string="Employee Name"/>
+           <separator/>
+           <filter name="date_today" string="Today"
+                   domain="[('date', '=', context_today())]"/>
+<!--           <filter name="date" string="Month"-->
+<!--                   domain="[('date', '=', context_today().replace(day=1))]"/>-->
+
+           <group name="groupby">
+               <filter name="group_by_employee" string="Employees"
+                       context="{'group_by': 'employee_id'}"/>
+               <filter name="group_by_date" string="Date" domain="[]"
+                       context="{'group_by': 'date'}"/>
+           </group>
+
+       </search>
+   </field>
+</record>
 
     <record id="work_report_action"  model="ir.actions.act_window">
         <field name="name">Work report</field>
         <field name="res_model">work.report</field>
         <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_by_employee':1, 'search_default_date_today':1}</field>
+<!--        <field name="context">{'search_default_date':1}</field>-->
+        <field name="search_view_id" ref="work_report_view_search"/>
         <field name="help" type="html">
             <p class="view_content">
                 no record found.

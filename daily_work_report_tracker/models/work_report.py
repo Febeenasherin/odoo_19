@@ -4,9 +4,6 @@ from odoo.exceptions import UserError
 from datetime import datetime, date
 
 
-
-
-
 class WorkReport(models.Model):
 
     _name = 'work.report'
@@ -16,14 +13,14 @@ class WorkReport(models.Model):
 
     name = fields.Char(string='Subject')
     date = fields.Date(string='Date')
-    employee_name = fields.Many2one('hr.employee', string='Employee Name')
+    employee_id = fields.Many2one('hr.employee', string='Employee Name')
     report = fields.Html(string='Report')
 
     @api.model
     def message_new(self, msg_dict, custom_values=None):
         print(self)
         print("working")
-        super(WorkReport, self).message_new(msg_dict)
+        # super(WorkReport, self).message_new(msg_dict)
 
         subject = msg_dict.get('subject')
         print("subject", subject)
@@ -43,7 +40,8 @@ class WorkReport(models.Model):
         date = part[1].strip()
         emp_name = part[2].strip()
 
-        # real_date = datetime.strptime(date, '%d-%m-%y').date()
+        real_date = datetime.strptime(date, '%d %b %Y').date()
+        print("real_date", real_date)
 
 
         employee = self.env['hr.employee'].search([('name', '=', emp_name)], limit=1)
@@ -53,25 +51,28 @@ class WorkReport(models.Model):
         # if custom_values is None:
         #     custom_values = {}
 
-        self.create({
-            'name': sub,
-            # 'date': real_date,
-            'employee_name': employee.id,
+        values = {
+            'name': subject,
+            'date': real_date,
+            'employee_id': employee.id,
             'report': body,
             # 'partner_id': msg_dict.get('author_id', False),
-            })
+            }
 
         # self.env['hr.employee'].create(values)
 
 
+        print(values)
+        print("name", values['name'])
+
+        new = self.env['work.report'].create(values)
+        print(new)
 
 
 
-            # self.create({
-            # 'name' : subject
-            # })
 
-        return
+
+        return new
 
 
 
