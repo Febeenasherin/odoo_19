@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="reorder_view_preview" inherit_id="sale.portal_my_orders">
+        <xpath expr="//t[@t-if='orders']/thead/tr/th[3]" position="after">
+
+            <th name="reorder" class="text-end">Reorder</th>
+
+        </xpath>
+
+        <xpath expr="//td[@name='order_amount_total']" position="after">
+            <td class="text-end">
+
+                <a t-att-href="'/my/orders/%s/reorder'% order.id" title="Reorder">
+                   <i class="fa fa-shopping-cart fa-stack"/>
+                </a>
+            </td>
+
+
+
+        </xpath>
+
+
+    </template>
+</odoo>

@@ -5,8 +5,8 @@
     'license':"LGPL-3",
     'author': "Cybrosys Techno Solutions",
     'category': 'Order',
-    'summary': 'clear website sale cart',
-    'description': """clear cart""",
+    'summary': 'reorder product from sale order',
+    'description': """reorder the same product in sale order""",
     'website': 'http://www.cybrosys.com',
     'sequence': 2,
     'application': False,
@@ -15,8 +15,8 @@
     'depends': ['base', 'website', 'website_sale',],
     'data':[
 
-            "views/website_sale_order.xml",
-            "views/website_invoice.xml",
+            "views/sale_order_portal_views.xml",
+            "views/portal_my_orers_views.xml",
      ],
 }
 

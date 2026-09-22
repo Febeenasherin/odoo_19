@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    # add field-->
+    <record id="project_line_view_inherit" model="ir.ui.view">
+        <field name="name">project.line.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+
+
+           <page string="Date" name="Date">
+
+               <field name="date_ids">
+                   <list editable="bottom">
+
+                               <field name="month"/>
+                               <field name="year"/>
+                                <field name="from_date"/>
+                       <field name="to_date"/>
+
+                   </list>
+               </field>
+
+           </page>
+
+
+        </xpath>
+            <xpath expr="//header" position="inside">
+
+                <button type="object" name="action_schedule_date" string="Schedule Date" />
+
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="reorder_view_template" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//div[@id='introduction']" position="after">
+
+            <div class="mb-3">
+                <a t-att-href="'/my/orders/%s/reorder'% sale_order.id" class="btn btn-primary">Reorder
+                </a>
+            </div>
+
+        </xpath>
+
+
+    </template>
+</odoo>

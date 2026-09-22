@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+date_in_02m_field.access_project_date_line,access_project_date_line,date_in_02m_field.model_project_date_line,base.group_user,1,1,1,1
